@@ -1,3 +1,6 @@
+/**
+ *
+ */
 package com.jpmanjarres.hackerrank;
 
 import java.io.BufferedReader;
@@ -8,10 +11,10 @@ import java.io.PrintWriter;
 import java.util.StringTokenizer;
 
 /**
- * @author <a href="paul.manjarres@gmail.com">Jean Paul Manjarres Correal</a> 13/11/2015
+ * @author <a href="paul.manjarres@gmail.com">Jean Paul Manjarres Correal</a> 15/11/2015
  *
  */
-public class DiagonalDifference {
+public class Staircase {
 
 	public static void main(String[] args) {
 		final PrintWriter out = new PrintWriter(System.out);
@@ -19,28 +22,19 @@ public class DiagonalDifference {
 		// PROBLEM SOLVING
 
 		int n = in.nextInt();
-				
-		int sumMain= 0;
-		int sumSec = 0;
-		int row = 0;
 		
-		int length= n*n;
-		
-		for (int i = 0; i < length; i++) {
-			int val = in.nextInt();
-			
-			if(i> row*n +n -1){
-				row++;
-			}			
-			if(i== (row*n +row)){
-				sumMain+=val;				
-			}			
-			if(i==(row*n +n -row-1)){
-				sumSec+=val;				
-			}			
+		for (int i = 0; i < n; i++) {
+			for (int j = 0; j < n; j++) {				
+				if(j< (n-i-1)){
+					out.print(" ");
+				}else{
+					out.print("#");	
+				}
+			}
+			out.println("");
 		}		
 		
-		out.println(Math.abs(sumMain-sumSec));
+
 		out.close();
 	}
 

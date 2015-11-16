@@ -1,3 +1,6 @@
+/**
+ *
+ */
 package com.jpmanjarres.hackerrank;
 
 import java.io.BufferedReader;
@@ -5,42 +8,46 @@ import java.io.IOException;
 import java.io.InputStream;
 import java.io.InputStreamReader;
 import java.io.PrintWriter;
+import java.text.DecimalFormat;
 import java.util.StringTokenizer;
 
 /**
- * @author <a href="paul.manjarres@gmail.com">Jean Paul Manjarres Correal</a> 13/11/2015
+ * @author <a href="paul.manjarres@gmail.com">Jean Paul Manjarres Correal</a> 
+ * 15/11/2015
  *
  */
-public class DiagonalDifference {
+public class PlusMinus {
 
 	public static void main(String[] args) {
 		final PrintWriter out = new PrintWriter(System.out);
 		final InputReader in = new InputReader(System.in);
-		// PROBLEM SOLVING
+		//PROBLEM SOLVING
 
 		int n = in.nextInt();
-				
-		int sumMain= 0;
-		int sumSec = 0;
-		int row = 0;
 		
-		int length= n*n;
+		double positives =0.0;
+		double negatives =0.0;
+		double zeroes =0.0;
 		
-		for (int i = 0; i < length; i++) {
+		
+		for (int i = 0; i < n; i++) {
 			int val = in.nextInt();
 			
-			if(i> row*n +n -1){
-				row++;
-			}			
-			if(i== (row*n +row)){
-				sumMain+=val;				
-			}			
-			if(i==(row*n +n -row-1)){
-				sumSec+=val;				
-			}			
-		}		
+			if(val>0){
+				positives+=(1 / (double)n);
+			}else if(val<0){
+				negatives+=(1 / (double)n);
+			}else{
+				zeroes+=(1 / (double)n);
+			}		
+		}
 		
-		out.println(Math.abs(sumMain-sumSec));
+		DecimalFormat df = new DecimalFormat();
+		df.setMaximumFractionDigits(3);
+		df.setMinimumFractionDigits(3);
+		out.println(df.format(positives));
+		out.println(df.format(negatives));
+		out.println(df.format(zeroes));
 		out.close();
 	}
 
@@ -68,7 +75,7 @@ public class DiagonalDifference {
 			return Integer.parseInt(next());
 		}
 
-		public long nextLong() {
+		public long nextLong(){
 			return Long.parseLong(next());
 		}
 	}

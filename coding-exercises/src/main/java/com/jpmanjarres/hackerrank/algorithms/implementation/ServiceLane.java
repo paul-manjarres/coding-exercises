@@ -1,4 +1,7 @@
-package com.jpmanjarres;
+/**
+ *
+ */
+package com.jpmanjarres.hackerrank.algorithms.implementation;
 
 import java.io.BufferedReader;
 import java.io.IOException;
@@ -8,10 +11,12 @@ import java.io.PrintWriter;
 import java.util.StringTokenizer;
 
 /**
- * @author <a href="paul.manjarres@gmail.com">Jean Paul Manjarres Correal</a>
- *         12/11/2015
+ * @author <a href="paul.manjarres@gmail.com">Jean Paul Manjarres Correal</a> 
+ * 25/11/2015
+ *
  */
-public class TemplateClass {
+public class ServiceLane {
+
 
 	public static void main(String[] args) {
 		final PrintWriter out = new PrintWriter(System.out);
@@ -19,13 +24,34 @@ public class TemplateClass {
 		//PROBLEM SOLVING
 
 		int n = in.nextInt();
+		int t = in.nextInt();
+		
+		int[] width= new int[n];
+		
+		for (int i = 0; i < n; i++) {
+			width[i] = in.nextInt();			
+		}
+		
+		for (int i = 0; i < t; i++) {
+			
+			int x = in.nextInt();
+			int y = in.nextInt();
+			
+			int maxWidth= 3;
+			
+			for (int j = x; j <= y; j++) {
+				if(width[j] < maxWidth){
+					maxWidth = width[j];
+				}
+			}			
+			out.println(maxWidth);			
+		}
 
 
 
 		out.close();
 	}
 
-	//Utility class for input parsing
 	static class InputReader {
 		BufferedReader reader;
 		StringTokenizer tokenizer;
@@ -55,4 +81,5 @@ public class TemplateClass {
 		}
 	}
 
+	
 }

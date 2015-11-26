@@ -21,12 +21,36 @@ public class SherlockAndTheBeast {
 	public static void main(String[] args) {
 		final PrintWriter out = new PrintWriter(System.out);
 		final InputReader in = new InputReader(System.in);
-		//PROBLEM SOLVING
 
-		int n = in.nextInt();
-
-
-
+		int t = in.nextInt();         
+		
+		for (int i = 0; i < t; i++) {
+			
+			int n = in.nextInt();
+			
+			int x = n;
+			int y=0;
+			boolean found = false;
+			
+			while(x>=0){
+				if(x%3==0 && y%5==0){
+					found = true;
+					break;
+				}
+				x--;
+				y++;
+			}
+			
+			String number = "";
+			
+			if(!found){
+				number = "-1";
+			}else{				
+				number = new String(new char[x]).replace("\0", "5");
+				number+= new String(new char[y]).replace("\0", "3");				
+			}			
+			out.println(number);				
+		}
 		out.close();
 	}
 

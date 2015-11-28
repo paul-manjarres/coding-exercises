@@ -19,24 +19,31 @@ public class TheLoveLetterMystery {
 
 			String s = in.next();
 			int len = s.length();
-			int index = -1;
-			
-			System.out.println(len);
+
+			char[] arr = s.toCharArray();
+			int ops = 0;
+
+			for (int j = 0, k = len - 1; j < s.length() / 2; j++, k--) {
+
+				if (arr[j] != arr[k]) {
+
+					if (arr[j] < arr[k]) {
+						while (arr[j] != arr[k]) {
+							arr[k]--;
+							ops++;
+						}
+					} else {
+						while (arr[j] != arr[k]) {
+							arr[j]--;
+							ops++;
+						}
+					}
+				}
+			}
+			System.out.println(ops);
 
 		}
 		in.close();
-	}
-
-	public static boolean isPalindrome(String s) {
-		int len = s.length();
-		boolean palindrome = true;
-		for (int j = 0, k = len - 1; j < s.length() / 2; j++, k--) {
-			if (s.charAt(j) != s.charAt(k)) {
-				palindrome = false;
-				break;
-			}
-		}
-		return palindrome;
 	}
 
 }

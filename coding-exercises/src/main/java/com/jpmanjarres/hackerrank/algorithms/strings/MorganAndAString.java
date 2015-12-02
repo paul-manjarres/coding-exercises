@@ -11,21 +11,20 @@ import java.util.Scanner;
  */
 public class MorganAndAString {
 
-
 	// Check who is the array to take elements from if the two elements on top are equal.
 	public static int checkWhosNext(char[] A, int j, char[] B, int k) {
-		int sumA=0;
-		int sumB=0;
+		int sumA = 0;
+		int sumB = 0;
 
-		while(k<B.length-1 || j<A.length){
-			sumB+= k<B.length ? (int)B[k] : (int)'Z';
-			sumA+= j<A.length ? (int)A[j] : (int)'Z';
-			if(sumA==sumB){
+		while (k < B.length - 1 || j < A.length) {
+			sumB += k < B.length ? (int) B[k] : (int) 'Z';
+			sumA += j < A.length ? (int) A[j] : (int) 'Z';
+			if (sumA == sumB) {
 				k++;
 				j++;
 				continue;
 			}
-			return sumA< sumB ? 0 : 1;
+			return sumA < sumB ? 0 : 1;
 		}
 		return 0;
 	}
@@ -47,42 +46,26 @@ public class MorganAndAString {
 			int k = 0;
 			int lengthSum = A.length + B.length;
 
-			while (j + k < lengthSum ) {
+			while (j + k < lengthSum) {
 
 				if (j >= A.length) {
-					s.append(B[k]);
-					k++;
+					s.append(B[k++]);
 				} else if (k >= B.length) {
-					s.append(A[j]);
-					j++;
-				}else if (A[j] == B[k]) {
-
-					int direction = checkWhosNext(A, j, B, k);
-
-					if (direction == 0) {
-						s.append(A[j]);
-						j++;
-					}
-					if (direction == 1) {
-						s.append(B[k]);
-						k++;
-					}
+					s.append(A[j++]);
+				} else if (A[j] == B[k]) {
+					s.append(checkWhosNext(A, j, B, k) == 0 ? A[j++] : B[k++]);
 				}
-
 				else if (A[j] < B[k]) {
-					s.append(A[j]);
-					j++;
+					s.append(A[j++]);
 				} else if (A[j] > B[k]) {
-					s.append(B[k]);
-					k++;
+					s.append(B[k++]);
 				}
 			}
 			System.out.println(s.toString());
 
-
 		}
 		end = System.currentTimeMillis();
-		System.out.println("Time : " + (end - start));
+//		System.out.println("Time : " + (end - start));
 		in.close();
 	}
 

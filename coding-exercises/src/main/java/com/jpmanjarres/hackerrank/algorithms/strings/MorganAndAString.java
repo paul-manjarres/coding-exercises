@@ -3,7 +3,6 @@
  */
 package com.jpmanjarres.hackerrank.algorithms.strings;
 
-import java.util.Arrays;
 import java.util.Scanner;
 
 /**
@@ -12,20 +11,22 @@ import java.util.Scanner;
  */
 public class MorganAndAString {
 
+
 	// Check who is the array to take elements from if the two elements on top are equal.
-	public static int checkWhosNext(char[] A, char[] B) {
-		for (int i = 0;; i++) {
-			if (i <= A.length - 1 && i <= B.length - 1) {
-				if (A[i] < B[i]) {
-					return 0;
-				} else if (A[i] > B[i]) {
-					return 1;
-				} else {
-					// Do nothing
+	public static int checkWhosNext2(char[] A, int j, char[] B, int k) {
+		for (;; j++, k++) {
+			if (j < A.length  && k <  B.length ) {
+				if(A[j]==B[k]){
+					continue;
 				}
-			} else if (i < A.length - 1 && i >= B.length - 1) {
+				if (A[j] < B[k]) {
+					return 0;
+				} else if (A[j] > B[k]) {
+					return 1;
+				}
+			} else if (j < A.length - 1 && k >= B.length - 1) {
 				return 0;
-			} else if (i >= A.length - 1 && i < B.length - 1) {
+			} else if (j >= A.length - 1 && k < B.length - 1) {
 				return 1;
 			} else {
 				return 0;
@@ -37,6 +38,9 @@ public class MorganAndAString {
 		final Scanner in = new Scanner(System.in);
 		int T = in.nextInt();
 
+		long start = System.currentTimeMillis();
+		long end = start;
+
 		for (int i = 0; i < T; i++) {
 			char[] A = in.next().toCharArray();
 			char[] B = in.next().toCharArray();
@@ -45,7 +49,9 @@ public class MorganAndAString {
 
 			int j = 0;
 			int k = 0;
-			while (j + k < A.length + B.length) {
+			int lengthSum = A.length + B.length;
+
+			while (j + k < lengthSum ) {
 
 				if (j >= A.length) {
 					s.append(B[k]);
@@ -53,15 +59,9 @@ public class MorganAndAString {
 				} else if (k >= B.length) {
 					s.append(A[j]);
 					j++;
-				} else if (A[j] < B[k]) {
-					s.append(A[j]);
-					j++;
-				} else if (A[j] > B[k]) {
-					s.append(B[k]);
-					k++;
-				} else if (A[j] == B[k]) {
+				}else if (A[j] == B[k]) {
 
-					int direction = checkWhosNext(Arrays.copyOfRange(A, j, A.length), Arrays.copyOfRange(B, k, B.length));
+					int direction = checkWhosNext2(A, j, B, k);
 
 					if (direction == 0) {
 						s.append(A[j]);
@@ -71,12 +71,22 @@ public class MorganAndAString {
 						s.append(B[k]);
 						k++;
 					}
+				}
 
+				else if (A[j] < B[k]) {
+					s.append(A[j]);
+					j++;
+				} else if (A[j] > B[k]) {
+					s.append(B[k]);
+					k++;
 				}
 			}
 			System.out.println(s.toString());
 
+
 		}
+		end = System.currentTimeMillis();
+		System.out.println("Time : " + (end - start));
 		in.close();
 	}
 

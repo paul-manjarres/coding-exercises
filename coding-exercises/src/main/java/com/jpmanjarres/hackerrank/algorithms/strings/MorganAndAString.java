@@ -13,25 +13,21 @@ public class MorganAndAString {
 
 
 	// Check who is the array to take elements from if the two elements on top are equal.
-	public static int checkWhosNext2(char[] A, int j, char[] B, int k) {
-		for (;; j++, k++) {
-			if (j < A.length  && k <  B.length ) {
-				if(A[j]==B[k]){
-					continue;
-				}
-				if (A[j] < B[k]) {
-					return 0;
-				} else if (A[j] > B[k]) {
-					return 1;
-				}
-			} else if (j < A.length - 1 && k >= B.length - 1) {
-				return 0;
-			} else if (j >= A.length - 1 && k < B.length - 1) {
-				return 1;
-			} else {
-				return 0;
+	public static int checkWhosNext(char[] A, int j, char[] B, int k) {
+		int sumA=0;
+		int sumB=0;
+
+		while(k<B.length-1 || j<A.length){
+			sumB+= k<B.length ? (int)B[k] : (int)'Z';
+			sumA+= j<A.length ? (int)A[j] : (int)'Z';
+			if(sumA==sumB){
+				k++;
+				j++;
+				continue;
 			}
+			return sumA< sumB ? 0 : 1;
 		}
+		return 0;
 	}
 
 	public static void main(String[] args) {
@@ -61,7 +57,7 @@ public class MorganAndAString {
 					j++;
 				}else if (A[j] == B[k]) {
 
-					int direction = checkWhosNext2(A, j, B, k);
+					int direction = checkWhosNext(A, j, B, k);
 
 					if (direction == 0) {
 						s.append(A[j]);

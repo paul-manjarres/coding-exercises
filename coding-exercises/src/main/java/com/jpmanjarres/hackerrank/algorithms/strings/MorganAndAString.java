@@ -11,12 +11,17 @@ import java.util.Scanner;
  */
 public class MorganAndAString {
 
+	static boolean log = false;
+
 	// Check who is the array to take elements from if the two elements on top are equal.
-	public static int checkWhosNext(char[] A, int j, char[] B, int k) {
+	public static CheckValue checkWhosNext(char[] A, int j, char[] B, int k) {
 		int sumA = 0;
 		int sumB = 0;
+		int kini = k;
+		int jini = j;
 
-		while (k < B.length  || j < A.length) {
+		while (k < B.length || j < A.length) {
+
 			sumB += k < B.length ? (int) B[k] : (int) 'Z';
 			sumA += j < A.length ? (int) A[j] : (int) 'Z';
 			if (sumA == sumB) {
@@ -24,13 +29,13 @@ public class MorganAndAString {
 				j++;
 				continue;
 			}
-			return sumA < sumB ? 0 : 1;
+			return (sumA < sumB) ? new CheckValue(0, j - jini) : new CheckValue(1, k - kini);
 		}
-		return 0;
+		return new CheckValue(0, 1);
 	}
 
 	// Solve the problem for two arrays
-	public static String solve(char[] A,char[] B){
+	public static String solve(char[] A, char[] B) {
 		StringBuilder s = new StringBuilder();
 
 		int j = 0;
@@ -44,14 +49,20 @@ public class MorganAndAString {
 			} else if (k >= B.length) {
 				s.append(A[j++]);
 			} else if (A[j] == B[k]) {
-				s.append(checkWhosNext(A, j, B, k) == 0 ? A[j++] : B[k++]);
+
+				final CheckValue val = checkWhosNext(A, j, B, k);
+
+				// Optimization to avoid iteration over same substrings
+				for (int i = 0; i < val.charsToTake; i++) {
+					s.append(val.array == 0 ? A[j++] : B[k++]);
+				}
+
 			} else {
 				s.append(A[j] < B[k] ? A[j++] : B[k++]);
 			}
 		}
 		return s.toString();
 	}
-
 
 	public static void main(String[] args) {
 		final Scanner in = new Scanner(System.in);
@@ -66,9 +77,23 @@ public class MorganAndAString {
 			System.out.println(solve(A, B));
 		}
 
-		end = System.currentTimeMillis();
-		System.out.println("Time : " + (end - start));
+		if (log) {
+			end = System.currentTimeMillis();
+			System.out.println("Time : " + (end - start));
+		}
 		in.close();
+	}
+
+	// Utility class to return 2 values
+	static class CheckValue {
+		public int array;
+		public int charsToTake;
+
+		public CheckValue(int array, int charsToTake) {
+			super();
+			this.array = array;
+			this.charsToTake = charsToTake;
+		}
 	}
 
 }

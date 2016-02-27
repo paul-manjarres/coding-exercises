@@ -23,68 +23,77 @@ public class AlgoMatrixRotation {
 			}
 		}
 
-		for (int i = 0; i < R; i++) {
-			A = rotate(M, N, A);
-		}
-
+		A = rotate(M, N, R, A);
 		AlgoMatrixRotation.printIntMatrix(A);
+		
+		
 		in.close();
 
 	}
 
 	/**
-	 * This function rotates the matrix to the left one time
+	 * This function rotates the matrix to the left R time
 	 * 
 	 * @param M
 	 * @param N
-	 * @param A
+	 * @param R number of rotations
+	 * @param A matrix
 	 * @return rotated matrix
 	 */
-	public static int[][] rotate(int M, int N, int[][] A) {
+	public static int[][] rotate(int M, int N, int R, int[][] A) {
 
 		int layers = M < N ? M / 2 : N / 2;
 
 		for (int k = 0; k < layers; k++) {
 
-			Integer temp = null;
+			int numberOfRotationsTillGetTheOriginal = 2 * (M - 2 * k) + 2 * (N - 2 - 2 * k);
+			int totalRotations = R % numberOfRotationsTillGetTheOriginal;
 
-			for (int i = k; i < M - k; i++) {
+			// System.out.println("elements: " + numberOfRotationsTillGetTheOriginal);
+//			System.out.println("Layer: "+k+" - Total rotations: " + totalRotations);
 
-				for (int j = k; j < N - k; j++) {
+			for (int z = 0; z < totalRotations; z++) {
 
-					if (i == k) {
-						if (j == k) {
-							temp = A[i][j];
+				Integer temp = null;
+
+				for (int i = k; i < M - k; i++) {
+
+					for (int j = k; j < N - k; j++) {
+
+						if (i == k) {
+							if (j == k) {
+								temp = A[i][j];
+							}
+							if (j < N - 1 - k) {
+								A[i][j] = A[i][j + 1];
+							}
+
+						} else if (i > k && i < M - 1 - k) {
+
+							if (j == k) {
+								int temp2 = A[i][k];
+								A[i][k] = temp;
+								temp = temp2;
+							}
+							if (j == N - 1 - k) {
+								A[i - 1][N - 1 - k] = A[i][N - 1 - k];
+							}
+
+						} else if (i == M - 1 - k) {
+							if (j < N - 1 - k) {
+								int temp2 = A[i][j];
+								A[i][j] = temp;
+								temp = temp2;
+							} else if (j == N - 1 - k) {
+								int temp2 = A[i][j];
+								A[i][j] = temp;
+								A[i - 1][j] = temp2;
+							}
 						}
-						if (j < N - 1 - k) {
-							A[i][j] = A[i][j + 1];
-						}
 
-					} else if (i > k && i < M - 1 - k) {
-
-						if (j == k) {
-							int temp2 = A[i][k];
-							A[i][k] = temp;
-							temp = temp2;
-						}
-						if (j == N - 1 - k) {
-							A[i - 1][N - 1 - k] = A[i][N - 1 - k];
-						}
-
-					} else if (i == M - 1 - k) {
-						if (j < N - 1 - k) {
-							int temp2 = A[i][j];
-							A[i][j] = temp;
-							temp = temp2;
-						} else if (j == N - 1 - k) {
-							int temp2 = A[i][j];
-							A[i][j] = temp;
-							A[i - 1][j] = temp2;
-						}
 					}
 
 				}
-
 			}
 
 		}
@@ -99,7 +108,7 @@ public class AlgoMatrixRotation {
 	public static void printIntMatrix(int[][] m) {
 		for (int i = 0; i < m.length; i++) {
 			for (int j = 0; j < m[i].length; j++) {
-				System.out.print(m[i][j] + "\t");
+				System.out.print(m[i][j] + " ");
 			}
 			System.out.println();
 		}

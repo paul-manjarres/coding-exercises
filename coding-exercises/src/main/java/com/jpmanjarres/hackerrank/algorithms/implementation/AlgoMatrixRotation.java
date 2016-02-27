@@ -1,6 +1,3 @@
-/**
- *
- */
 package com.jpmanjarres.hackerrank.algorithms.implementation;
 
 import java.util.Scanner;
@@ -26,52 +23,64 @@ public class AlgoMatrixRotation {
 			}
 		}
 
+		for (int i = 0; i < R; i++) {
+			A = rotate(M, N, A);
+		}
+
+		AlgoMatrixRotation.printIntMatrix(A);
+		in.close();
+
+	}
+
+	/**
+	 * This function rotates the matrix to the left one time
+	 * 
+	 * @param M
+	 * @param N
+	 * @param A
+	 * @return rotated matrix
+	 */
+	public static int[][] rotate(int M, int N, int[][] A) {
+
 		int layers = M < N ? M / 2 : N / 2;
 
-		System.out.println("Layers : " + layers);
+		for (int k = 0; k < layers; k++) {
 
-		// for (int k = 0; k < layers; k++) {
+			Integer temp = null;
 
-		Integer temp = null;
+			for (int i = k; i < M - k; i++) {
 
-		
-		for (int i = 0; i < A.length; i++) {
+				for (int j = k; j < N - k; j++) {
 
-			
-			for (int j = 0; j < A.length; j++) {
+					if (i == k) {
+						if (j == k) {
+							temp = A[i][j];
+						}
+						if (j < N - 1 - k) {
+							A[i][j] = A[i][j + 1];
+						}
 
-				if (i == 0) {
-					if (j == 0) {
-						temp = A[i][j];
-					}
-					if (j < N - 1) {
-						A[i][j] = A[i][j + 1];
-					}
-				}
-				else if (i > 0 && i < M - 1) {
+					} else if (i > k && i < M - 1 - k) {
 
-					if (j == 0) {						
-							int temp2 = A[i][0];
-							A[i][0] = temp;
+						if (j == k) {
+							int temp2 = A[i][k];
+							A[i][k] = temp;
 							temp = temp2;
-					}
-					if (j == N - 1) {
-						A[i - 1][N - 1] = A[i][N - 1];
-					}
+						}
+						if (j == N - 1 - k) {
+							A[i - 1][N - 1 - k] = A[i][N - 1 - k];
+						}
 
-				}
-
-				else if (i == M - 1) {
-
-					if (j < N - 1) {
-						int temp2 = A[i][j];
-						A[i][j] = temp;
-						temp = temp2;
-					}
-					else if (j == N - 1) {
-						int temp2 = A[i][j];
-						A[i][j] = temp;
-						A[i - 1][j] = temp2;
+					} else if (i == M - 1 - k) {
+						if (j < N - 1 - k) {
+							int temp2 = A[i][j];
+							A[i][j] = temp;
+							temp = temp2;
+						} else if (j == N - 1 - k) {
+							int temp2 = A[i][j];
+							A[i][j] = temp;
+							A[i - 1][j] = temp2;
+						}
 					}
 
 				}
@@ -80,10 +89,7 @@ public class AlgoMatrixRotation {
 
 		}
 
-
-		AlgoMatrixRotation.printIntMatrix(A);
-
-		in.close();
+		return A;
 
 	}
 

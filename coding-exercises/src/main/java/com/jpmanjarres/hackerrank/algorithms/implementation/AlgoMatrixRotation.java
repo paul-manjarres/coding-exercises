@@ -25,8 +25,7 @@ public class AlgoMatrixRotation {
 
 		A = rotate(M, N, R, A);
 		AlgoMatrixRotation.printIntMatrix(A);
-		
-		
+
 		in.close();
 
 	}
@@ -50,50 +49,69 @@ public class AlgoMatrixRotation {
 			int totalRotations = R % numberOfRotationsTillGetTheOriginal;
 
 			// System.out.println("elements: " + numberOfRotationsTillGetTheOriginal);
-//			System.out.println("Layer: "+k+" - Total rotations: " + totalRotations);
+			// System.out.println("Layer: "+k+" - Total rotations: " + totalRotations);
 
 			for (int z = 0; z < totalRotations; z++) {
 
 				Integer temp = null;
+				Integer last = null;
 
+				
+				//TODO: Intentar procesar hasta N/2
 				for (int i = k; i < M - k; i++) {
 
 					for (int j = k; j < N - k; j++) {
 
+						// Process first and last row in the layer
 						if (i == k) {
 							if (j == k) {
+
+								last = A[M - 1 - k][j];
+								A[M - 1 - k][j] = A[M - 2 - k][j];
+
 								temp = A[i][j];
-							}
-							if (j < N - 1 - k) {
 								A[i][j] = A[i][j + 1];
+
 							}
 
-						} else if (i > k && i < M - 1 - k) {
+							else if (j > k && j < N - 1 - k) {
+								A[i][j] = A[i][j + 1];
+
+								int temp2 = A[M - 1 - k][j];
+								A[M - 1 - k][j] = last;
+								last = temp2;
+
+							}
+
+							else if (j == N - 1 - k) {
+								int temp2 = A[M - 1 - k][j];
+								A[M - 1 - k][j] = last;
+								last = temp2;
+							}
+
+						} 
+						
+						// process intermediate rows
+						else if (i > k && i < M - 1 - k) {
+							
 
 							if (j == k) {
 								int temp2 = A[i][k];
 								A[i][k] = temp;
 								temp = temp2;
-							}
-							if (j == N - 1 - k) {
+
 								A[i - 1][N - 1 - k] = A[i][N - 1 - k];
+
 							}
 
-						} else if (i == M - 1 - k) {
-							if (j < N - 1 - k) {
-								int temp2 = A[i][j];
-								A[i][j] = temp;
-								temp = temp2;
-							} else if (j == N - 1 - k) {
-								int temp2 = A[i][j];
-								A[i][j] = temp;
-								A[i - 1][j] = temp2;
-							}
 						}
 
 					}
 
 				}
+
+				A[M - k - 2][N - 1 - k] = last;
+
 			}
 
 		}
@@ -108,7 +126,7 @@ public class AlgoMatrixRotation {
 	public static void printIntMatrix(int[][] m) {
 		for (int i = 0; i < m.length; i++) {
 			for (int j = 0; j < m[i].length; j++) {
-				System.out.print(m[i][j] + " ");
+				System.out.print(m[i][j] + "\t");
 			}
 			System.out.println();
 		}

@@ -139,12 +139,11 @@ public class AlgoMatrixRotation {
 
 		for (int i = k; i < M - k; i++) {
 
-			for (int j = N-k-1; j >=k; j--) {
+			for (int j = N - k - 1; j >= k; j--) {
 
 				// Process first and last row in the layer
 				if (i == k) {
 					if (j == N - 1 - k) {
-
 						last = A[M - 1 - k][j];
 						A[M - 1 - k][j] = A[M - 2 - k][j];
 
@@ -154,7 +153,7 @@ public class AlgoMatrixRotation {
 					}
 
 					else if (j > k && j < N - 1 - k) {
-						A[i][j] = A[i][j+1];
+						A[i][j] = A[i][j - 1];
 
 						int temp2 = A[M - 1 - k][j];
 						A[M - 1 - k][j] = last;
@@ -164,8 +163,8 @@ public class AlgoMatrixRotation {
 
 					else if (j == k) {
 
-						int temp2 = A[k][j];
-						A[k][j] = last;
+						int temp2 = A[M - 1 - k][j];
+						A[M - 1 - k][j] = last;
 						last = temp2;
 					}
 				}
@@ -173,7 +172,7 @@ public class AlgoMatrixRotation {
 				// process intermediate rows
 				else if (i > k && i < M - 1 - k) {
 
-					if (j == k) {
+					if (j == N - 1 - k) {
 						int temp2 = A[i][N - 1 - k];
 						A[i][N - 1 - k] = temp;
 						temp = temp2;
@@ -187,6 +186,7 @@ public class AlgoMatrixRotation {
 
 		return A;
 	}
+
 
 
 	/**

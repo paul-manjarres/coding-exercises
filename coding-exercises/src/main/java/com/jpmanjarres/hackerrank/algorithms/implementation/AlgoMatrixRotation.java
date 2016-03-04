@@ -50,8 +50,18 @@ public class AlgoMatrixRotation {
 			int numberOfRotationsTillGetTheOriginal = 2 * (M - 2 * k) + 2 * (N - 2 - 2 * k);
 			int totalRotations = R % numberOfRotationsTillGetTheOriginal;
 
+			int halfRotation = numberOfRotationsTillGetTheOriginal / 2;
+
+			if (totalRotations <= halfRotation) {
+				left = true;
+			} else {
+				left = false;
+				totalRotations = numberOfRotationsTillGetTheOriginal - totalRotations;
+			}
+
 			// System.out.println("elements: " + numberOfRotationsTillGetTheOriginal);
-			// System.out.println("Layer: "+k+" - Total rotations: " + totalRotations);
+			// System.out.println("Layer: "+k+" - Total rotations: " + totalRotations+" -
+			// "+(left?"Left":"Right"));
 
 			for (int z = 0; z < totalRotations; z++) {
 
@@ -69,6 +79,13 @@ public class AlgoMatrixRotation {
 
 	}
 
+	/**
+	 * @param M
+	 * @param N
+	 * @param k
+	 * @param A
+	 * @return
+	 */
 	public static int[][] rotateLayerToLeft(int M, int N, int k, int[][] A) {
 
 		Integer temp = null;
@@ -186,8 +203,6 @@ public class AlgoMatrixRotation {
 
 		return A;
 	}
-
-
 
 	/**
 	 * @param m

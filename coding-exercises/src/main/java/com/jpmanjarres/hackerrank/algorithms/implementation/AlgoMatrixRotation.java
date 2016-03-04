@@ -32,7 +32,7 @@ public class AlgoMatrixRotation {
 
 	/**
 	 * This function rotates the matrix to the left R time
-	 * 
+	 *
 	 * @param M
 	 * @param N
 	 * @param R number of rotations
@@ -42,6 +42,8 @@ public class AlgoMatrixRotation {
 	public static int[][] rotate(int M, int N, int R, int[][] A) {
 
 		int layers = M < N ? M / 2 : N / 2;
+
+		boolean left = false;
 
 		for (int k = 0; k < layers; k++) {
 
@@ -53,64 +55,11 @@ public class AlgoMatrixRotation {
 
 			for (int z = 0; z < totalRotations; z++) {
 
-				Integer temp = null;
-				Integer last = null;
-
-				
-				//TODO: Intentar procesar hasta N/2
-				for (int i = k; i < M - k; i++) {
-
-					for (int j = k; j < N - k; j++) {
-
-						// Process first and last row in the layer
-						if (i == k) {
-							if (j == k) {
-
-								last = A[M - 1 - k][j];
-								A[M - 1 - k][j] = A[M - 2 - k][j];
-
-								temp = A[i][j];
-								A[i][j] = A[i][j + 1];
-
-							}
-
-							else if (j > k && j < N - 1 - k) {
-								A[i][j] = A[i][j + 1];
-
-								int temp2 = A[M - 1 - k][j];
-								A[M - 1 - k][j] = last;
-								last = temp2;
-
-							}
-
-							else if (j == N - 1 - k) {
-								int temp2 = A[M - 1 - k][j];
-								A[M - 1 - k][j] = last;
-								last = temp2;
-							}
-
-						} 
-						
-						// process intermediate rows
-						else if (i > k && i < M - 1 - k) {
-							
-
-							if (j == k) {
-								int temp2 = A[i][k];
-								A[i][k] = temp;
-								temp = temp2;
-
-								A[i - 1][N - 1 - k] = A[i][N - 1 - k];
-
-							}
-
-						}
-
-					}
-
+				if (left) {
+					A = rotateLayerToLeft(M, N, k, A);
+				} else {
+					A = rotateLayerToRight(M, N, k, A);
 				}
-
-				A[M - k - 2][N - 1 - k] = last;
 
 			}
 
@@ -119,6 +68,126 @@ public class AlgoMatrixRotation {
 		return A;
 
 	}
+
+	public static int[][] rotateLayerToLeft(int M, int N, int k, int[][] A) {
+
+		Integer temp = null;
+		Integer last = null;
+
+		for (int i = k; i < M - k; i++) {
+
+			for (int j = k; j < N - k; j++) {
+
+				// Process first and last row in the layer
+				if (i == k) {
+					if (j == k) {
+
+						last = A[M - 1 - k][j];
+						A[M - 1 - k][j] = A[M - 2 - k][j];
+
+						temp = A[i][j];
+						A[i][j] = A[i][j + 1];
+
+					}
+
+					else if (j > k && j < N - 1 - k) {
+						A[i][j] = A[i][j + 1];
+
+						int temp2 = A[M - 1 - k][j];
+						A[M - 1 - k][j] = last;
+						last = temp2;
+
+					}
+
+					else if (j == N - 1 - k) {
+
+						int temp2 = A[M - 1 - k][j];
+						A[M - 1 - k][j] = last;
+						last = temp2;
+					}
+				}
+
+				// process intermediate rows
+				else if (i > k && i < M - 1 - k) {
+
+					if (j == k) {
+						int temp2 = A[i][k];
+						A[i][k] = temp;
+						temp = temp2;
+
+						A[i - 1][N - 1 - k] = A[i][N - 1 - k];
+					}
+				}
+			}
+		}
+		A[M - k - 2][N - 1 - k] = last;
+
+		return A;
+	}
+
+	/**
+	 * @param M
+	 * @param N
+	 * @param k
+	 * @param A
+	 * @return
+	 */
+	public static int[][] rotateLayerToRight(int M, int N, int k, int[][] A) {
+
+		Integer temp = null;
+		Integer last = null;
+
+		for (int i = k; i < M - k; i++) {
+
+			for (int j = N-k-1; j >=k; j--) {
+
+				// Process first and last row in the layer
+				if (i == k) {
+					if (j == N - 1 - k) {
+
+						last = A[M - 1 - k][j];
+						A[M - 1 - k][j] = A[M - 2 - k][j];
+
+						temp = A[i][j];
+						A[i][j] = A[i][j - 1];
+
+					}
+
+					else if (j > k && j < N - 1 - k) {
+						A[i][j] = A[i][j+1];
+
+						int temp2 = A[M - 1 - k][j];
+						A[M - 1 - k][j] = last;
+						last = temp2;
+
+					}
+
+					else if (j == k) {
+
+						int temp2 = A[k][j];
+						A[k][j] = last;
+						last = temp2;
+					}
+				}
+
+				// process intermediate rows
+				else if (i > k && i < M - 1 - k) {
+
+					if (j == k) {
+						int temp2 = A[i][N - 1 - k];
+						A[i][N - 1 - k] = temp;
+						temp = temp2;
+
+						A[i - 1][k] = A[i][k];
+					}
+				}
+			}
+		}
+		A[M - k - 2][k] = last;
+
+		return A;
+	}
+
 
 	/**
 	 * @param m

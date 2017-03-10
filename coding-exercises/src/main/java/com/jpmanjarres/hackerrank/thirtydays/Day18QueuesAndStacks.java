@@ -20,16 +20,10 @@ import java.util.Stack;
 public class Day18QueuesAndStacks {
 
 
-    private Deque<Integer> stack = new ArrayDeque<>();
+    private Deque<Character> stack = new ArrayDeque<>();
     private Queue<Character> queue = new LinkedList<>();
 
 
-
-    void pushCharacter(char ch)
-void enqueueCharacter(char ch)
-char popCharacter()
-char dequeueCharacter()
-}
 
 
 }

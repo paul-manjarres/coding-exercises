@@ -27,65 +27,62 @@ public class RemoveFriends {
 			// Create the list
 			Node head = new Node(in.nextInt());
 			Node curr = head;
-
 			for (int j = 0; j < N - 1; j++) {
 				curr.next = new Node(in.nextInt());
+				curr.next.prev = curr;
 				curr = curr.next;
 			}
 
-			// Algorithm
-			curr = head;
-			Node prev = null;
 
-			while (K > 0) {
-
-				if (curr.next == null) {
-
-					if (prev == null) {
-						curr.next = null;
-					} else {
-						curr = prev;
-						curr.next = null;
-					}
-					curr = head;
-					prev = null;
-					K--;
-				}
-
-				else if (curr.data < curr.next.data) {
-
-					if (prev == null) {
-						head = curr.next;
-					} else {
-						prev.next = curr.next;
-					}
-					curr = head;
-					prev = null;
-					K--;
-
-				} else {
-					prev = curr;
-					curr = curr.next;
-				}
-
-			}
+			curr = removeFriends(head, K);
 
 			// Print
-			curr = head;
 			while (curr != null) {
 				System.out.print(curr.data + " ");
 				curr = curr.next;
 			}
-
 			System.out.println();
 
 		}
 		in.close();
+
+	}
+
+	public static Node removeFriends(Node head, int K) {
+
+		Node curr = head;
+
+		while (K > 0) {
+
+			if (curr.next == null) {
+				curr = curr.prev == null ? head: curr.prev;
+				K--;
+			}
+			else if (curr.data < curr.next.data) {
+
+				if (curr.prev == null) {
+					head = curr.next;
+					head.prev = null;
+				} else {
+					curr.prev.next = curr.next;
+					curr.next.prev = curr.prev;
+				}
+				curr = curr.prev == null ? head: curr.prev;
+				K--;
+
+			} else {
+				curr = curr.next;
+			}
+		}
+
+		return head;
+
 	}
 
 	static class Node {
 		int data;
 		Node next;
+		Node prev;
 
 		public Node() {
 		}

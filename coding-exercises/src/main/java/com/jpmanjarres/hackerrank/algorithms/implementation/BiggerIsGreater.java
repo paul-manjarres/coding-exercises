@@ -22,11 +22,12 @@ public class BiggerIsGreater {
 		int n = in.nextInt();
 		for (int _i = 0; _i < n; _i++) {
 
+			// START
+
 			String w = in.next();
 			char[] temp = w.toCharArray();
 
 			int pivotIdx = -1;
-
 			for (int i = temp.length - 1; i > 0; i--) {
 				if (temp[i - 1] < temp[i]) {
 					pivotIdx = i - 1;
@@ -36,23 +37,15 @@ public class BiggerIsGreater {
 
 			if (pivotIdx == -1) {
 				System.out.println("no answer");
+
 			} else {
 
 				int nextIdx = -1;
 				for (int i = pivotIdx + 1; i < temp.length; i++) {
-
-					if(nextIdx == -1){
-						if (temp[i] > temp[pivotIdx]) {
-							nextIdx = i;
-						}
-
-					}else{
-						if (temp[i] > temp[pivotIdx] && temp[i] <= temp[nextIdx]) {
-							nextIdx = i;
-						}
+					if (nextIdx == -1 && temp[i] > temp[pivotIdx] ||
+							( nextIdx != -1 && temp[i] > temp[pivotIdx] && temp[i] <= temp[nextIdx])) {
+						nextIdx = i;
 					}
-
-
 				}
 
 				char swap = temp[nextIdx];
@@ -64,10 +57,7 @@ public class BiggerIsGreater {
 
 				char[] left = Arrays.copyOfRange(temp, 0, pivotIdx + 1);
 
-				String s = new String(left) + new String(right);
-
-				// System.out.println(w.equals(s) ? "no answer" : s);
-				System.out.println(s);
+				System.out.println(new String(left) + new String(right));
 			}
 
 		}

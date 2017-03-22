@@ -50,4 +50,23 @@ public class YagamiPaulUtils {
 		return sb.toString();
 	}
 
+	/**
+	 * Rotate array elements to left
+	 *
+	 * @param arr
+	 * @param d
+	 * @return
+	 */
+	public static int[] rotateLeft(int[] arr, int d) {
+		int realRots = d % arr.length;
+		for (int j = 0; j < realRots; j++) {
+			int temp = arr[0];
+			for (int i = 0; i < arr.length - 1; i++) {
+				arr[i] = arr[i + 1];
+			}
+			arr[arr.length - 1] = temp;
+		}
+		return arr;
+	}
+
 }

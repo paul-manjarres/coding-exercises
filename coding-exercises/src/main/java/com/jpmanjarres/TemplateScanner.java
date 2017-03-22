@@ -12,7 +12,7 @@ public class TemplateScanner {
 		final Scanner in = new Scanner(System.in);
 
 		int N = in.nextInt();
-		for (int i = 0; i < N; i++) {
+		for (int z = 0; z < N; z++) {
 
 
 

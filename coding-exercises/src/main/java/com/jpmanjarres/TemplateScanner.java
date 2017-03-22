@@ -11,8 +11,8 @@ public class TemplateScanner {
 	public static void main(String[] args) {
 		final Scanner in = new Scanner(System.in);
 
-		int N = in.nextInt();
-		for (int z = 0; z < N; z++) {
+		int n = in.nextInt();
+		for (int _i = 0; _i < n; _i++) {
 
 
 

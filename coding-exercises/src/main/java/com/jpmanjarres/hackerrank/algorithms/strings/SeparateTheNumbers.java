@@ -11,7 +11,7 @@ import java.util.Scanner;
 
 /**
  * @author <a href="mailto:paul.manjarres@gmail.com">Jean Paul Manjarres Correal. </a><br/>
- * 23/03/2017
+ *         23/03/2017
  *
  */
 public class SeparateTheNumbers {
@@ -23,33 +23,60 @@ public class SeparateTheNumbers {
 
 			String s = in.next();
 
-			for(int j=1; j< s.length()/2; j++){
+			boolean beau = true;
 
-				boolean isBeautiful = true;
+			for (int i = 1; i <= s.length() / 2; i++) {
+				beau = true;
 
-				for(int i=0; i<s.length()-1; i++){
+				int[] arr = getIntArray(s.toCharArray(), i);
 
-					int a = (int)s.charAt(i);
-					int b = (int)s.charAt(i+1);
+				for (int j = 0; j < arr.length - 1; j++) {
+					if (arr[j] >= arr[j + 1] || arr[j + 1] - arr[j] != 1) {
+						beau = false;
+						break;
+					}
+				}
 
-
-
+				if (beau) {
+					System.out.println("YES " + arr[0]);
+					break;
 
 				}
+
+			}
+
+			if (!beau) {
+				System.out.println("NO");
+				break;
 
 			}
 
 
 
 
+			// for (int i = 0; i < arr.length; i++) {
+			// System.out.println(arr[i]+" ");
+			// }
+
 		}
 		in.close();
 	}
 
-	static int getInt(char[] arr, int start, int end){
-		char[] nArr = Arrays.copyOfRange(arr, start, end);
-		return Integer.valueOf(new String(nArr));
-	}
+	static int[] getIntArray(char[] arr, int size) {
+		int totalSize = (arr.length % size == 0) ? arr.length / size : (arr.length / size) + 1;
+		int[] ret = new int[totalSize];
+		int count = 0;
 
+		for (int i = 0; i < arr.length; i = i + size) {
+			char[] tmp = new char[size];
+			Arrays.fill(tmp, ' ');
+			for (int j = 0; j < size && j + i < arr.length; j++) {
+				tmp[j] = arr[i + j];
+			}
+			ret[count] = Integer.valueOf(new String(tmp).trim());
+			count++;
+		}
+		return ret;
+	}
 
 }

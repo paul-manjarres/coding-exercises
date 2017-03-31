@@ -38,7 +38,7 @@ public class SeparateTheNumbers {
 				int start = 0;
 				long first = 0;
 
-				while (start + size <= len - size) {
+				while (start + size < len ) {
 					long n = getNumber(ar, size, start);
 					long n2 = getNumber(ar, size, start + size);
 
@@ -79,7 +79,9 @@ public class SeparateTheNumbers {
 	}
 
 	static long getNumber(char[] ar, int size, int start) {
-		char[] tmp = Arrays.copyOfRange(ar, start, start + size);
+
+		int len = start + size <= ar.length ? start + size : ar.length;
+		char[] tmp = Arrays.copyOfRange(ar, start, len);
 		return Long.valueOf(new String(tmp).trim());
 	}
 

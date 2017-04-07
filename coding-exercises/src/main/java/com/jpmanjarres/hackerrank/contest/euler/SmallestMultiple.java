@@ -6,9 +6,7 @@
  */
 package com.jpmanjarres.hackerrank.contest.euler;
 
-import java.util.List;
 import java.util.Scanner;
-import java.util.stream.Collectors;
 import java.util.stream.IntStream;
 
 /**
@@ -25,21 +23,37 @@ public class SmallestMultiple {
 		for (int _i = 0; _i < t; _i++) {
 
 			int n = in.nextInt();
-			int min = getPrimes(n).stream().reduce(1, (x, y) -> x * y).intValue();
-			System.out.println(min);
 
-		}
+			long num = IntStream
+					.range(1, n + 1)
+					.filter(i -> isPrime(i))
+					.reduce(1, (x, y) -> x * y);
+
+			long max = IntStream
+					.range(1, n + 1)
+					.reduce(1, (x, y) -> x * y);
+
+			for (long i = num; i <= max; i++) {
+
+				boolean isDiv = true;
+
+				for (int j = 2; j <= n; j++) {
+					if (i % j != 0) {
+						isDiv = false;
+						break;
+					}
+				}
+
+				if (isDiv) {
+					System.out.println(i);
+					break;
+				}
+			}
+		} // end for test cases
+
 		in.close();
 	}
 
-	static List<Integer> getPrimes(int n) {
-
-		return IntStream.range(1, n)
-				.filter(i -> isPrime(i))
-				.boxed()
-				.collect(Collectors.toList());
-
-	}
 
 	public static boolean isPrime(int n) {
 		if (n < 2)

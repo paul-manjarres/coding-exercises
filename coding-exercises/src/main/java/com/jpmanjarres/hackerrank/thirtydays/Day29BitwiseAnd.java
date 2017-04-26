@@ -24,7 +24,6 @@ public class Day29BitwiseAnd {
 			int N = in.nextInt();
 			int K = in.nextInt();
 
-
 			int max = 0;
 
 			for (int j = 1; j < N; j++) {

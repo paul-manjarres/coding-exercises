@@ -6,14 +6,11 @@
  */
 package com.jpmanjarres.hackerrank.algorithms.implementation;
 
-import java.util.ArrayDeque;
 import java.util.ArrayList;
-import java.util.Collections;
-import java.util.Deque;
-import java.util.HashSet;
 import java.util.List;
 import java.util.Scanner;
 import java.util.Set;
+import java.util.TreeSet;
 
 /**
  * @author <a href="mailto:paul.manjarres@gmail.com">Jean Paul Manjarres Correal. </a><br/>
@@ -22,6 +19,20 @@ import java.util.Set;
  */
 public class ManasaAndStones {
 
+	public static void solve(int n, int a, int b) {
+		Set<Integer> set = new TreeSet<>();
+		for (int i = 0; i < n; i++) {
+			set.add((n - 1 - i) * a + i * b);
+		}
+
+		List<Integer> list = new ArrayList<>(set);
+		for (int i = 0; i < list.size(); i++) {
+			System.out.print(list.get(i) + " ");
+		}
+	}
+
+	///////////////////
+	// main
 	public static void main(String[] args) {
 		final Scanner in = new Scanner(System.in);
 
@@ -31,29 +42,8 @@ public class ManasaAndStones {
 			int a = in.nextInt();
 			int b = in.nextInt();
 
-			Deque<Integer> queue = new ArrayDeque<>();
-			queue.addLast(0);
-
-			for (int i = 0; i < n - 1; i++) {
-
-				int pow = (int) Math.pow(2, i);
-				for (int j = 0; j < pow; j++) {
-					int x = queue.poll();
-					queue.addLast(x + a);
-					queue.addLast(x + b);
-				}
-
-			}
-
-			List<Integer> list = new ArrayList<>(new HashSet<Integer>(queue));
-
-			Collections.sort(list);
-			int size = list.size();
-			for (int i = 0; i < size; i++) {
-				System.out.print(list.get(i) + " ");
-			}
+			solve(n, a, b);
 			System.out.println();
-
 		}
 		in.close();
 	}

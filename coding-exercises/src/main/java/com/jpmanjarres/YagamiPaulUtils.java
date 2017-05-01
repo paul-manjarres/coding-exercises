@@ -3,6 +3,7 @@
  */
 package com.jpmanjarres;
 
+
 /**
  * @author <a href="mailto:paul.manjarres@gmail.com">Jean Paul Manjarres Correal. </a> 16 de feb. de
  *         2016
@@ -79,6 +80,48 @@ public class YagamiPaulUtils {
 				return false;
 		}
 		return true;
+	}
+
+
+	static class Node {
+		int data;
+		Node next;
+		Node prev;
+
+		public Node() {
+		}
+
+		public Node(int data) {
+			super();
+			this.data = data;
+		}
+
+		@Override
+		public String toString() {
+			return "[" + data + "]";
+		}
+
+		public Node addNode(Node n){
+			if(n==null){
+				return this;
+			}
+
+			this.next = n;
+			n.prev = this;
+
+			return this;
+		}
+
+	}
+
+
+	public static void printLinkedList(Node head){
+		Node curr = head;
+		while(curr != null){
+			System.out.print(curr.data+" -> ");
+			curr = curr.next;
+		}
+		System.out.println(" NULL");
 	}
 
 

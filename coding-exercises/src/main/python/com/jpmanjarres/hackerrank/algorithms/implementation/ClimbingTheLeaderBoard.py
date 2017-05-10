@@ -1,21 +1,4 @@
 
-
-def get_leaderboard(n, scores):
-
-    board = []
-    max = scores[0]
-    curr = 1
-    for i in range(n):
-        if scores[i] == max:
-            board.append(curr)
-        else:
-            max = scores[i]
-            curr = curr + 1
-            board.append(curr)
-
-    return board
-
-
 def main():
 
     n = int(input().strip())
@@ -23,12 +6,23 @@ def main():
     m = int(input().strip())
     alice = [int(a) for a in input().strip().split()]
 
+
+    scores = sorted(list(set(scores)), reverse=True)
+
     for a in alice:
-        sc = scores.copy()
-        sc.append(a)
-        sc = sorted(sc, reverse=True)
-        ind = sc.index(a)
-        board = get_leaderboard(len(sc), sc)
-        print(board[ind])
+
+        rank = 1
+        found = False
+        for i in range(len(scores)):
+            if a >= scores[i]:
+                print(rank)
+                found = True
+                break;
+            else:
+                rank = rank + 1
+
+        if not found:
+            print(rank)
+
 
 main()

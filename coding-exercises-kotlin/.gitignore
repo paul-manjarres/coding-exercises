@@ -1,0 +1,11 @@
+/target/
+.settings
+.classpath
+.project
+.pydevproject
+*.pyc
+.idea
+.gradle
+/build/
+/gradle/
+/out/

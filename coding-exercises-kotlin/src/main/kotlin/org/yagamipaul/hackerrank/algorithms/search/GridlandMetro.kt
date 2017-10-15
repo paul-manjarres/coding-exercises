@@ -22,25 +22,9 @@ fun main(args: Array<String>) {
         val c1 = scanner.nextInt()
         val c2 = scanner.nextInt()
 
-        val arr = map.getOrDefault(r, BooleanArray(m))
+        // TODO: Migrate from java
 
-        if(arr != null) {
-            for (j in c1..c2) {
-                arr[j-1] = true
-            }
-        }
-        map.put(r, arr)
+
     }
 
-    for(arr in map.values){
-        var busy = 0
-        arr.forEach {
-            if(it) busy++
-        }
-        sum += m - busy
-    }
-
-    sum+= m * (n - map.size)
-
-    println(sum)
 }

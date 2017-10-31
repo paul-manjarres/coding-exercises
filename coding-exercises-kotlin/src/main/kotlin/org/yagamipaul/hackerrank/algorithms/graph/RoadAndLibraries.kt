@@ -2,6 +2,7 @@ package org.yagamipaul.hackerrank.algorithms.graph
 
 import java.util.*
 import kotlin.collections.ArrayList
+import kotlin.collections.HashSet
 
 
 /**
@@ -19,7 +20,6 @@ fun main(args: Array<String>) {
         val clib = scanner.nextInt()
         val croad = scanner.nextInt()
 
-
         val map = hashMapOf<Int, ArrayList<Int>>()
 
         for (_j in 0 until m) {
@@ -29,6 +29,10 @@ fun main(args: Array<String>) {
             list.add(v)
             map[u] = list
 
+            val list2 = map.getOrDefault(v, ArrayList())
+            list2.add(u)
+            map[v] = list2
+
         }
         println(solve(n, m, clib, croad, map))
 
@@ -36,45 +40,50 @@ fun main(args: Array<String>) {
 
 }
 
+/**
+ * Depth first search, returns the visited nodes
+ */
+fun dfs(map: Map<Int, ArrayList<Int>>, origin: Int): Set<Int>{
+    val visited = HashSet<Int>()
+    val stack = ArrayDeque<Int>()
+    stack.push(origin)
+    visited.add(origin)
+
+    while(stack.isNotEmpty()){
+        val node = stack.pop()
+        for (i in map[node]!!){
+            if(!visited.contains(i)){
+                visited.add(i)
+                stack.push(i)
+            }
+        }
+    }
+    return visited
+}
+
+
 fun solve(n: Int, m: Int, clib: Int, croad: Int, map: Map<Int, ArrayList<Int>>): Long {
 
-    val ok = hashMapOf<Int, Boolean>()
-
-    // The max value should be the cost to put a library in each city.
-    val max = (clib * n).toLong()
-    var cost = 0L
-
-
-    for (i in map.keys) {
-        val nodes = map.getOrDefault(i, ArrayList(0))
-
-        if (!ok.getOrDefault(i, false)) {
-
-            // Check if any neighbour has a library, if it does, build the road
-            for (k in nodes) {
-                if (ok.getOrDefault(k, false)) {
-                    ok[i] = true
-                    cost += croad
-                    break
-                }
-            }
-
-            // If not, build a library
-            if (!ok.getOrDefault(i, false)) {
-                ok[i] = true
-                cost += clib
-
-                for (k in nodes) {
-                    ok[k] = true
-                    cost += croad
-                }
-            }
-
-
-        }
-
+    if(clib < croad){
+        return n.toLong() * clib
     }
 
-    cost += (clib * (n - ok.size))
-    return Math.min(max, cost)
+    var components = 0L
+    var visited = HashSet<Int>()
+
+    var totalRoads = 0
+
+    while(visited.size < n){
+        for(i in 0 until n) {
+            if (!visited.contains(i)) {
+
+                var currentVisited = dfs(map, i)
+                visited.addAll(currentVisited)
+                components++
+                totalRoads += currentVisited.size -1
+            }
+        }
+    }
+
+    return components*clib + totalRoads*croad
 }

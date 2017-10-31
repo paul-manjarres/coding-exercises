@@ -51,7 +51,7 @@ fun dfs(map: Map<Int, ArrayList<Int>>, origin: Int): Set<Int>{
 
     while(stack.isNotEmpty()){
         val node = stack.pop()
-        for (i in map[node]!!){
+        for (i in map.getOrDefault(node, emptyList<Int>())){
             if(!visited.contains(i)){
                 visited.add(i)
                 stack.push(i)
@@ -71,7 +71,7 @@ fun solve(n: Int, m: Int, clib: Int, croad: Int, map: Map<Int, ArrayList<Int>>):
     var components = 0L
     var visited = HashSet<Int>()
 
-    var totalRoads = 0
+    var totalCost = 0L
 
     while(visited.size < n){
         for(i in 0 until n) {
@@ -80,10 +80,10 @@ fun solve(n: Int, m: Int, clib: Int, croad: Int, map: Map<Int, ArrayList<Int>>):
                 var currentVisited = dfs(map, i)
                 visited.addAll(currentVisited)
                 components++
-                totalRoads += currentVisited.size -1
+                totalCost += (currentVisited.size -1 )*croad + clib
             }
         }
     }
 
-    return components*clib + totalRoads*croad
+    return totalCost
 }

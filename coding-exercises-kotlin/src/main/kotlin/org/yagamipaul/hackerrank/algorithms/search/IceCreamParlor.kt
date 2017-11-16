@@ -19,32 +19,29 @@ fun main(args: Array<String>) {
         val n = scanner.nextInt()
         val c = IntArray(n)
 
-        val map = HashMap<Int, Int>()
+        val map = HashMap<Int, ArrayDeque<Int>>()
         for(i in 0 until n){
             c[i] = scanner.nextInt()
             if(!map.containsKey(c[i])){
-                map[c[i]] = i+1
+                map[c[i]]=ArrayDeque()
             }
+            map[c[i]]?.add(i+1)
         }
-
-        //c.sort()
-
 
         for( i in 0 until n-1){
-
             val a = c[i]
-            //val index = c.binarySearch(m-a,i+1, n-1)
-
             if(map.containsKey(m-a)){
-                println("${map[a]} ${map[m-a]}")
+
+                val first = map[a]!!.pop()
+                val second = map[m-a]!!.pop()
+                if(first < second){
+                    println("$first $second")
+                }
+
                 break
             }
-
         }
 
-
-
     }
-
 
 }

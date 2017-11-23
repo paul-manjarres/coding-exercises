@@ -20,6 +20,7 @@ fun main(args: Array<String>) {
         val c = IntArray(n)
 
         val map = HashMap<Int, ArrayDeque<Int>>()
+
         for(i in 0 until n){
             c[i] = scanner.nextInt()
             if(!map.containsKey(c[i])){
@@ -32,10 +33,16 @@ fun main(args: Array<String>) {
             val a = c[i]
             if(map.containsKey(m-a)){
 
+                if(a == (m-a) && map[a]!!.size < 2){
+                    continue
+                }
+
                 val first = map[a]!!.pop()
                 val second = map[m-a]!!.pop()
                 if(first < second){
                     println("$first $second")
+                }else{
+                    println("$second $first")
                 }
 
                 break

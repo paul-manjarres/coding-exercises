@@ -16,8 +16,6 @@ public class HackerlandRadioTransmitters {
         final int k = in.nextInt();
         final int[] x = new int[n];
 
-        final int k2 = k * 2;
-
         for (int i = 0; i < n; i++) {
             x[i] = in.nextInt();
         }
@@ -28,22 +26,17 @@ public class HackerlandRadioTransmitters {
 
         while (i < n) {
 
-            int c = x[i];
-            int curr = c;
+            int c = x[i] + k;
 
-            while (curr < c + k && i < n - 1) {
-                curr = x[++i];
+            while (i < n && x[i] <= c ) {
+                i++;
             }
-
             count++;
-            if(curr > c+k){
-                continue;
+            i--;
+            c = x[i] + k;
+            while (i < n && x[i] <= c ) {
+                i++;
             }
-
-            while (curr < c + k2 && i < n - 1) {
-                curr = x[++i];
-            }
-            i++;
         }
         System.out.println(count);
     }

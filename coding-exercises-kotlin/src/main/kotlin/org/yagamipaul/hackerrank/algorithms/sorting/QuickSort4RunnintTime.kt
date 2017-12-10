@@ -4,10 +4,14 @@ import java.util.*
 
 
 /**
- * QuickSort 3 - Sorting in place
- * https://www.hackerrank.com/challenges/quicksort2/problem
+ * QuickSort 4 - Running time
+ * https://www.hackerrank.com/challenges/quicksort4/problem
  * Jean Paul Manjarres Correal <paul.manjarres@gmail.com>
  */
+
+var quickSortSwaps=0
+var insertionSortSwaps=0
+
 fun main(args: Array<String>) {
 
     val sc = Scanner(System.`in`)
@@ -17,14 +21,20 @@ fun main(args: Array<String>) {
     for (i in 0 until n) {
         arr[i] = sc.nextInt()
     }
-    solve(arr, 0, n - 1)
+    quickSort(arr.copyOf(), 0, n - 1)
+    insertionSort(arr.copyOf())
+
+    println("${insertionSortSwaps-quickSortSwaps}")
+
 
 }
+
+
 
 /**
  * Solves the problem in place
  */
-private fun solve(arr: IntArray, a: Int, b: Int): IntArray {
+fun quickSort(arr: IntArray, a: Int, b: Int): IntArray {
 
     // If the array is only 1 element or empty, is already sorted.
     if (a >= b) {
@@ -32,8 +42,8 @@ private fun solve(arr: IntArray, a: Int, b: Int): IntArray {
     }
 
     val pivotIndex = findPivotIndex(arr, a, b)
-    solve(arr, a, pivotIndex - 1)
-    solve(arr, pivotIndex + 1, b)
+    quickSort(arr, a, pivotIndex - 1)
+    quickSort(arr, pivotIndex + 1, b)
     return arr
 
 }
@@ -51,15 +61,33 @@ private fun findPivotIndex(arr: IntArray, a: Int, b: Int): Int {
         if (arr[j] < pivot) {
             i++
             swap(arr, i, j)
+            quickSortSwaps++
         }
         j++
     }
 
     //swat the pivot with the index
     swap(arr, a=i+1, b=b)
-    printArray(arr)
+    quickSortSwaps++
+    //printArray(arr)
     return i+1
 }
+
+
+private fun insertionSort(arr: IntArray): IntArray{
+    for(i in 1 until arr.size){
+        var j = i
+        while(j>0 && arr[j-1]>arr[j]){
+            swap(arr,j,j-1)
+            insertionSortSwaps++
+            j--
+        }
+    }
+    //printArray(arr)
+    return arr
+}
+
+
 
 /**
  * Swaps elements

@@ -58,27 +58,29 @@ private fun findMedian(freq: IntArray, d: Int): Double {
 
     val sortedArray = IntArray(d)
     var j = 0
+    val d2 = d/2
 
     for (i in 0 until freq.size) {
 
-        if (j == d) {
+        if (j > d2) {
             break
         }
 
-        if (freq[i] > 0) {
-            var k = 0
-            while (k < freq[i]) {
-                sortedArray[j] = i
-                k++
-                j++
+        if(j + freq[i] < d2){
+            j+=freq[i]
+        }else {
+            for(k in 0 until freq[i]) {
+                sortedArray[j++] = i
+                if (j > d2) {
+                    break
+                }
             }
-
         }
+
     }
 
-    val median = if (d % 2 == 0) (sortedArray[d / 2 -1] + sortedArray[d / 2 ]) / 2.0 else sortedArray[d / 2].toDouble()
+    return if (d % 2 == 0) (sortedArray[d2 -1] + sortedArray[d2 ]) / 2.0 else sortedArray[d2].toDouble()
     //sortedArray.forEach { print("$it ") }
     //println("median = $median")
 
-    return median
 }

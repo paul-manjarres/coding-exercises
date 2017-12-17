@@ -15,10 +15,15 @@ fun main(args: Array<String>) {
     val d = scanner.nextInt()
     val arr = IntArray(n)
 
+    val freq = IntArray(201)
+
     for (_i in 0 until n) {
         arr[_i] = scanner.nextInt()
+        if (_i < d) {
+            freq[arr[_i]]++
+        }
     }
-    println(solve(arr, n, d))
+    println(solve(arr, freq, n, d))
     scanner.close()
 }
 
@@ -26,7 +31,7 @@ fun main(args: Array<String>) {
 /**
  * Solves the problem, returns the solution
  */
-private fun solve(arr: IntArray, n: Int, d: Int): Int {
+private fun solve(arr: IntArray, freq: IntArray, n: Int, d: Int): Int {
 
     // if the window size is equals the size of the array.
     if (d == n) {
@@ -35,13 +40,8 @@ private fun solve(arr: IntArray, n: Int, d: Int): Int {
 
     var notifications = 0
 
-    val freq = IntArray(201)
-    for (i in 0 until d) {
-        freq[arr[i]]++
-    }
-
     for (i in d until n) {
-        var median = findMedian(freq, d)
+        val median = findMedian(freq, d)
         if (arr[i] >= 2 * median) {
             notifications++
         }
@@ -58,29 +58,22 @@ private fun findMedian(freq: IntArray, d: Int): Double {
 
     val sortedArray = IntArray(d)
     var j = 0
-    val d2 = d/2
+    val d2 = d / 2
 
     for (i in 0 until freq.size) {
 
-        if (j > d2) {
+        if (j + freq[i] <= d2) {
+            j += freq[i]
+            if(j== d2){
+                sortedArray[d2 - 1] = i
+            }
+        } else {
+            sortedArray[d2 - 1] = if(j == d2) i-1 else i
+            sortedArray[d2] = i
             break
         }
-
-        if(j + freq[i] < d2){
-            j+=freq[i]
-        }else {
-            for(k in 0 until freq[i]) {
-                sortedArray[j++] = i
-                if (j > d2) {
-                    break
-                }
-            }
-        }
-
     }
 
-    return if (d % 2 == 0) (sortedArray[d2 -1] + sortedArray[d2 ]) / 2.0 else sortedArray[d2].toDouble()
-    //sortedArray.forEach { print("$it ") }
-    //println("median = $median")
+    return if (d % 2 == 0) (sortedArray[d2 - 1] + sortedArray[d2]) / 2.0 else sortedArray[d2].toDouble()
 
 }

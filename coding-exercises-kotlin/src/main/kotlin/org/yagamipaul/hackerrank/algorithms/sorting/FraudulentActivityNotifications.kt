@@ -14,15 +14,16 @@ fun main(args: Array<String>) {
     val n = scanner.nextInt()
     val d = scanner.nextInt()
     val arr = IntArray(n)
-
     val freq = IntArray(201)
 
-    for (_i in 0 until n) {
+    for (_i in 0 until d) {
         arr[_i] = scanner.nextInt()
-        if (_i < d) {
-            freq[arr[_i]]++
-        }
+        freq[arr[_i]]++
     }
+    for (_i in d until n) {
+        arr[_i] = scanner.nextInt()
+    }
+
     println(solve(arr, freq, n, d))
     scanner.close()
 }
@@ -56,24 +57,25 @@ private fun solve(arr: IntArray, freq: IntArray, n: Int, d: Int): Int {
 
 private fun findMedian(freq: IntArray, d: Int): Double {
 
-    val sortedArray = IntArray(d)
+    var a = 0
+    var b = 0
     var j = 0
     val d2 = d / 2
+    val isEven = (d % 2 == 0)
 
     for (i in 0 until freq.size) {
+        val temp = j + freq[i]
 
-        if (j + freq[i] <= d2) {
-            j += freq[i]
-            if(j== d2){
-                sortedArray[d2 - 1] = i
+        if (temp <= d2) {
+            j = temp
+            if (j == d2) {
+                a = i
             }
         } else {
-            sortedArray[d2 - 1] = if(j == d2) i-1 else i
-            sortedArray[d2] = i
+            a = if (j == d2) i - 1 else i
+            b = i
             break
         }
     }
-
-    return if (d % 2 == 0) (sortedArray[d2 - 1] + sortedArray[d2]) / 2.0 else sortedArray[d2].toDouble()
-
+    return if(isEven) (a+b) / 2.0 else b.toDouble()
 }

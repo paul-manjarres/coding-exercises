@@ -18,67 +18,76 @@ fun main(args: Array<String>) {
         for (_j in 0 until n) {
             arr[_j] = scanner.nextLong()
         }
-        println(solve(arr, n))
+
+        val obj = DynamicPEqual()
+
+        println(obj.solve(arr, n))
     }
 }
 
-/**
- * Solves the problem
- */
-private fun solve(arr: LongArray, n: Int): Long {
-    if (arr.size == 1) {
-        return 0
-    }
+class DynamicPEqual {
 
-    // Sorts the array first
-    arr.sort()
+    /**
+     * Solves the problem
+     */
+    fun solve(arr: LongArray, n: Int): Long {
+        if (arr.size == 1) {
+            return 0
+        }
 
-    var ops = 0L
-    var i = 0
-    var j = 1
-    var sum = 0L
+        // Sorts the array first
+        arr.sort()
 
-    while (i < n - 1) {
+        var ops = 0L
+        var i = 0
+        var j = 1
+        var sum = 0L
 
-        //printArr(arr)
+        while (i < n - 1) {
+
+            //printArr(arr)
 
 
-        if (arr[i] == arr[j]) {
-            println("sum: $sum")
-            if (j + 1 < n) {
-                arr[j + 1] += sum
-            }
-            i++
-            j++
-        } else {
-            var diff = arr[j] - arr[i]
-
-            if (diff >= 5) {
-                val div = diff / 5
-                arr[i] += div * 5
-                ops += div
-                sum += div * 5
-            } else {
-                var add = when {
-                    (diff >= 3 ) -> 3L
-                    else -> 1L
+            if (arr[i] == arr[j]) {
+                println("sum: $sum")
+                if (j + 1 < n) {
+                    arr[j + 1] += sum
                 }
-                arr[i] += add
-                sum += add
-                ops++
+                i++
+                j++
+            } else {
+                var diff = arr[j] - arr[i]
+
+                if (diff >= 5) {
+                    val div = diff / 5
+                    arr[i] += div * 5
+                    ops += div
+                    sum += div * 5
+                } else {
+                    var add = when {
+                        (diff >= 3) -> 3L
+                        else -> 1L
+                    }
+                    arr[i] += add
+                    sum += add
+                    ops++
+                }
             }
         }
+        return ops
     }
-    return ops
+
+
+    fun printArr(arr: LongArray) {
+        arr.forEach { i ->
+            print("$i ")
+        }
+        println("")
+
+    }
+
+
 }
 
 
-private fun printArr(arr: LongArray){
-    arr.forEach{
-        i-> print("$i ")
-    }
-    println("")
-
-}
-
-//1 5 5 
+//1 5 5

@@ -40,7 +40,11 @@ private fun solve(arr: LongArray, n: Int): Long {
 
     while (i < n - 1) {
 
+        //printArr(arr)
+
+
         if (arr[i] == arr[j]) {
+            println("sum: $sum")
             if (j + 1 < n) {
                 arr[j + 1] += sum
             }
@@ -49,15 +53,14 @@ private fun solve(arr: LongArray, n: Int): Long {
         } else {
             var diff = arr[j] - arr[i]
 
-            if (diff > 5) {
+            if (diff >= 5) {
                 val div = diff / 5
                 arr[i] += div * 5
                 ops += div
                 sum += div * 5
             } else {
                 var add = when {
-                    (diff >= 5) -> 5L
-                    (diff in 2 until 5) -> 2L
+                    (diff >= 3 ) -> 3L
                     else -> 1L
                 }
                 arr[i] += add
@@ -69,7 +72,13 @@ private fun solve(arr: LongArray, n: Int): Long {
     return ops
 }
 
-private fun printArray(arr: IntArray) {
-    arr.forEach { print("$it ") }
+
+private fun printArr(arr: LongArray){
+    arr.forEach{
+        i-> print("$i ")
+    }
     println("")
+
 }
+
+//1 5 5 

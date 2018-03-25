@@ -18,10 +18,8 @@ fun main(args: Array<String>) {
         for (_j in 0 until n) {
             arr[_j] = scanner.nextLong()
         }
-
         val obj = DynamicPEqual()
-
-        println(obj.solve(arr, n))
+        println(obj.solve(arr))
     }
 }
 
@@ -30,64 +28,27 @@ class DynamicPEqual {
     /**
      * Solves the problem
      */
-    fun solve(arr: LongArray, n: Int): Long {
+    fun solve(arr: LongArray): Long {
         if (arr.size == 1) {
             return 0
         }
-
-        // Sorts the array first
+        var ops = Long.MAX_VALUE
         arr.sort()
 
-        var ops = 0L
-        var i = 0
-        var j = 1
-        var sum = 0L
+        for(j in 0 until 3) {
+            var sum = 0L
 
-        while (i < n - 1) {
-
-            //printArr(arr)
-
-
-            if (arr[i] == arr[j]) {
-                println("sum: $sum")
-                if (j + 1 < n) {
-                    arr[j + 1] += sum
-                }
-                i++
-                j++
-            } else {
-                var diff = arr[j] - arr[i]
-
-                if (diff >= 5) {
-                    val div = diff / 5
-                    arr[i] += div * 5
-                    ops += div
-                    sum += div * 5
-                } else {
-                    var add = when {
-                        (diff >= 3) -> 3L
-                        else -> 1L
-                    }
-                    arr[i] += add
-                    sum += add
-                    ops++
-                }
+            for (i in arr) {
+                val delta = i - arr[0]+j
+                val ai = delta / 5
+                val bi = (delta % 5) / 2
+                val ci = ((delta % 5) % 2) / 1
+                sum += ai + bi + ci
             }
+            ops = Math.min(ops, sum)
+
         }
         return ops
     }
-
-
-    fun printArr(arr: LongArray) {
-        arr.forEach { i ->
-            print("$i ")
-        }
-        println("")
-
-    }
-
-
 }
 
-
-//1 5 5

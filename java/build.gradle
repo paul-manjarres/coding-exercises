@@ -1,0 +1,19 @@
+plugins {
+    id 'java'
+}
+
+repositories {
+    mavenLocal()
+    maven {
+        url = 'http://repo.maven.apache.org/maven2'
+    }
+}
+
+group = 'com.jpmanjarres'
+version = '0.0.1'
+sourceCompatibility = '1.8'
+
+
+tasks.withType(JavaCompile) {
+    options.encoding = 'UTF-8'
+}

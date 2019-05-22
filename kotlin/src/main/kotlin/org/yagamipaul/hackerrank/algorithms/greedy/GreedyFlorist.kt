@@ -17,5 +17,24 @@ fun main(args: Array<String>) {
         c[i] = scanner.nextInt()
     }
 
+    Arrays.sort(c)
+
+    if(k>=n){
+        print(c.sum())
+    }else{
+        var sum = c.sum().toLong()
+        var additional = 0L
+
+//        println("n-k: ${n-k}")
+        for(i in 1..(n-k)){
+            additional+= (i*c[0])
+        }
+//        println("Additional: $additional")
+        sum+=additional
+
+        print(sum)
+
+    }
+
 }
 

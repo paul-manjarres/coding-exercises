@@ -3,10 +3,7 @@ plugins {
 }
 
 repositories {
-    mavenLocal()
-    maven {
-        url = 'http://repo.maven.apache.org/maven2'
-    }
+    mavenCentral()
 }
 
 group = 'com.jpmanjarres'
@@ -16,11 +13,10 @@ targetCompatibility = '1.8'
 
 
 dependencies {
-    testCompile "org.junit.jupiter:junit-jupiter-api:5.1.0"
-    testCompile 'org.assertj:assertj-core:3.9.0'
-    runtime "org.junit.jupiter:junit-jupiter-engine:5.1.0"
+    testCompile "org.junit.jupiter:junit-jupiter-api:5.6.0"
+    testCompile 'org.assertj:assertj-core:3.15.0'
+    runtime "org.junit.jupiter:junit-jupiter-engine:5.6.0"
 }
-
 
 tasks.withType(JavaCompile) {
     options.encoding = 'UTF-8'

@@ -7,7 +7,7 @@ public class IntegerToRoman12Test {
 
     @Test
     public void tests(){
-        var obj = new IntegerToRoman12();
+        IntegerToRoman12 obj = new IntegerToRoman12();
         Assertions.assertThat(obj.intToRoman(3)).isEqualTo("III");
         Assertions.assertThat(obj.intToRoman(5)).isEqualTo("V");
         Assertions.assertThat(obj.intToRoman(9)).isEqualTo("IX");

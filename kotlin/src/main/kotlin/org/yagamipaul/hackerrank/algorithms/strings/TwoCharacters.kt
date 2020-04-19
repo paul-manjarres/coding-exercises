@@ -9,49 +9,46 @@ package org.yagamipaul.hackerrank.algorithms.strings
 
 class TwoCharacters {
 
+    private var validationCount = 0;
+
+    private val data = mutableMapOf<String, Int>()
+
     // Complete the alternate function below.
     fun alternate(s: String): Int {
-        val result = alternateRecursive(s, 0);
+        val result = alternateRecursive(s);
         //println("Validation Count: ${this.validationCount}")
         return result;
     }
 
-    private var validationCount = 0;
-
-    fun alternateRecursive(s: String, currentMax: Int): Int {
-        //println("Current Max: $currentMax, String: [$s]")
-
-        // validate if the current string meet the requirements
+    fun alternateRecursive(s: String): Int {
         return if (s == null || s.isEmpty()) {
             return 0;
-        } else if (validate(s)) {
+        }else if(data.containsKey(s)) {
+            data.getValue(s);
+        }else if (validate(s)) {
+            // validate if the current string meet the requirements
             // If yes, return the current string's length
+            data[s] = s.length;
             s.length;
-        } else if (currentMax != 0 && s.length <= currentMax) {
-            return 0;
         } else {
             // if not, get all distinct letters in the string
             // for each char, create a string with the char removed
             // return the max value from the recursive call to this function using each new string
-            var newMax = currentMax;
-            s.toCharArray()
+
+            val value = s.toCharArray()
                     .distinct()
                     .map { c -> s.filter { c2 -> c2 != c } }
                     .sortedByDescending { it -> it.length }
-                    .map { str ->
-                        //alternateRecursive(str, currentMax)
-                        val m = alternateRecursive(str, newMax);
-                        newMax = maxOf(currentMax, m);
-                        m
-                    }
+                    .map { str -> alternateRecursive(str) }
                     .max()!!
-
+            data[s] = value;
+            value
         }
 
     }
 
     fun validate(s: String): Boolean {
-        validationCount++;
+        //validationCount++;
         if (s == null || s.length < 2 || s[0] == s[1]) {
             return false
         }

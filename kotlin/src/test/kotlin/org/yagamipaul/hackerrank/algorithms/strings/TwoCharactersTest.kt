@@ -17,17 +17,7 @@ internal class TwoCharactersTest{
         Assertions.assertThat(res).isEqualTo(4)
     }
 
-    @Test
-    fun `test validate method`() {
-        val res = TwoCharacters().validate("babab")
-        Assertions.assertThat(res).isEqualTo(true)
-    }
 
-    @Test
-    fun `test validate method 2`() {
-        val res = TwoCharacters().validate("aaaa")
-        Assertions.assertThat(res).isEqualTo(false)
-    }
 
     @Test
     fun `test case 4`() {
@@ -46,4 +36,17 @@ internal class TwoCharactersTest{
         val res = TwoCharacters().alternate("a")
         Assertions.assertThat(res).isEqualTo(0)
     }
+
+    @Test
+    fun `test validate method`() {
+        val res = TwoCharacters().validate("babab")
+        Assertions.assertThat(res).isEqualTo(true)
+    }
+
+    @Test
+    fun `test validate method 2`() {
+        val res = TwoCharacters().validate("aaaa")
+        Assertions.assertThat(res).isEqualTo(false)
+    }
+
 }

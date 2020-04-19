@@ -9,57 +9,24 @@ package org.yagamipaul.hackerrank.algorithms.strings
 class TwoCharacters {
 
     private var validationCount = 0;
-    private val data = mutableMapOf<String, Int>()
 
     // Complete the alternate function below.
     fun alternate(s: String): Int {
-        val result = alternateRecursive(s);
-        //println("Validation Count: ${this.validationCount}")
-        return result;
-    }
-
-    fun alternateRecursive(s: String): Int {
         return if (s == null || s.isEmpty()) {
-            return 0;
-        }else if(data.containsKey(s)) {
-            // If we have previously calculated a result, return it
-            data.getValue(s);
-        }
-        else if (s.toCharArray().distinct().size == 2 && validate(s)) {
-            // validate if the current string meet the requirements
-            // If yes, return the current string's length
-            data[s] = s.length;
-            s.length;
+            // base cases
+            0;
         } else {
-            // if not, get all distinct letters in the string
-            // for each char, create a string with the char removed
-            // return the max value from the recursive call to this function using each new string
-
-            val value = s
-                    .toCharArray()
-                    .distinct()
-                    .map { c -> s.filter { c2 -> c2 != c } }
-                    .map { str -> alternateRecursive(str) }
-                    .max()!!
-
-//            val set = mutableSetOf<Char>();
-//            for(c in s){
-//                set.add(c);
-//            }
-//            val list = mutableListOf<String>();
-//            for(c in set){
-//                list.add(s.replace(c.toString(), ""))
-//            }
-//            var value = 0;
-//            for(str in list){
-//                val curr = alternateRecursive(str);
-//                value = maxOf(value, curr);
-//            }
-
-            data[s] = value;
-            value
+            // Create a set of combinations of Two characters
+            // create collection of strings by removing all but the two chars in each combination
+            // filter the strings based on the defined criteria
+            // get the string with the maximum length
+            // return the length of the string
+            createPermutations(s)
+                    .map { pair -> s.filter { c -> c == pair[0] || c == pair[1] } }
+                    .filter { s -> validate(s) }
+                    .maxBy { it -> it.length }
+                    ?.length ?: 0
         }
-
     }
 
     fun validate(s: String): Boolean {
@@ -73,7 +40,19 @@ class TwoCharacters {
         return true;
     }
 
-
+    fun createPermutations(s: String): Set<String> {
+        if (s == null || s.length < 2) {
+            return emptySet();
+        }
+        val set = mutableSetOf<String>();
+        val arr = s.toCharArray().distinct();
+        for (i in 0.until(arr.size - 1)) {
+            for (j in (i + 1).until(arr.size)) {
+                set.add(arr[i] + "" + arr[j]);
+            }
+        }
+        return set;
+    }
 }
 
 fun main(args: Array<String>) {

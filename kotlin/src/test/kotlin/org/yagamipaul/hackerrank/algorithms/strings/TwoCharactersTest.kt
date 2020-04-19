@@ -65,4 +65,24 @@ internal class TwoCharactersTest{
         Assertions.assertThat(res).isEqualTo(true)
     }
 
+    @Test
+    fun `test permutations 1`() {
+        val res = TwoCharacters().createPermutations("abcd")
+        println(res)
+        Assertions.assertThat(res.size).isEqualTo(6);
+    }
+
+    @Test
+    fun `test permutations 2`() {
+        val res = TwoCharacters().createPermutations("abcdbbbbcccaaaaadddddd")
+        println(res)
+        Assertions.assertThat(res.size).isEqualTo(6);
+    }
+    @Test
+    fun `test permutations 3`() {
+        val res = TwoCharacters().createPermutations("aa")
+        println(res)
+        Assertions.assertThat(res.size).isEqualTo(0);
+    }
+
 }

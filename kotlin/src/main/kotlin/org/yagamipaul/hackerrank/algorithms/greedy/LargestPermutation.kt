@@ -12,35 +12,42 @@ class LargestPermutation {
     // Complete the alternate function below.
     fun solution(k: Int, arr: Array<Int>): Array<Int> {
 
-        val orderedList = mutableListOf<Pair<Int, Int>>();
-        val sol = arr.copyOf();
+        val map = mutableMapOf<Int, Int>();
 
-        for(j in 0.until(k)) {
-            var maxVal = Pair(0,0);
-            for (i in 0.until(arr.size)) {
-                if (arr[i] > maxVal.first ) {
-                    maxVal = Pair(arr[i], i);
-                }
+        // Get the index for each element
+        for (j in 0.until(arr.size)) {
+            map[arr[j]] = j;
+        }
+
+        // Sort descending to get K elements O(nlogn)
+        val sortedList = arr.sortedDescending();
+
+        var count =0;
+        // Swap K elements
+        for (i in 0.until(arr.size)) {
+
+            if(arr[i] != sortedList[i]){
+                var indexMax = map.getOrDefault(sortedList[i],0);
+                var temp = arr[i];
+                arr[i] = sortedList[i];
+                arr[indexMax] = temp;
+
+                map[sortedList[i]] = i;
+                map[temp] = indexMax;
+                count++;
             }
-            arr[maxVal.second] = 0;
-            orderedList.add(maxVal);
-        }
 
-        orderedList.sortedByDescending { it -> it.first }
+            if(count >= k) break;
 
-        for(i in 0.until(k)){
-            val higher = orderedList.get(i);
-            var temp = sol[i];
-            sol[i] = higher.first
-            sol[higher.second] = temp;
         }
-        return sol;
+        return arr;
     }
+
+
 
 }
 
 fun main(args: Array<String>) {
-
     val scan = Scanner(System.`in`)
     val n = scan.nextInt()
     val k = scan.nextInt()
@@ -48,8 +55,6 @@ fun main(args: Array<String>) {
     for (i in 0.until(n)) {
         x[i] = scan.nextInt()
     }
-
     val result = LargestPermutation().solution(k, x.toTypedArray())
     result.forEach { i -> print("$i ") }
-
 }

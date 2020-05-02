@@ -16,34 +16,34 @@ class Surface3DArea {
                 // left
                 if (i - 1 >= 0) {
                     neighbors.add(A[i - 1][j])
-                }else{
+                } else {
                     neighbors.add(0)
                 }
 
                 // right
-                if (i + 1 < A[i].size) {
+                if (i + 1 < A.size) {
                     neighbors.add(A[i + 1][j]);
-                }else{
+                } else {
                     neighbors.add(0)
                 }
                 // up
                 if (j - 1 >= 0) {
                     neighbors.add(A[i][j - 1]);
-                }else{
+                } else {
                     neighbors.add(0)
                 }
                 // down
                 if (j + 1 < A[i].size) {
                     neighbors.add(A[i][j + 1]);
-                }else{
+                } else {
                     neighbors.add(0)
                 }
 
-                totalArea+= neighbors
-                        .map{ if(A[i][j] - it >0) A[i][j] - it else 0}
+                totalArea += neighbors
+                        .map { if (A[i][j] - it > 0) A[i][j] - it else 0 }
                         .sum() + 2;
-
             }
+
 
         }
 

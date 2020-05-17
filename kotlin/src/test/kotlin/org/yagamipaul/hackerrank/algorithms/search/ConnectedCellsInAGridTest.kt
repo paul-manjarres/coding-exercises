@@ -30,5 +30,50 @@ internal class ConnectedCellsInAGridTest {
         Assertions.assertThat(res).isEqualTo(3)
     }
 
+    @Test
+    fun `test case 3`() {
+        val res = ConnectedCellsInAGrid().connectedCell(
+            arrayOf(
+                arrayOf(1, 1, 1 , 1)
+            )
+        )
+        Assertions.assertThat(res).isEqualTo(4)
+    }
+
+    @Test
+    fun `test case 4`() {
+        val res = ConnectedCellsInAGrid().connectedCell(
+            arrayOf(
+                arrayOf(1),
+                arrayOf(1),
+                arrayOf(1),
+                arrayOf(1)
+            )
+        )
+        Assertions.assertThat(res).isEqualTo(4)
+    }
+
+    @Test
+    fun `test case 5`() {
+        val res = ConnectedCellsInAGrid().connectedCell(
+            arrayOf(
+                arrayOf(1, 0, 0),
+                arrayOf(0, 1, 0),
+                arrayOf(0, 0, 1)
+            )
+        )
+        Assertions.assertThat(res).isEqualTo(3)
+    }
+
+    @Test
+    fun `test case 6`() {
+        val res = ConnectedCellsInAGrid().connectedCell(
+            arrayOf(
+                arrayOf(1)
+            )
+        )
+        Assertions.assertThat(res).isEqualTo(1)
+    }
+
 
 }

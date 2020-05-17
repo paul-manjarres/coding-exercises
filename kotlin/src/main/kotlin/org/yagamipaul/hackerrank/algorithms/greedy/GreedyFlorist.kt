@@ -6,35 +6,48 @@ import java.util.*
  * Greedy Florist
  * Jean Paul Manjarres Correal <paul.manjarres@gmail.com>
  */
-fun main(args: Array<String>) {
-    val scanner = Scanner(System.`in`)
 
-    val n = scanner.nextInt()
-    val k = scanner.nextInt()
 
-    val c = IntArray(n)
-    for (i in 0.until(n)) {
-        c[i] = scanner.nextInt()
-    }
+class GreedyFlorist {
 
-    Arrays.sort(c)
+    // Complete the getMinimumCost function below.
+    fun getMinimumCost(k: Int, c: Array<Int>): Int {
+        val n = c.size;
+        val div = n / k;
+        val mod = n % k;
 
-    if(k>=n){
-        print(c.sum())
-    }else{
-        var sum = c.sum().toLong()
-        var additional = 0L
+        var multiplier = div +1;
+        val m = Array<Int>(n) { _ ->0}
 
-//        println("n-k: ${n-k}")
-        for(i in 1..(n-k)){
-            additional+= (i*c[0])
+        for(i in 0 until mod){
+            m[i] = multiplier
         }
-//        println("Additional: $additional")
-        sum+=additional
-
-        print(sum)
-
+        multiplier--
+        var count=0
+        for(i in 0 until div*k){
+            m[i+mod] = multiplier;
+            count++;
+            if(count >= k){
+                multiplier--
+                count = 0
+            }
+        }
+        return c.sorted().mapIndexed { index, i -> i*m[index] }.sum()
     }
-
 }
 
+fun main(args: Array<String>) {
+    val scan = Scanner(System.`in`)
+
+    val nk = scan.nextLine().split(" ")
+
+    val n = nk[0].trim().toInt()
+
+    val k = nk[1].trim().toInt()
+
+    val c = scan.nextLine().split(" ").map { it.trim().toInt() }.toTypedArray()
+
+    val minimumCost = GreedyFlorist().getMinimumCost(k, c)
+
+    println(minimumCost)
+}

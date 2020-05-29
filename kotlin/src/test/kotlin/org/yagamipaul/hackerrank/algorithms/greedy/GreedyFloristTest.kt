@@ -35,5 +35,5 @@ internal class GreedyFloristTest{
         val res = GreedyFlorist().getMinimumCost(3, arrayOf(9,7,5,3,1))
         Assertions.assertThat(res).isEqualTo(29)
     }
-    
+
 }

@@ -1,29 +1,20 @@
-group 'org.yagamipaul'
-version '1.0.0'
-
-buildscript {
-    ext.kotlin_version = '1.4.10'
-    ext.junit_version = '5.6.2'
-
-    repositories {
-        mavenCentral()
-    }
-    dependencies {
-        classpath "org.jetbrains.kotlin:kotlin-gradle-plugin:$kotlin_version"
-    }
+plugins {
+    id 'org.jetbrains.kotlin.jvm' version '1.4.10'
+    id "org.jlleitschuh.gradle.ktlint" version '9.4.0'
 }
 
-apply plugin: 'kotlin'
+version '1.0.0'
+group 'org.yagamipaul'
+
+dependencies {
+    implementation 'org.jetbrains.kotlin:kotlin-stdlib'
+    testCompile "org.junit.jupiter:junit-jupiter-api:5.6.2"
+    testCompile 'org.assertj:assertj-core:3.16.1'
+    runtime "org.junit.jupiter:junit-jupiter-engine:5.6.2"
+}
 
 repositories {
     mavenCentral()
-}
-
-dependencies {
-    compile "org.jetbrains.kotlin:kotlin-stdlib-jdk8:$kotlin_version"
-    testCompile "org.junit.jupiter:junit-jupiter-api:$junit_version"
-    testCompile 'org.assertj:assertj-core:3.16.1'
-    runtime "org.junit.jupiter:junit-jupiter-engine:$junit_version"
 }
 
 test {

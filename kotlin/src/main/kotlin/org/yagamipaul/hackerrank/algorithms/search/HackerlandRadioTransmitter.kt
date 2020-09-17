@@ -3,7 +3,6 @@ package org.yagamipaul.hackerrank.algorithms.search
 import java.util.*
 import kotlin.collections.ArrayList
 
-
 /**
  * Hackerland Radio Transmitters
  * https://www.hackerrank.com/challenges/hackerland-radio-transmitters/problem
@@ -28,7 +27,6 @@ fun main(args: Array<String>) {
 
     var count = 0
 
-
     val it = a.iterator()
 
     while (it.hasNext()) {
@@ -37,19 +35,14 @@ fun main(args: Array<String>) {
 
         if (set.contains(e + k)) {
             count++
-            moveTo(it, e+k)
-
+            moveTo(it, e + k)
         }
-
-
     }
-
-
 }
 
 fun moveTo(it: Iterator<Int>, to: Int) {
     var n = it.next()
-    while(n!=to){
+    while (n != to) {
         n = it.next()
     }
 }

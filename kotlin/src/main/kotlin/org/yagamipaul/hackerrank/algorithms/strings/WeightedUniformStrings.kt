@@ -12,26 +12,25 @@ class WeightedUniformStrings {
         var lastChar = ' '
 
         // compute the list of possible uniform string weights
-        for (i in 0 until s.length){
-            if(s[i] == lastChar){
+        for (i in 0 until s.length) {
+            if (s[i] == lastChar) {
                 subStringSize++
-            }else{
+            } else {
                 subStringSize = 1
                 lastChar = s[i]
             }
-            var value = (s[i] -'a'+1)*subStringSize
+            var value = (s[i] - 'a' + 1) * subStringSize
             set.add(value)
         }
 
         // Respond to the queries based on the pre computed value
-        var responses = Array(queries.size, {""})
-        for((i,q) in queries.withIndex()){
-            responses[i] = if(set.contains(q)) "Yes" else "No"
+        var responses = Array(queries.size, { "" })
+        for ((i, q) in queries.withIndex()) {
+            responses[i] = if (set.contains(q)) "Yes" else "No"
         }
         return responses
     }
 }
-
 
 fun main(args: Array<String>) {
     val scan = Scanner(System.`in`)

@@ -2,7 +2,6 @@ package org.yagamipaul.hackerrank.algorithms.greedy
 
 import java.util.*
 
-
 /**
  * Mark and Toys
  * Jean Paul Manjarres Correal <paul.manjarres@gmail.com>
@@ -22,14 +21,13 @@ fun main(args: Array<String>) {
 
     var sum = 0
     var i = 0
-    while(sum <= k){
-        if(c[i] + sum <= k){
-            sum  += c[i]
+    while (sum <= k) {
+        if (c[i] + sum <= k) {
+            sum += c[i]
             i++
-        }else{
+        } else {
             break
         }
     }
     println(i)
-
 }

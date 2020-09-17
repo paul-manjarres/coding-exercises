@@ -6,11 +6,9 @@ class GameOfStones {
 
     // Complete the gameOfStones function below.
     fun gameOfStones(n: Int): String {
-        return if (n%7==0 || n%7==1) "Second" else "First"
+        return if (n % 7 == 0 || n % 7 == 1) "Second" else "First"
     }
-
 }
-
 
 fun main(args: Array<String>) {
     val scan = Scanner(System.`in`)

@@ -36,13 +36,10 @@ fun main(args: Array<String>) {
         if (lost < k) {
             luckBalance += listL[i]
             lost++
-        } else{
+        } else {
             luckBalance -= listL[i]
         }
-
     }
 
     print(luckBalance)
-
-
 }

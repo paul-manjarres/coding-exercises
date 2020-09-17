@@ -2,7 +2,6 @@ package org.yagamipaul.hackerrank.algorithms.sorting
 
 import java.util.*
 
-
 /**
  * QuickSort 3 - Sorting in place
  * https://www.hackerrank.com/challenges/quicksort2/problem
@@ -18,7 +17,6 @@ fun main(args: Array<String>) {
         arr[i] = sc.nextInt()
     }
     solve(arr, 0, n - 1)
-
 }
 
 /**
@@ -35,14 +33,13 @@ private fun solve(arr: IntArray, a: Int, b: Int): IntArray {
     solve(arr, a, pivotIndex - 1)
     solve(arr, pivotIndex + 1, b)
     return arr
-
 }
 
 /**
  * Finds the pivot in the current subarray
  */
 private fun findPivotIndex(arr: IntArray, a: Int, b: Int): Int {
-    //println("Find pivot a: $a, b: $b")
+    // println("Find pivot a: $a, b: $b")
     val pivot = arr[b]
     var i = a - 1
     var j = a
@@ -55,10 +52,10 @@ private fun findPivotIndex(arr: IntArray, a: Int, b: Int): Int {
         j++
     }
 
-    //swat the pivot with the index
-    swap(arr, a=i+1, b=b)
+    // swat the pivot with the index
+    swap(arr, a = i + 1, b = b)
     printArray(arr)
-    return i+1
+    return i + 1
 }
 
 /**

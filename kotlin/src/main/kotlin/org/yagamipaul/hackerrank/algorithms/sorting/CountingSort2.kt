@@ -15,14 +15,15 @@ fun main(args: Array<String>) {
         arr[number]++
     }
 
+    for (i in 0 until arr.size) {
 
-    for(i in 0 until arr.size){
-
-        if(arr[i] > 0){
-            repeat(arr[i], {
-                print("$i ")
-            })
+        if (arr[i] > 0) {
+            repeat(
+                arr[i],
+                {
+                    print("$i ")
+                }
+            )
         }
     }
-
 }

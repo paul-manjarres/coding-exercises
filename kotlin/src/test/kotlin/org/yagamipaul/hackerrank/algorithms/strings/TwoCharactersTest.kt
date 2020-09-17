@@ -3,7 +3,7 @@ package org.yagamipaul.hackerrank.algorithms.strings
 import org.assertj.core.api.Assertions
 import org.junit.jupiter.api.Test
 
-internal class TwoCharactersTest{
+internal class TwoCharactersTest {
 
     @Test
     fun `test case 1`() {
@@ -69,20 +69,19 @@ internal class TwoCharactersTest{
     fun `test permutations 1`() {
         val res = TwoCharacters().createPermutations("abcd")
         println(res)
-        Assertions.assertThat(res.size).isEqualTo(6);
+        Assertions.assertThat(res.size).isEqualTo(6)
     }
 
     @Test
     fun `test permutations 2`() {
         val res = TwoCharacters().createPermutations("abcdbbbbcccaaaaadddddd")
         println(res)
-        Assertions.assertThat(res.size).isEqualTo(6);
+        Assertions.assertThat(res.size).isEqualTo(6)
     }
     @Test
     fun `test permutations 3`() {
         val res = TwoCharacters().createPermutations("aa")
         println(res)
-        Assertions.assertThat(res.size).isEqualTo(0);
+        Assertions.assertThat(res.size).isEqualTo(0)
     }
-
 }

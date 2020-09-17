@@ -2,7 +2,6 @@ package org.yagamipaul.hackerrank.algorithms.strings
 
 import java.util.*
 
-
 /**
  * Beautiful Binary String
  * https://www.hackerrank.com/challenges/beautiful-binary-string
@@ -17,7 +16,7 @@ fun main(args: Array<String>) {
     var count = 0
     var index = str.indexOf("010")
 
-    while (index != -1){
+    while (index != -1) {
         str = str.replaceFirst("010", "011")
         count ++
         index = str.indexOf("010")

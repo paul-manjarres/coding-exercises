@@ -2,7 +2,6 @@ package org.yagamipaul.hackerrank.algorithms.recursion
 
 import java.util.*
 
-
 /**
  * Recursive Digit Sum
  * Jean Paul Manjarres Correal
@@ -18,9 +17,8 @@ fun main(args: Array<String>) {
         baseSum += it - '0'
     }
 
-    println(superDigit((baseSum*k).toString()))
+    println(superDigit((baseSum * k).toString()))
 }
-
 
 fun superDigit(num: String): Int {
     if (num.length == 1) return num.toInt()

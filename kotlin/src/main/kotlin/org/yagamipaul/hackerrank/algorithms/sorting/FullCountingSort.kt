@@ -3,7 +3,6 @@ package org.yagamipaul.hackerrank.algorithms.sorting
 import java.util.*
 import kotlin.collections.HashMap
 
-
 /**
  * Full Counting sort
  * https://www.hackerrank.com/challenges/countingsort4/problem

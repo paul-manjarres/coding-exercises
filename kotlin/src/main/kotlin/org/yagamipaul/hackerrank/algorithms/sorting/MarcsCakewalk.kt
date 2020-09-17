@@ -15,9 +15,8 @@ fun main(args: Array<String>) {
     Arrays.sort(arr)
     arr.reverse()
 
-    for (i in 0.until(n)){
-        miles += arr[i]*Math.pow(2.0,i.toDouble()).toLong()
+    for (i in 0.until(n)) {
+        miles += arr[i] * Math.pow(2.0, i.toDouble()).toLong()
     }
     println(miles)
-
 }

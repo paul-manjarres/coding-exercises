@@ -9,17 +9,17 @@ class StringToIntegerAtoi8 {
         if (str2.isEmpty() || str2[0].isLetter()) {
             return 0
         }
-        val nums =  hashMapOf(
-                Pair('1', 1),
-                Pair('2', 2),
-                Pair('3', 3),
-                Pair('4', 4),
-                Pair('5', 5),
-                Pair('6', 6),
-                Pair('7', 7),
-                Pair('8', 8),
-                Pair('9', 9),
-                Pair('0', 0)
+        val nums = hashMapOf(
+            Pair('1', 1),
+            Pair('2', 2),
+            Pair('3', 3),
+            Pair('4', 4),
+            Pair('5', 5),
+            Pair('6', 6),
+            Pair('7', 7),
+            Pair('8', 8),
+            Pair('9', 9),
+            Pair('0', 0)
         )
 
         var minus = false
@@ -34,10 +34,10 @@ class StringToIntegerAtoi8 {
 
         for (i in 0 until rev.length) {
             if (rev[i].isDigit()) {
-                val toAdd = (nums[rev[i]]?:0) * ( 10.toDouble().pow(pow).toInt())
+                val toAdd = (nums[rev[i]] ?: 0) * (10.toDouble().pow(pow).toInt())
 
-                if(Int.MAX_VALUE - sum < toAdd || pow >9){
-                    return if(minus) Int.MIN_VALUE else Int.MAX_VALUE
+                if (Int.MAX_VALUE - sum < toAdd || pow > 9) {
+                    return if (minus) Int.MIN_VALUE else Int.MAX_VALUE
                 }
                 sum += toAdd
                 pow++
@@ -46,6 +46,6 @@ class StringToIntegerAtoi8 {
                 sum = 0
             }
         }
-        return if(minus) sum*(-1) else sum
+        return if (minus) sum * (-1) else sum
     }
 }

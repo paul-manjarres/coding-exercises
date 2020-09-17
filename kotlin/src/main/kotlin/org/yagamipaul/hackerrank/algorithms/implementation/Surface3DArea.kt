@@ -7,7 +7,7 @@ class Surface3DArea {
     // Complete the surfaceArea function below.
     fun surfaceArea(A: Array<Array<Int>>): Int {
 
-        var totalArea = 0;
+        var totalArea = 0
         for (i in 0.until(A.size)) {
             for (j in 0.until(A[i].size)) {
 
@@ -22,36 +22,31 @@ class Surface3DArea {
 
                 // right
                 if (i + 1 < A.size) {
-                    neighbors.add(A[i + 1][j]);
+                    neighbors.add(A[i + 1][j])
                 } else {
                     neighbors.add(0)
                 }
                 // up
                 if (j - 1 >= 0) {
-                    neighbors.add(A[i][j - 1]);
+                    neighbors.add(A[i][j - 1])
                 } else {
                     neighbors.add(0)
                 }
                 // down
                 if (j + 1 < A[i].size) {
-                    neighbors.add(A[i][j + 1]);
+                    neighbors.add(A[i][j + 1])
                 } else {
                     neighbors.add(0)
                 }
 
                 totalArea += neighbors
-                        .map { if (A[i][j] - it > 0) A[i][j] - it else 0 }
-                        .sum() + 2;
+                    .map { if (A[i][j] - it > 0) A[i][j] - it else 0 }
+                    .sum() + 2
             }
-
-
         }
-
 
         return totalArea
     }
-
-
 }
 
 fun main(args: Array<String>) {

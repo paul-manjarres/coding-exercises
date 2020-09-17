@@ -6,7 +6,7 @@ import org.junit.jupiter.api.Test
 class PalindromeNumber9Test {
 
     @Test
-    fun `Test cases`(){
+    fun `Test cases`() {
         var obj = PalindromeNumber9()
         Assertions.assertThat(obj.isPalindrome(121)).isTrue()
         Assertions.assertThat(obj.isPalindrome(-121)).isFalse()

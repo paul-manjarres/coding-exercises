@@ -1,7 +1,6 @@
 package org.yagamipaul.hackerrank.math.fundamental
 
 import java.util.*
-import kotlin.math.pow
 
 class Restaurant {
 
@@ -9,17 +8,16 @@ class Restaurant {
  * Complete the restaurant function below.
  */
     fun restaurant(l: Int, b: Int): Int {
-        val mcdVal = mcd(l, b);
-        return (l*b) /  (mcdVal * mcdVal)
+        val mcdVal = mcd(l, b)
+        return (l * b) / (mcdVal * mcdVal)
     }
 
-    tailrec fun mcd(a:Int, b:Int): Int{
-        if(b==0) return a;
-        if(a==0) return b;
-        return mcd(b, a % b);
+    tailrec fun mcd(a: Int, b: Int): Int {
+        if (b == 0) return a
+        if (a == 0) return b
+        return mcd(b, a % b)
     }
 }
-
 
 fun main(args: Array<String>) {
     val scan = Scanner(System.`in`)
@@ -34,5 +32,3 @@ fun main(args: Array<String>) {
         println(result)
     }
 }
-
-

@@ -10,16 +10,15 @@ class FibonacciModified {
 
         var tnm2 = BigInteger.valueOf(t1.toLong())
         var tnm1 = BigInteger.valueOf(t2.toLong())
-        var tn = BigInteger.ZERO;
+        var tn = BigInteger.ZERO
 
-        for(i in 2.until(n)){
+        for (i in 2.until(n)) {
             tn = tnm2.add(tnm1.pow(2))
-            tnm2 = tnm1;
-            tnm1 = tn;
+            tnm2 = tnm1
+            tnm1 = tn
         }
         return tn
     }
-
 }
 
 fun main(args: Array<String>) {

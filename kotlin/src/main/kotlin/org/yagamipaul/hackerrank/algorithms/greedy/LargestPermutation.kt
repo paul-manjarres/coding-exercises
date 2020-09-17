@@ -2,7 +2,6 @@ package org.yagamipaul.hackerrank.algorithms.greedy
 
 import java.util.*
 
-
 /**
  * https://www.hackerrank.com/challenges/largest-permutation/problem
  * Jean Paul Manjarres Correal <paul.manjarres@gmail.com>
@@ -12,39 +11,35 @@ class LargestPermutation {
     // Complete the alternate function below.
     fun solution(k: Int, arr: Array<Int>): Array<Int> {
 
-        val map = mutableMapOf<Int, Int>();
+        val map = mutableMapOf<Int, Int>()
 
         // Get the index for each element
         for (j in 0.until(arr.size)) {
-            map[arr[j]] = j;
+            map[arr[j]] = j
         }
 
         // Sort descending to get K elements O(nlogn)
-        val sortedList = arr.sortedDescending();
+        val sortedList = arr.sortedDescending()
 
-        var count =0;
+        var count = 0
         // Swap K elements
         for (i in 0.until(arr.size)) {
 
-            if(arr[i] != sortedList[i]){
-                var indexMax = map.getOrDefault(sortedList[i],0);
-                var temp = arr[i];
-                arr[i] = sortedList[i];
-                arr[indexMax] = temp;
+            if (arr[i] != sortedList[i]) {
+                var indexMax = map.getOrDefault(sortedList[i], 0)
+                var temp = arr[i]
+                arr[i] = sortedList[i]
+                arr[indexMax] = temp
 
-                map[sortedList[i]] = i;
-                map[temp] = indexMax;
-                count++;
+                map[sortedList[i]] = i
+                map[temp] = indexMax
+                count++
             }
 
-            if(count >= k) break;
-
+            if (count >= k) break
         }
-        return arr;
+        return arr
     }
-
-
-
 }
 
 fun main(args: Array<String>) {

@@ -2,7 +2,6 @@ package org.yagamipaul.hackerrank.algorithms.sorting
 
 import java.util.*
 
-
 /**
  * Counting Sort 3
  */
@@ -17,12 +16,10 @@ fun main(args: Array<String>) {
         arr[number]++
     }
 
-
-    for(i in 0 until arr.size-1){
+    for (i in 0 until arr.size - 1) {
         print("${arr[i]} ")
-        arr[i+1]+=arr[i]
+        arr[i + 1] += arr[i]
     }
 
     print("${arr[99]}")
-
 }

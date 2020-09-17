@@ -1,7 +1,6 @@
 package org.yagamipaul.hackerrank.algorithms.gametheory
 
 import java.util.*
-import kotlin.math.abs
 
 /**
  * https://www.hackerrank.com/challenges/nimble-game-1/problem
@@ -11,10 +10,10 @@ class NimbleGame {
 
     // Complete the nimbleGame function below.
     fun nimbleGame(s: Array<Int>): String {
-        var sum = 0L;
-        s[0] = 0;
+        var sum = 0L
+        s[0] = 0
         s.forEach { i -> sum += i }
-        return if (sum % 2 == 1L) return "First" else "Second";
+        return if (sum % 2 == 1L) return "First" else "Second"
     }
 }
 

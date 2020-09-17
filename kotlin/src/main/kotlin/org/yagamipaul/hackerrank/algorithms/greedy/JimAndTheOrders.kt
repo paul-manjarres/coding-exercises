@@ -4,7 +4,6 @@ import java.util.*
 import kotlin.Comparator
 import kotlin.collections.ArrayList
 
-
 /**
  * Jim and the orders
  * https://www.hackerrank.com/challenges/jim-and-the-orders
@@ -33,7 +32,6 @@ fun main(args: Array<String>) {
     orders.forEach { o ->
         print("${o.id} ")
     }
-
 }
 
 class OrderComparatorByFulFill : Comparator<Order> {

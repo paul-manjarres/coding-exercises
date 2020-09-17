@@ -9,18 +9,14 @@ class PermutingTwoArrays {
         var a = A.sortedArray()
         var b = B.sortedArray().reversedArray()
 
-        for(i in 0.until(a.size)){
-            if(a[i] + b[i] < k){
+        for (i in 0.until(a.size)) {
+            if (a[i] + b[i] < k) {
                 return "NO"
             }
         }
         return "YES"
     }
-
 }
-
-
-
 
 fun main(args: Array<String>) {
     val scan = Scanner(System.`in`)
@@ -34,9 +30,9 @@ fun main(args: Array<String>) {
 
         val k = nk[1].trim().toInt()
 
-        val A = scan.nextLine().split(" ").map{ it.trim().toInt() }.toTypedArray()
+        val A = scan.nextLine().split(" ").map { it.trim().toInt() }.toTypedArray()
 
-        val B = scan.nextLine().split(" ").map{ it.trim().toInt() }.toTypedArray()
+        val B = scan.nextLine().split(" ").map { it.trim().toInt() }.toTypedArray()
 
         val result = PermutingTwoArrays().twoArrays(k, A, B)
 

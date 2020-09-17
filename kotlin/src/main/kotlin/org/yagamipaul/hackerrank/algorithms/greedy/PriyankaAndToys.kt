@@ -7,7 +7,7 @@ class PriyankaAndToys {
     // Complete the toys function below.
     fun toys(w: Array<Int>): Int {
 
-        if(w.isEmpty()){
+        if (w.isEmpty()) {
             return 0
         }
         // Traverse the sorted array looking for elements that are
@@ -18,19 +18,16 @@ class PriyankaAndToys {
         var size = a[0] + 4
         var count = 1
 
-        for( ai in a){
-            if(ai > size){
+        for (ai in a) {
+            if (ai > size) {
                 count++
-                size = ai +4
+                size = ai + 4
             }
         }
 
         return count
     }
-
-
 }
-
 
 fun main(args: Array<String>) {
     val scan = Scanner(System.`in`)

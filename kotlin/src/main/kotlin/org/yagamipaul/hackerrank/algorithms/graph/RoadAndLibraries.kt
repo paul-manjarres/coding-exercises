@@ -4,7 +4,6 @@ import java.util.*
 import kotlin.collections.ArrayList
 import kotlin.collections.HashSet
 
-
 /**
  * Roads and Libraries
  * https://www.hackerrank.com/challenges/torque-and-development
@@ -32,27 +31,24 @@ fun main(args: Array<String>) {
             val list2 = map.getOrDefault(v, ArrayList())
             list2.add(u)
             map[v] = list2
-
         }
         println(solve(n, m, clib, croad, map))
-
     }
-
 }
 
 /**
  * Depth first search, returns the visited nodes
  */
-fun dfs(map: Map<Int, ArrayList<Int>>, origin: Int): Set<Int>{
+fun dfs(map: Map<Int, ArrayList<Int>>, origin: Int): Set<Int> {
     val visited = HashSet<Int>()
     val stack = ArrayDeque<Int>()
     stack.push(origin)
     visited.add(origin)
 
-    while(stack.isNotEmpty()){
+    while (stack.isNotEmpty()) {
         val node = stack.pop()
-        for (i in map.getOrDefault(node, emptyList<Int>())){
-            if(!visited.contains(i)){
+        for (i in map.getOrDefault(node, ArrayList())) {
+            if (!visited.contains(i)) {
                 visited.add(i)
                 stack.push(i)
             }
@@ -61,10 +57,9 @@ fun dfs(map: Map<Int, ArrayList<Int>>, origin: Int): Set<Int>{
     return visited
 }
 
-
 fun solve(n: Int, m: Int, clib: Int, croad: Int, map: Map<Int, ArrayList<Int>>): Long {
 
-    if(clib < croad){
+    if (clib < croad) {
         return n.toLong() * clib
     }
 
@@ -73,14 +68,14 @@ fun solve(n: Int, m: Int, clib: Int, croad: Int, map: Map<Int, ArrayList<Int>>):
 
     var totalCost = 0L
 
-    while(visited.size < n){
-        for(i in 0 until n) {
+    while (visited.size < n) {
+        for (i in 0 until n) {
             if (!visited.contains(i)) {
 
                 var currentVisited = dfs(map, i)
                 visited.addAll(currentVisited)
                 components++
-                totalCost += (currentVisited.size -1 )*croad + clib
+                totalCost += (currentVisited.size - 1) * croad + clib
             }
         }
     }

@@ -2,7 +2,6 @@ package org.yagamipaul.hackerrank.algorithms.search
 
 import java.util.*
 
-
 /**
  * Pairs
  * https://www.hackerrank.com/challenges/pairs
@@ -19,8 +18,8 @@ fun main(args: Array<String>) {
     }
 
     var sum = 0
-    for(e in set){
-        if(set.contains(e+k)){
+    for (e in set) {
+        if (set.contains(e + k)) {
             sum++
         }
     }

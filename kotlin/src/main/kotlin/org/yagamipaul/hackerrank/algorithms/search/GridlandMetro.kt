@@ -2,7 +2,6 @@ package org.yagamipaul.hackerrank.algorithms.search
 
 import java.util.*
 
-
 /**
  * Gridland metro
  * Jean Paul Manjarres Correal <paul.manjarres@gmail.com>
@@ -23,8 +22,5 @@ fun main(args: Array<String>) {
         val c2 = scanner.nextInt()
 
         // TODO: Migrate from java
-
-
     }
-
 }

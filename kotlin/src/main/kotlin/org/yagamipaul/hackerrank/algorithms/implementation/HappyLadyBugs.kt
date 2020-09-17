@@ -4,7 +4,6 @@ import java.util.*
 
 class HappyLadyBugs {
 
-
     // Complete the happyLadybugs function below.
     fun happyLadybugs(b: String): String {
 
@@ -30,13 +29,13 @@ class HappyLadyBugs {
             }
         }
 
-        if(!isPossible) {
+        if (!isPossible) {
             return "NO"
         }
 
-        if (spaces == 0 ) {
-            //If there are no spaces, we have to check if the ladybugs are already happy
-           for (i in 1.until(b.length - 1)) {
+        if (spaces == 0) {
+            // If there are no spaces, we have to check if the ladybugs are already happy
+            for (i in 1.until(b.length - 1)) {
                 if (b[i] != b[i - 1] && b[i] != b[i + 1]) {
                     return "NO"
                 }
@@ -45,8 +44,6 @@ class HappyLadyBugs {
 
         return "YES"
     }
-
-
 }
 
 fun main(args: Array<String>) {

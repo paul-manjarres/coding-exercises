@@ -1,6 +1,5 @@
 package org.yagamipaul.hackerrank.algorithms.sorting
 
-
 import java.util.*
 
 fun main(args: Array<String>) {
@@ -14,8 +13,8 @@ fun main(args: Array<String>) {
     Arrays.sort(arr)
 
     var min = Math.abs(arr[0] - arr[1])
-    for( i in 1..n-2){
-        min = Math.min(min, Math.abs(arr[i] - arr[i+1]))
+    for (i in 1..n - 2) {
+        min = Math.min(min, Math.abs(arr[i] - arr[i + 1]))
     }
     println(min)
 }

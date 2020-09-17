@@ -3,9 +3,7 @@ package org.yagamipaul.hackerrank.algorithms.strings
 import org.assertj.core.api.Assertions
 import org.junit.jupiter.api.Test
 
-
 class GameOfThrones1Test {
-
 
     @Test
     fun `test case 1`() {
@@ -24,6 +22,4 @@ class GameOfThrones1Test {
         val res = GameOfThrones1().gameOfThrones("cdcdcdcdeeeef")
         Assertions.assertThat(res).isEqualTo("YES")
     }
-
-
 }

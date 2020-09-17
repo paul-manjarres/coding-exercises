@@ -2,7 +2,6 @@ package org.yagamipaul.hackerrank.algorithms.search
 
 import java.util.*
 
-
 /**
  * Sherlock and Array
  * https://www.hackerrank.com/challenges/sherlock-and-array
@@ -24,7 +23,6 @@ fun main(args: Array<String>) {
     scanner.close()
 }
 
-
 fun solve(a: IntArray): String {
 
     var min = 0
@@ -35,23 +33,22 @@ fun solve(a: IntArray): String {
 
     while (!stop) {
         var index = (max + min) / 2
-        var left = a.slice(0..index-1).sum()
-        var right = a.slice(index+1 .. n).sum()
+        var left = a.slice(0..index - 1).sum()
+        var right = a.slice(index + 1..n).sum()
 
-        if(left < right){
+        if (left < right) {
             min = index
-        }else if(left > right){
+        } else if (left > right) {
             max = index
-        }else{
+        } else {
             result = index
             stop = true
         }
 
-        if((min == max || max-min==1) && result==-1){
+        if ((min == max || max - min == 1) && result == -1) {
             stop = true
         }
     }
 
-    return if(result == -1 ) "NO" else "YES"
-
+    return if (result == -1) "NO" else "YES"
 }

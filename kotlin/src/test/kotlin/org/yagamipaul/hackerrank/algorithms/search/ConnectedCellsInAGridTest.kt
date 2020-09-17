@@ -34,7 +34,7 @@ internal class ConnectedCellsInAGridTest {
     fun `test case 3`() {
         val res = ConnectedCellsInAGrid().connectedCell(
             arrayOf(
-                arrayOf(1, 1, 1 , 1)
+                arrayOf(1, 1, 1, 1)
             )
         )
         Assertions.assertThat(res).isEqualTo(4)
@@ -74,6 +74,4 @@ internal class ConnectedCellsInAGridTest {
         )
         Assertions.assertThat(res).isEqualTo(1)
     }
-
-
 }

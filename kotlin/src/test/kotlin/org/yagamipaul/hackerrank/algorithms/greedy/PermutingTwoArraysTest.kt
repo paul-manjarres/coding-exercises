@@ -3,7 +3,6 @@ package org.yagamipaul.hackerrank.algorithms.greedy
 import org.assertj.core.api.Assertions
 import org.junit.jupiter.api.Test
 
-
 class PermutingTwoArraysTest {
 
     @Test
@@ -17,6 +16,4 @@ class PermutingTwoArraysTest {
         val res = PermutingTwoArrays().twoArrays(5, arrayOf(1, 2, 2, 1), arrayOf(3, 3, 3, 4))
         Assertions.assertThat(res).isEqualTo("NO")
     }
-
-
 }

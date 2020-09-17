@@ -3,8 +3,7 @@ package org.yagamipaul.hackerrank.math.fundamental
 import org.assertj.core.api.Assertions
 import org.junit.jupiter.api.Test
 
-
-internal class BestDivisorTest{
+internal class BestDivisorTest {
 
     @Test
     fun `test case 1`() {
@@ -33,9 +32,6 @@ internal class BestDivisorTest{
     @Test
     fun `test calculateSum`() {
         val res = BestDivisor().calculateDigitsSum(234)
-        Assertions.assertThat(res).isEqualTo(9);
+        Assertions.assertThat(res).isEqualTo(9)
     }
-
-
-
 }

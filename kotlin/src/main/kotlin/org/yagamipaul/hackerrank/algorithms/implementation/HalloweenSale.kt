@@ -4,7 +4,6 @@ import java.util.*
 
 class HalloweenSale {
 
-
     // Complete the howManyGames function below.
     fun howManyGames(p: Int, d: Int, m: Int, s: Int): Int {
         // Return the number of games you can buy
@@ -12,15 +11,14 @@ class HalloweenSale {
         var count = 0
         var dollars = s
 
-        while(dollars>=0){
-            var price =  p - d * count
-            price = if( price > m) price else m
-            dollars-=price
+        while (dollars >= 0) {
+            var price = p - d * count
+            price = if (price > m) price else m
+            dollars -= price
             count++
         }
-        return if(dollars < 0) --count else count
+        return if (dollars < 0) --count else count
     }
-
 }
 
 fun main(args: Array<String>) {
@@ -40,4 +38,3 @@ fun main(args: Array<String>) {
 
     println(answer)
 }
-

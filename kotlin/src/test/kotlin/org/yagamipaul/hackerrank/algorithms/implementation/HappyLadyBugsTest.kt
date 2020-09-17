@@ -5,7 +5,6 @@ import org.junit.jupiter.api.Test
 
 class HappyLadyBugsTest {
 
-
     @Test
     fun `test case 1`() {
         val res = HappyLadyBugs().happyLadybugs("RBY_YBR")
@@ -29,7 +28,4 @@ class HappyLadyBugsTest {
         val res = HappyLadyBugs().happyLadybugs("B_RRBR")
         Assertions.assertThat(res).isEqualTo("YES")
     }
-
-
-
 }

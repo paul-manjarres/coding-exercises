@@ -3,7 +3,6 @@ package org.yagamipaul.hackerrank.algorithms.implementation
 import org.assertj.core.api.Assertions
 import org.junit.jupiter.api.Test
 
-
 class HalloweenSaleTest {
 
     @Test
@@ -17,5 +16,4 @@ class HalloweenSaleTest {
         val res = HalloweenSale().howManyGames(20, 3, 6, 85)
         Assertions.assertThat(res).isEqualTo(7)
     }
-
 }

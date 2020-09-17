@@ -2,12 +2,8 @@ package org.yagamipaul.hackerrank.ds
 
 import java.util.*
 
-
 // Complete the minimumBribes function below.
-fun minimumBribes(q: Array<Int>): Unit {
-
-
-
+fun minimumBribes(q: Array<Int>) {
 }
 
 fun main(args: Array<String>) {
@@ -18,7 +14,7 @@ fun main(args: Array<String>) {
     for (tItr in 1..t) {
         val n = scan.nextLine().trim().toInt()
 
-        val q = scan.nextLine().split(" ").map{ it.trim().toInt() }.toTypedArray()
+        val q = scan.nextLine().split(" ").map { it.trim().toInt() }.toTypedArray()
 
         minimumBribes(q)
     }

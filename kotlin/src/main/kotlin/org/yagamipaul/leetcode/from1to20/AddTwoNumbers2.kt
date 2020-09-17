@@ -11,42 +11,40 @@ class AddTwoNumbers2 {
         var head = null as ListNode?
         var carry = 0
 
-        while(currA != null || currB != null){
+        while (currA != null || currB != null) {
             var a = currA?.`val` ?: 0
             var b = currB?.`val` ?: 0
             var c = 0
 
-            if(carry > 0){
+            if (carry > 0) {
                 c += carry
                 carry = 0
             }
 
-            c += a+b
+            c += a + b
 
-            if(c >= 10){
+            if (c >= 10) {
                 carry = 1
                 c -= 10
             }
 
-            if(result == null){
+            if (result == null) {
                 result = ListNode(c)
                 head = result
-            }else{
+            } else {
                 result.next = ListNode(c)
                 result = result.next
             }
 
             currA = currA?.next
             currB = currB?.next
-
         }
 
-        if(carry > 0){
+        if (carry > 0) {
             result!!.next = ListNode(carry)
         }
 
         return head
-
     }
 
     class ListNode(var `val`: Int) {
@@ -64,5 +62,4 @@ class AddTwoNumbers2 {
             return head
         }
     }
-
 }

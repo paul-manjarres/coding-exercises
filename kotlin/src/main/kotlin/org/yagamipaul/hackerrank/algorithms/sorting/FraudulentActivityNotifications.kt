@@ -2,7 +2,6 @@ package org.yagamipaul.hackerrank.algorithms.sorting
 
 import java.util.*
 
-
 /**
  * Fraudulent Activity Notifications
  * https://www.hackerrank.com/challenges/fraudulent-activity-notifications/problem
@@ -28,7 +27,6 @@ fun main(args: Array<String>) {
     scanner.close()
 }
 
-
 /**
  * Solves the problem, returns the solution
  */
@@ -52,7 +50,6 @@ private fun solve(arr: IntArray, freq: IntArray, n: Int, d: Int): Int {
     }
 
     return notifications
-
 }
 
 private fun findMedian(freq: IntArray, d: Int): Double {
@@ -77,5 +74,5 @@ private fun findMedian(freq: IntArray, d: Int): Double {
             break
         }
     }
-    return if(isEven) (a+b) / 2.0 else b.toDouble()
+    return if (isEven) (a + b) / 2.0 else b.toDouble()
 }

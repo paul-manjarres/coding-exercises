@@ -1,12 +1,11 @@
 package org.yagamipaul.leetcode.from1to20
 
-import org.assertj.core.api.Assertions
 import org.junit.jupiter.api.Test
 
-internal class StringToIntegerAtoi8Test{
+internal class StringToIntegerAtoi8Test {
 
     @Test
-    fun `Test cases`(){
+    fun `Test cases`() {
 //        val obj = StringToIntegerAtoi8()
 //        Assertions.assertThat(obj.myAtoi("42")).isEqualTo(42)
 //        Assertions.assertThat(obj.myAtoi("-42")).isEqualTo(-42)

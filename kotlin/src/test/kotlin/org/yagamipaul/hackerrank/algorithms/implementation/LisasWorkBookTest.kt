@@ -7,7 +7,7 @@ class LisasWorkBookTest {
 
     @Test
     fun `test case 1`() {
-        val res = LisasWorkBook().workbook(5,3, arrayOf(4,2,6,1,10))
+        val res = LisasWorkBook().workbook(5, 3, arrayOf(4, 2, 6, 1, 10))
         Assertions.assertThat(res).isEqualTo(4)
     }
 }

@@ -40,5 +40,4 @@ class GameOfStonesTest {
         val res = GameOfStones().gameOfStones(10)
         Assertions.assertThat(res).isEqualTo("First")
     }
-
 }

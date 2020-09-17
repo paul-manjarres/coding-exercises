@@ -2,15 +2,14 @@ package org.yagamipaul.hackerrank.algorithms.sorting
 
 import java.util.*
 
-
 /**
  * QuickSort 4 - Running time
  * https://www.hackerrank.com/challenges/quicksort4/problem
  * Jean Paul Manjarres Correal <paul.manjarres@gmail.com>
  */
 
-var quickSortSwaps=0
-var insertionSortSwaps=0
+var quickSortSwaps = 0
+var insertionSortSwaps = 0
 
 fun main(args: Array<String>) {
 
@@ -24,12 +23,8 @@ fun main(args: Array<String>) {
     quickSort(arr.copyOf(), 0, n - 1)
     insertionSort(arr.copyOf())
 
-    println("${insertionSortSwaps-quickSortSwaps}")
-
-
+    println("${insertionSortSwaps - quickSortSwaps}")
 }
-
-
 
 /**
  * Solves the problem in place
@@ -45,14 +40,13 @@ fun quickSort(arr: IntArray, a: Int, b: Int): IntArray {
     quickSort(arr, a, pivotIndex - 1)
     quickSort(arr, pivotIndex + 1, b)
     return arr
-
 }
 
 /**
  * Finds the pivot in the current subarray
  */
 private fun findPivotIndex(arr: IntArray, a: Int, b: Int): Int {
-    //println("Find pivot a: $a, b: $b")
+    // println("Find pivot a: $a, b: $b")
     val pivot = arr[b]
     var i = a - 1
     var j = a
@@ -66,28 +60,25 @@ private fun findPivotIndex(arr: IntArray, a: Int, b: Int): Int {
         j++
     }
 
-    //swat the pivot with the index
-    swap(arr, a=i+1, b=b)
+    // swat the pivot with the index
+    swap(arr, a = i + 1, b = b)
     quickSortSwaps++
-    //printArray(arr)
-    return i+1
+    // printArray(arr)
+    return i + 1
 }
 
-
-private fun insertionSort(arr: IntArray): IntArray{
-    for(i in 1 until arr.size){
+private fun insertionSort(arr: IntArray): IntArray {
+    for (i in 1 until arr.size) {
         var j = i
-        while(j>0 && arr[j-1]>arr[j]){
-            swap(arr,j,j-1)
+        while (j> 0 && arr[j - 1]> arr[j]) {
+            swap(arr, j, j - 1)
             insertionSortSwaps++
             j--
         }
     }
-    //printArray(arr)
+    // printArray(arr)
     return arr
 }
-
-
 
 /**
  * Swaps elements

@@ -1,6 +1,5 @@
 package org.yagamipaul.hackerrank.algorithms.dynamicp
 
-
 import org.assertj.core.api.Assertions
 import org.junit.jupiter.api.Test
 

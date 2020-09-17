@@ -7,6 +7,6 @@ fun main(args: Array<String>) {
     val n = scanner.nextInt()
     val m = scanner.nextInt()
 
-    val res = (n/2)*(m/2) + (n/2)*(m%2) + (m/2)*(n%2) + (n%2)*(m%2)
+    val res = (n / 2) * (m / 2) + (n / 2) * (m % 2) + (m / 2) * (n % 2) + (n % 2) * (m % 2)
     println(res)
 }

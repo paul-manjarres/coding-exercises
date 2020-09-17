@@ -4,7 +4,6 @@ import java.util.*
 
 class GameOfThrones1 {
 
-
     // Complete the gameOfThrones function below.
     fun gameOfThrones(s: String): String {
 
@@ -14,7 +13,7 @@ class GameOfThrones1 {
 
         for (i in arr) {
             val mod = i % 2
-            if (hasOdd &&  mod == 1) {
+            if (hasOdd && mod == 1) {
                 return "NO"
             }
             if (!hasOdd && mod == 1) {
@@ -27,7 +26,6 @@ class GameOfThrones1 {
         return "YES"
     }
 }
-
 
 fun main(args: Array<String>) {
     val scan = Scanner(System.`in`)

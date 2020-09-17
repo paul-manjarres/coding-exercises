@@ -38,6 +38,4 @@ internal class Surface3DAreaTest {
         )
         Assertions.assertThat(res).isEqualTo(1482)
     }
-
-
 }

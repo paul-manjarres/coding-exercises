@@ -2,7 +2,6 @@ package org.yagamipaul.hackerrank.algorithms.search
 
 import java.util.*
 
-
 /**
  * Ice cream parlor
  * https://www.hackerrank.com/challenges/icecream-parlor/problem
@@ -13,7 +12,7 @@ fun main(args: Array<String>) {
     val scanner = Scanner(System.`in`)
 
     val t = scanner.nextInt()
-    for(_i in 0 until t){
+    for (_i in 0 until t) {
 
         val m = scanner.nextInt()
         val n = scanner.nextInt()
@@ -21,34 +20,32 @@ fun main(args: Array<String>) {
 
         val map = HashMap<Int, ArrayDeque<Int>>()
 
-        for(i in 0 until n){
+        for (i in 0 until n) {
             c[i] = scanner.nextInt()
-            if(!map.containsKey(c[i])){
-                map[c[i]]=ArrayDeque()
+            if (!map.containsKey(c[i])) {
+                map[c[i]] = ArrayDeque()
             }
-            map[c[i]]?.add(i+1)
+            map[c[i]]?.add(i + 1)
         }
 
-        for( i in 0 until n-1){
+        for (i in 0 until n - 1) {
             val a = c[i]
-            if(map.containsKey(m-a)){
+            if (map.containsKey(m - a)) {
 
-                if(a == (m-a) && map[a]!!.size < 2){
+                if (a == (m - a) && map[a]!!.size < 2) {
                     continue
                 }
 
                 val first = map[a]!!.pop()
-                val second = map[m-a]!!.pop()
-                if(first < second){
+                val second = map[m - a]!!.pop()
+                if (first < second) {
                     println("$first $second")
-                }else{
+                } else {
                     println("$second $first")
                 }
 
                 break
             }
         }
-
     }
-
 }

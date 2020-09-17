@@ -11,29 +11,24 @@ class LisasWorkBook {
         var special = 0
 
         // Iterate over chapters, i = chapter
-        for(i in 0 until n){
+        for (i in 0 until n) {
             page++
             var pageInChapter = 1
 
             // Iterate over problems inside chapter
-            for(j in 1 until arr[i]+1){
-                if(j/ k.toDouble() > pageInChapter ){
+            for (j in 1 until arr[i] + 1) {
+                if (j / k.toDouble() > pageInChapter) {
                     pageInChapter++
                     page++
                 }
-                if(j == page){
+                if (j == page) {
                     special++
                 }
             }
         }
         return special
     }
-
-
-
-
 }
-
 
 fun main(args: Array<String>) {
     val scan = Scanner(System.`in`)
@@ -44,7 +39,7 @@ fun main(args: Array<String>) {
 
     val k = nk[1].trim().toInt()
 
-    val arr = scan.nextLine().split(" ").map{ it.trim().toInt() }.toTypedArray()
+    val arr = scan.nextLine().split(" ").map { it.trim().toInt() }.toTypedArray()
 
     val result = LisasWorkBook().workbook(n, k, arr)
 

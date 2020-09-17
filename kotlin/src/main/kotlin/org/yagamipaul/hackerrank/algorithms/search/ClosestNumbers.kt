@@ -20,23 +20,21 @@ fun main(args: Array<String>) {
     Arrays.sort(a)
 
     var min = Int.MAX_VALUE
-    val pairs = ArrayList<Pair<Int,Int>>()
+    val pairs = ArrayList<Pair<Int, Int>>()
 
-    for(i in 0.until(a.size-1)){
-        min = Math.min(min, Math.abs(a[i]-a[i+1]))
+    for (i in 0.until(a.size - 1)) {
+        min = Math.min(min, Math.abs(a[i] - a[i + 1]))
     }
 
-    for(i in 0.until(a.size-1)){
-        val curr = Math.abs(a[i]-a[i+1])
-        if(curr == min){
-            pairs.add(Pair(a[i], a[i+1]))
+    for (i in 0.until(a.size - 1)) {
+        val curr = Math.abs(a[i] - a[i + 1])
+        if (curr == min) {
+            pairs.add(Pair(a[i], a[i + 1]))
         }
     }
 
-    pairs.forEach{
-        p-> print("${p.first} ${p.second} ")
+    pairs.forEach {
+        p ->
+        print("${p.first} ${p.second} ")
     }
-
 }
-
-

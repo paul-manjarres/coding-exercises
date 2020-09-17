@@ -17,5 +17,5 @@ fun main(args: Array<String>) {
     }
 
     Arrays.sort(c)
-    println(c[n/2])
+    println(c[n / 2])
 }

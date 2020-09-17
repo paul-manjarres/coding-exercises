@@ -29,17 +29,7 @@ class NimbleGameTest {
         Assertions.assertThat(res).isEqualTo("Second")
     }
 
-    @Test
-    fun `Fifth case`() {
-        val res = NimbleGame().nimbleGame(arrayOf(225,441,775))
-        Assertions.assertThat(res).isEqualTo("First")
-    }
 
-    @Test
-    fun `Sixth case`() {
-        val res = NimbleGame().nimbleGame(arrayOf( 826, 571, 236, 413, 212, 921, 948, 859, 985, 837))
-        Assertions.assertThat(res).isEqualTo("First")
-    }
 
     @Test
     fun `Seventh case`() {

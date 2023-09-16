@@ -1,5 +1,6 @@
 plugins {
     id 'java'
+    id("com.diffplug.spotless") version "6.21.0"
 }
 
 repositories {
@@ -18,7 +19,7 @@ dependencies {
     testImplementation 'org.assertj:assertj-core:3.23.1'
 }
 
-tasks.withType(JavaCompile) {
+tasks.withType(JavaCompile).configureEach {
     options.encoding = 'UTF-8'
 }
 
@@ -26,5 +27,14 @@ test {
     useJUnitPlatform()
     testLogging {
         events "passed", "skipped", "failed"
+    }
+}
+
+spotless {
+    java {
+        removeUnusedImports()
+        googleJavaFormat()   // has its own section below
+        formatAnnotations()  // fixes formatting of type annotations, see below
+        // licenseHeader '/* (C) $YEAR */' // or licenseHeaderFile
     }
 }

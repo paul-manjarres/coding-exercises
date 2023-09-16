@@ -2,7 +2,6 @@
  * Evoki.co - Plume Works Copyright (c) 2013 - 2017 by Jean Paul Manjarres Correal - All Rights
  * Reserved. Proprietary and Confidential - This source code is not for redistribution
  * http://evoki.co Date: 10/03/2017
- *
  */
 package com.jpmanjarres.hackerrank.thirtydays;
 
@@ -14,42 +13,36 @@ import java.util.regex.Matcher;
 import java.util.regex.Pattern;
 
 /**
- * @author <a href="mailto:paul.manjarres@gmail.com">Jean Paul Manjarres Correal. </a><br/>
- * 10/03/2017
- *
+ * @author <a href="mailto:paul.manjarres@gmail.com">Jean Paul Manjarres Correal. </a><br>
+ *     10/03/2017
  */
 public class Day28Regex {
 
+  public static void main(String[] args) {
+    final Scanner in = new Scanner(System.in);
 
+    final Pattern p = Pattern.compile("[a-z]+@gmail.com");
+    final List<String> names = new ArrayList<>();
 
-	public static void main(String[] args) {
-		final Scanner in = new Scanner(System.in);
+    int N = in.nextInt();
+    for (int i = 0; i < N; i++) {
 
-		final Pattern p = Pattern.compile("[a-z]+@gmail.com");
-		final List<String> names = new ArrayList<>();
+      String name = in.next();
+      String email = in.next();
 
-		int N = in.nextInt();
-		for (int i = 0; i < N; i++) {
+      Matcher m = p.matcher(email);
 
-			String name = in.next();
-			String email = in.next();
+      if (m.find()) {
+        names.add(name);
+      }
+    }
 
-			Matcher m = p.matcher(email);
+    Collections.sort(names);
 
-			if(m.find()){
-				names.add(name);
-			}
-		}
+    for (String s : names) {
+      System.out.println(s);
+    }
 
-		Collections.sort(names);
-
-
-		for(String s: names){
-			System.out.println(s);
-		}
-
-		in.close();
-	}
-
-
+    in.close();
+  }
 }

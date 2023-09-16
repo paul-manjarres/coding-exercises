@@ -8,51 +8,47 @@ import java.io.PrintWriter;
 import java.util.StringTokenizer;
 
 /**
- * @author <a href="paul.manjarres@gmail.com">Jean Paul Manjarres Correal</a>
- *         12/11/2015
+ * @author <a href="paul.manjarres@gmail.com">Jean Paul Manjarres Correal</a> 12/11/2015
  */
 public class TemplateClass {
 
-	public static void main(String[] args) {
-		final PrintWriter out = new PrintWriter(System.out);
-		final InputReader in = new InputReader(System.in);
-		//PROBLEM SOLVING
+  public static void main(String[] args) {
+    final PrintWriter out = new PrintWriter(System.out);
+    final InputReader in = new InputReader(System.in);
+    // PROBLEM SOLVING
 
-		int n = in.nextInt();
+    int n = in.nextInt();
 
+    out.close();
+  }
 
+  // Utility class for input parsing
+  static class InputReader {
+    BufferedReader reader;
+    StringTokenizer tokenizer;
 
-		out.close();
-	}
+    public InputReader(InputStream is) {
+      reader = new BufferedReader(new InputStreamReader(is), 32768);
+      tokenizer = null;
+    }
 
-	//Utility class for input parsing
-	static class InputReader {
-		BufferedReader reader;
-		StringTokenizer tokenizer;
+    public String next() {
+      while (tokenizer == null || !tokenizer.hasMoreTokens()) {
+        try {
+          tokenizer = new StringTokenizer(reader.readLine());
+        } catch (IOException e) {
+          throw new RuntimeException(e);
+        }
+      }
+      return tokenizer.nextToken();
+    }
 
-		public InputReader(InputStream is) {
-			reader = new BufferedReader(new InputStreamReader(is), 32768);
-			tokenizer = null;
-		}
+    public int nextInt() {
+      return Integer.parseInt(next());
+    }
 
-		public String next() {
-			while (tokenizer == null || !tokenizer.hasMoreTokens()) {
-				try {
-					tokenizer = new StringTokenizer(reader.readLine());
-				} catch (IOException e) {
-					throw new RuntimeException(e);
-				}
-			}
-			return tokenizer.nextToken();
-		}
-
-		public int nextInt() {
-			return Integer.parseInt(next());
-		}
-
-		public long nextLong(){
-			return Long.parseLong(next());
-		}
-	}
-
+    public long nextLong() {
+      return Long.parseLong(next());
+    }
+  }
 }

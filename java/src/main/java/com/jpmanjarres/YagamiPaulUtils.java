@@ -11,8 +11,8 @@ public class YagamiPaulUtils {
    * @param m
    */
   public static <T> void printMatrix(T[][] m) {
-    for (int i = 0; i < m.length; i++) {
-      for (int j = 0; j < m[i].length; j++) {
+    for (T[] ts : m) {
+      for (int j = 0; j < ts.length; j++) {
         System.out.println(m + " ");
       }
       System.out.println();

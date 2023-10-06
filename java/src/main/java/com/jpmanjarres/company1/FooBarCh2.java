@@ -58,7 +58,6 @@ public class FooBarCh2 {
     }
 
     int newArrayLength = newArray.size();
-    //System.out.println("newArray: " + newArray + " Length: " + newArrayLength);
     int currentMax = newArray.stream().max(Integer::compare).get();
     newArray = new ArrayList<>(newArray.stream().filter(i -> i != 0 && i != 1 && i != -1).sorted().collect(Collectors.toList()));
     //System.out.println("newArray: " + newArray + " Length: " + newArrayLength);

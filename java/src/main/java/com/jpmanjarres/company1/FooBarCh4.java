@@ -8,7 +8,7 @@ public class FooBarCh4 {
     // Your code here
     printIntMatrix(m);
 
-    // 0. Identificar los casos bordes, triviales
+    // 0. TODO Identificar los casos bordes, triviales
     // 1. Identificar cuales son terminales
     final List<Integer> terminals = findTerminalIds(m);
     System.out.println("Terminals: " + terminals);
@@ -26,32 +26,54 @@ public class FooBarCh4 {
     final int[] probabilities = new int[terminals.size() + 1];
 
     // 2. Identificar cuales son inalcanzables, P=0%
-    final List<Integer> unreachables = findUnreachables(m);
-    System.out.println("unreachables: " + unreachables);
+    //final List<Integer> unreachables = findUnreachables(m);
+    //System.out.println("unreachables: " + unreachables);
 
     // 3. Identificar P del camino directo
-    Queue<Integer> queue = new ArrayDeque<>();
-    queue.add(0);
 
+    int lcm = 1;
+
+    List<Rational> terminalProbabilities = new ArrayList<>();
     for (Integer t : terminals) {
-      //int t=5;
-      int[] visited = new int[m.length];
+
       List<PathProb> paths = new ArrayList<>();
       PathProb currentPath = new PathProb();
       currentPath.addNode(0, new Rational(1, 1));
-      visit(m, 0, visited, t, currentPath, paths, totalEvents);
-      paths.stream().forEach(p -> p.reduceProbabilities());
+      visit(m, 0, new int[m.length], t, currentPath, paths, totalEvents);
+      //paths.stream().forEach(PathProb::reduceProbabilities);
 
       Rational sum = new Rational(0, 1);
       for (PathProb p : paths) {
-        sum = Rational.sum(sum, p.getProbabilities().get(0));
+        sum = Rational.sum(sum, p.calculatePathProbability());
       }
+      sum = sum.simplify();
+      // lcm(a,b,c) = lcm(lcm(a,b),c)
+      lcm = lcm(lcm, sum.d);
+      terminalProbabilities.add(sum);
 
-      System.out.println("Paths to : " + t + " : " + paths + " - Sum: " + sum.simplify());
+      System.out.println("Paths to : " + t + " : " + paths + " - Sum: " + sum);
+
     }
+    System.out.println("Terminal probabilities: "+terminalProbabilities);
+    System.out.println("lcm: "+lcm);
+
+    int i = 0;
+    for(Rational r : terminalProbabilities){
+      if(r.n ==0){
+        probabilities[i] = 0;
+      }
+      else if(r.d == lcm){
+        probabilities[i] = r.n;
+      }else{
+        probabilities[i] = r.n * (lcm / r.d);
+      }
+      i++;
+    }
+
+    probabilities[i] = lcm;
     System.out.println("Probabilities: " + Arrays.toString(probabilities));
 
-    return new int[]{7, 6, 8, 21};
+    return probabilities;
   }
 
   public static boolean visit(int[][] arr, int node, int[] visited, int target, PathProb currentPath, List<PathProb> paths, int[] totalEvents) {
@@ -75,20 +97,22 @@ public class FooBarCh4 {
         currentPath.removeLast();
       } else if (childProb > 0 && visited[child] > 1) {
         //Permite e identifica el ciclo.
-        Rational p1 = currentPath.getProbabilities().get(currentPath.probabilities.size()-3);
-        Rational p2 = currentPath.getProbabilities().get(currentPath.probabilities.size()-2);
-        Rational act = currentPath.probabilities.remove(currentPath.probabilities.size()-1);
-        Rational cicleMultiplier = new Rational(p1.d *p2.d, (p1.d *p2.d - p1.n *p2.n)).simplify();
-        currentPath.probabilities.remove(currentPath.probabilities.size()-1);
+        Rational p1 = currentPath.getProbabilities().get(currentPath.probabilities.size() - 3);
+        Rational p2 = currentPath.getProbabilities().get(currentPath.probabilities.size() - 2);
+        Rational act = currentPath.probabilities.remove(currentPath.probabilities.size() - 1);
+        Rational cicleMultiplier = new Rational(p1.d * p2.d, (p1.d * p2.d - p1.n * p2.n));
+        currentPath.probabilities.remove(currentPath.probabilities.size() - 1);
 
         currentPath.probabilities.add(Rational.multiply(p2, cicleMultiplier));
         currentPath.probabilities.add(act);
-        System.out.println("Ciclo:: " + child + " - " + currentPath+ " P1: "+p1+ " - P2: "+p2);
+        System.out.println("Ciclo:: " + child + " - " + currentPath + " P1: " + p1 + " - P2: " + p2);
 
       }
     }
     return false;
   }
+
+
 
   private static class PathProb {
     private List<Integer> path = new ArrayList<>();
@@ -103,9 +127,9 @@ public class FooBarCh4 {
 
     void addNode(Integer node, Rational probability) {
       this.path.add(node);
-      if(!(probability.n == 1 && probability.d == 1)) {
-      this.probabilities.add(probability.simplify());
-      }
+      //if (!(probability.n == 1 && probability.d == 1)) {
+        this.probabilities.add(probability.simplify());
+      //}
     }
 
     void removeLast() {
@@ -117,19 +141,22 @@ public class FooBarCh4 {
       return probabilities;
     }
 
-    void reduceProbabilities(){
-      int denominator = this.probabilities.stream().map(r-> r.d).reduce(1, (a, b)-> a*b);
-      int numerator = this.probabilities.stream().map(r-> r.n).reduce(1, (a, b)-> a*b);
+    void reduceProbabilities() {
+      int denominator = this.probabilities.stream().map(r -> r.d).reduce(1, (a, b) -> a * b);
+      int numerator = this.probabilities.stream().map(r -> r.n).reduce(1, (a, b) -> a * b);
       this.probabilities.clear();
       this.probabilities.add(new Rational(numerator, denominator).simplify());
     }
 
+    Rational calculatePathProbability() {
+      int denominator = this.probabilities.stream().map(r -> r.d).reduce(1, (a, b) -> a * b);
+      int numerator = this.probabilities.stream().map(r -> r.n).reduce(1, (a, b) -> a * b);
+      return new Rational(numerator, denominator).simplify();
+    }
+
     @Override
     public String toString() {
-      return "{" +
-          "path=" + path +
-          ", probabilities=" + probabilities +
-          '}';
+      return "{path=" + path + ", probabilities=" + probabilities + '}';
     }
   }
 
@@ -142,20 +169,21 @@ public class FooBarCh4 {
       this.d = b;
     }
 
-    static Rational sum(Rational a, Rational b){
-      return new Rational(a.n*b.d+b.n*a.d, a.d*b.d);
-    }
-    static Rational multiply(Rational a, Rational b){
-      return new Rational(a.n*b.n, a.d*b.d);
+    static Rational sum(Rational a, Rational b) {
+      return new Rational(a.n * b.d + b.n * a.d, a.d * b.d).simplify();
     }
 
-    Rational simplify(){
-      int bigger = Math.max(this.n, this.n);
+    static Rational multiply(Rational a, Rational b) {
+      return new Rational(a.n * b.n, a.d * b.d).simplify();
+    }
+
+    Rational simplify() {
+      int bigger = Math.max(this.n, this.d);
       Rational result = this;
-      for (int i = 2; i < bigger ; ) {
-        if(result.n %i == 0 && result.d%i == 0){
-          result = new Rational(result.n/i, result.d/i);
-        }else{
+      for (int i = 2; i < bigger / 2; ) {
+        if (result.n % i == 0 && result.d % i == 0) {
+          result = new Rational(result.n / i, result.d / i);
+        } else {
           i++;
         }
       }
@@ -200,6 +228,19 @@ public class FooBarCh4 {
       }
     }
     return unreachables;
+  }
+
+  public static int lcm(int a, int b) {
+    if (a == 0 || b == 0) {
+      return 0;
+    }
+    int higher = Math.max(a, b);
+    int lower = Math.min(a, b);
+    int lcm = higher;
+    while (lcm % lower != 0) {
+      lcm += higher;
+    }
+    return lcm;
   }
 
   public static void printIntMatrix(int[][] m) {

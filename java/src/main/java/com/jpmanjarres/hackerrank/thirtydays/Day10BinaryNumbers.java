@@ -9,61 +9,61 @@ import java.util.Scanner;
  */
 public class Day10BinaryNumbers {
 
-  public static void main(String[] args) {
+    public static void main(String[] args) {
 
-    Scanner in = new Scanner(System.in);
-    int n = in.nextInt();
+        Scanner in = new Scanner(System.in);
+        int n = in.nextInt();
 
-    String bin = toBynaryString(n);
-    String maxOnes = findMaxConsecutiveNumber(bin);
-    System.out.println(maxOnes.length());
+        String bin = toBynaryString(n);
+        String maxOnes = findMaxConsecutiveNumber(bin);
+        System.out.println(maxOnes.length());
 
-    in.close();
-  }
-
-  public static String findMaxConsecutiveNumber(String bin) {
-
-    if (bin == null || bin.length() == 0) {
-      return "0";
+        in.close();
     }
 
-    int count = 0;
-    int max = 0;
+    public static String findMaxConsecutiveNumber(String bin) {
 
-    for (int i = 0; i < bin.length(); i++) {
-
-      if (bin.charAt(i) == '1') {
-        count++;
-      } else {
-        if (count > max) {
-          max = count;
+        if (bin == null || bin.length() == 0) {
+            return "0";
         }
-        count = 0;
-      }
+
+        int count = 0;
+        int max = 0;
+
+        for (int i = 0; i < bin.length(); i++) {
+
+            if (bin.charAt(i) == '1') {
+                count++;
+            } else {
+                if (count > max) {
+                    max = count;
+                }
+                count = 0;
+            }
+        }
+
+        if (count > max) {
+            max = count;
+        }
+
+        final char[] ones = new char[max];
+        Arrays.fill(ones, '1');
+        return new String(ones);
     }
 
-    if (count > max) {
-      max = count;
+    public static String toBynaryString(int n) {
+
+        if (n == 0 || n == 1) {
+            return Integer.toString(n);
+        }
+
+        StringBuilder bynaryString = new StringBuilder();
+
+        while (n > 0) {
+            int mod = n % 2;
+            bynaryString.append(mod);
+            n = n / 2;
+        }
+        return bynaryString.reverse().toString();
     }
-
-    final char[] ones = new char[max];
-    Arrays.fill(ones, '1');
-    return new String(ones);
-  }
-
-  public static String toBynaryString(int n) {
-
-    if (n == 0 || n == 1) {
-      return Integer.toString(n);
-    }
-
-    StringBuilder bynaryString = new StringBuilder();
-
-    while (n > 0) {
-      int mod = n % 2;
-      bynaryString.append(mod);
-      n = n / 2;
-    }
-    return bynaryString.reverse().toString();
-  }
 }

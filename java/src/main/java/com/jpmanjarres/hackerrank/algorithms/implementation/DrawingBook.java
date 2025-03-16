@@ -13,14 +13,14 @@ import java.util.Scanner;
  */
 public class DrawingBook {
 
-  public static void main(String[] args) {
-    final Scanner in = new Scanner(System.in);
+    public static void main(String[] args) {
+        final Scanner in = new Scanner(System.in);
 
-    int n = in.nextInt();
-    int p = in.nextInt();
-    int fromStart = p / 2;
-    int fromEnd = (n - p) / 2;
-    System.out.println(Math.min(fromStart, fromEnd));
-    in.close();
-  }
+        int n = in.nextInt();
+        int p = in.nextInt();
+        int fromStart = p / 2;
+        int fromEnd = (n - p) / 2;
+        System.out.println(Math.min(fromStart, fromEnd));
+        in.close();
+    }
 }

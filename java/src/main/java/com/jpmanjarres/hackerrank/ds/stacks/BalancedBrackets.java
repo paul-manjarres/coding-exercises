@@ -15,48 +15,48 @@ import java.util.Scanner;
  */
 public class BalancedBrackets {
 
-  public static void main(String[] args) {
-    final Scanner in = new Scanner(System.in);
+    public static void main(String[] args) {
+        final Scanner in = new Scanner(System.in);
 
-    int N = in.nextInt();
-    for (int z = 0; z < N; z++) {
+        int N = in.nextInt();
+        for (int z = 0; z < N; z++) {
 
-      final String s = in.next();
-      final Deque<Character> stack = new ArrayDeque<>();
+            final String s = in.next();
+            final Deque<Character> stack = new ArrayDeque<>();
 
-      boolean valid = true;
+            boolean valid = true;
 
-      for (int i = 0; i < s.length(); i++) {
-        char c = s.charAt(i);
+            for (int i = 0; i < s.length(); i++) {
+                char c = s.charAt(i);
 
-        if (c == '[' || c == '{' || c == '(') {
-          stack.push(c);
-        } else {
-          if (stack.isEmpty()) {
-            valid = false;
-            break;
-          }
-          char p = stack.pop();
+                if (c == '[' || c == '{' || c == '(') {
+                    stack.push(c);
+                } else {
+                    if (stack.isEmpty()) {
+                        valid = false;
+                        break;
+                    }
+                    char p = stack.pop();
 
-          if (c == '}' && p != '{') {
-            valid = false;
-            break;
-          } else if (c == ']' && p != '[') {
-            valid = false;
-            break;
-          } else if (c == ')' && p != '(') {
-            valid = false;
-            break;
-          }
+                    if (c == '}' && p != '{') {
+                        valid = false;
+                        break;
+                    } else if (c == ']' && p != '[') {
+                        valid = false;
+                        break;
+                    } else if (c == ')' && p != '(') {
+                        valid = false;
+                        break;
+                    }
+                }
+            }
+
+            if (!stack.isEmpty()) {
+                valid = false;
+            }
+
+            System.out.println(valid ? "YES" : "NO");
         }
-      }
-
-      if (!stack.isEmpty()) {
-        valid = false;
-      }
-
-      System.out.println(valid ? "YES" : "NO");
+        in.close();
     }
-    in.close();
-  }
 }

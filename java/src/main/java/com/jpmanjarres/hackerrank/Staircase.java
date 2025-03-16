@@ -13,53 +13,53 @@ import java.util.StringTokenizer;
  */
 public class Staircase {
 
-  public static void main(String[] args) {
-    final PrintWriter out = new PrintWriter(System.out);
-    final InputReader in = new InputReader(System.in);
-    // PROBLEM SOLVING
+    public static void main(String[] args) {
+        final PrintWriter out = new PrintWriter(System.out);
+        final InputReader in = new InputReader(System.in);
+        // PROBLEM SOLVING
 
-    int n = in.nextInt();
+        int n = in.nextInt();
 
-    for (int i = 0; i < n; i++) {
-      for (int j = 0; j < n; j++) {
-        if (j < (n - i - 1)) {
-          out.print(" ");
-        } else {
-          out.print("#");
+        for (int i = 0; i < n; i++) {
+            for (int j = 0; j < n; j++) {
+                if (j < (n - i - 1)) {
+                    out.print(" ");
+                } else {
+                    out.print("#");
+                }
+            }
+            out.println("");
         }
-      }
-      out.println("");
+
+        out.close();
     }
 
-    out.close();
-  }
+    static class InputReader {
+        BufferedReader reader;
+        StringTokenizer tokenizer;
 
-  static class InputReader {
-    BufferedReader reader;
-    StringTokenizer tokenizer;
-
-    public InputReader(InputStream is) {
-      reader = new BufferedReader(new InputStreamReader(is), 32768);
-      tokenizer = null;
-    }
-
-    public String next() {
-      while (tokenizer == null || !tokenizer.hasMoreTokens()) {
-        try {
-          tokenizer = new StringTokenizer(reader.readLine());
-        } catch (IOException e) {
-          throw new RuntimeException(e);
+        public InputReader(InputStream is) {
+            reader = new BufferedReader(new InputStreamReader(is), 32768);
+            tokenizer = null;
         }
-      }
-      return tokenizer.nextToken();
-    }
 
-    public int nextInt() {
-      return Integer.parseInt(next());
-    }
+        public String next() {
+            while (tokenizer == null || !tokenizer.hasMoreTokens()) {
+                try {
+                    tokenizer = new StringTokenizer(reader.readLine());
+                } catch (IOException e) {
+                    throw new RuntimeException(e);
+                }
+            }
+            return tokenizer.nextToken();
+        }
 
-    public long nextLong() {
-      return Long.parseLong(next());
+        public int nextInt() {
+            return Integer.parseInt(next());
+        }
+
+        public long nextLong() {
+            return Long.parseLong(next());
+        }
     }
-  }
 }

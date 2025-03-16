@@ -13,48 +13,48 @@ import java.util.StringTokenizer;
  */
 public class AVeryBigSum {
 
-  public static void main(String[] args) {
-    final PrintWriter out = new PrintWriter(System.out);
-    final InputReader in = new InputReader(System.in);
-    // PROBLEM SOLVING
+    public static void main(String[] args) {
+        final PrintWriter out = new PrintWriter(System.out);
+        final InputReader in = new InputReader(System.in);
+        // PROBLEM SOLVING
 
-    int n = in.nextInt();
-    long sum = 0;
-    for (int i = 0; i < n; i++) {
-      sum += in.nextLong();
-    }
-
-    out.println(sum);
-
-    out.close();
-  }
-
-  static class InputReader {
-    BufferedReader reader;
-    StringTokenizer tokenizer;
-
-    public InputReader(InputStream is) {
-      reader = new BufferedReader(new InputStreamReader(is), 32768);
-      tokenizer = null;
-    }
-
-    public String next() {
-      while (tokenizer == null || !tokenizer.hasMoreTokens()) {
-        try {
-          tokenizer = new StringTokenizer(reader.readLine());
-        } catch (IOException e) {
-          throw new RuntimeException(e);
+        int n = in.nextInt();
+        long sum = 0;
+        for (int i = 0; i < n; i++) {
+            sum += in.nextLong();
         }
-      }
-      return tokenizer.nextToken();
+
+        out.println(sum);
+
+        out.close();
     }
 
-    public int nextInt() {
-      return Integer.parseInt(next());
-    }
+    static class InputReader {
+        BufferedReader reader;
+        StringTokenizer tokenizer;
 
-    public long nextLong() {
-      return Long.parseLong(next());
+        public InputReader(InputStream is) {
+            reader = new BufferedReader(new InputStreamReader(is), 32768);
+            tokenizer = null;
+        }
+
+        public String next() {
+            while (tokenizer == null || !tokenizer.hasMoreTokens()) {
+                try {
+                    tokenizer = new StringTokenizer(reader.readLine());
+                } catch (IOException e) {
+                    throw new RuntimeException(e);
+                }
+            }
+            return tokenizer.nextToken();
+        }
+
+        public int nextInt() {
+            return Integer.parseInt(next());
+        }
+
+        public long nextLong() {
+            return Long.parseLong(next());
+        }
     }
-  }
 }

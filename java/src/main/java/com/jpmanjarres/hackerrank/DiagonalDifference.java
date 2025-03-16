@@ -12,63 +12,63 @@ import java.util.StringTokenizer;
  */
 public class DiagonalDifference {
 
-  public static void main(String[] args) {
-    final PrintWriter out = new PrintWriter(System.out);
-    final InputReader in = new InputReader(System.in);
-    // PROBLEM SOLVING
+    public static void main(String[] args) {
+        final PrintWriter out = new PrintWriter(System.out);
+        final InputReader in = new InputReader(System.in);
+        // PROBLEM SOLVING
 
-    int n = in.nextInt();
+        int n = in.nextInt();
 
-    int sumMain = 0;
-    int sumSec = 0;
-    int row = 0;
+        int sumMain = 0;
+        int sumSec = 0;
+        int row = 0;
 
-    int length = n * n;
+        int length = n * n;
 
-    for (int i = 0; i < length; i++) {
-      int val = in.nextInt();
+        for (int i = 0; i < length; i++) {
+            int val = in.nextInt();
 
-      if (i > row * n + n - 1) {
-        row++;
-      }
-      if (i == (row * n + row)) {
-        sumMain += val;
-      }
-      if (i == (row * n + n - row - 1)) {
-        sumSec += val;
-      }
-    }
-
-    out.println(Math.abs(sumMain - sumSec));
-    out.close();
-  }
-
-  static class InputReader {
-    BufferedReader reader;
-    StringTokenizer tokenizer;
-
-    public InputReader(InputStream is) {
-      reader = new BufferedReader(new InputStreamReader(is), 32768);
-      tokenizer = null;
-    }
-
-    public String next() {
-      while (tokenizer == null || !tokenizer.hasMoreTokens()) {
-        try {
-          tokenizer = new StringTokenizer(reader.readLine());
-        } catch (IOException e) {
-          throw new RuntimeException(e);
+            if (i > row * n + n - 1) {
+                row++;
+            }
+            if (i == (row * n + row)) {
+                sumMain += val;
+            }
+            if (i == (row * n + n - row - 1)) {
+                sumSec += val;
+            }
         }
-      }
-      return tokenizer.nextToken();
+
+        out.println(Math.abs(sumMain - sumSec));
+        out.close();
     }
 
-    public int nextInt() {
-      return Integer.parseInt(next());
-    }
+    static class InputReader {
+        BufferedReader reader;
+        StringTokenizer tokenizer;
 
-    public long nextLong() {
-      return Long.parseLong(next());
+        public InputReader(InputStream is) {
+            reader = new BufferedReader(new InputStreamReader(is), 32768);
+            tokenizer = null;
+        }
+
+        public String next() {
+            while (tokenizer == null || !tokenizer.hasMoreTokens()) {
+                try {
+                    tokenizer = new StringTokenizer(reader.readLine());
+                } catch (IOException e) {
+                    throw new RuntimeException(e);
+                }
+            }
+            return tokenizer.nextToken();
+        }
+
+        public int nextInt() {
+            return Integer.parseInt(next());
+        }
+
+        public long nextLong() {
+            return Long.parseLong(next());
+        }
     }
-  }
 }

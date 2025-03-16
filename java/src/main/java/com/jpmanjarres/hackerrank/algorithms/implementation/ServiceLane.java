@@ -13,64 +13,64 @@ import java.util.StringTokenizer;
  */
 public class ServiceLane {
 
-  public static void main(String[] args) {
-    final PrintWriter out = new PrintWriter(System.out);
-    final InputReader in = new InputReader(System.in);
-    // PROBLEM SOLVING
+    public static void main(String[] args) {
+        final PrintWriter out = new PrintWriter(System.out);
+        final InputReader in = new InputReader(System.in);
+        // PROBLEM SOLVING
 
-    int n = in.nextInt();
-    int t = in.nextInt();
+        int n = in.nextInt();
+        int t = in.nextInt();
 
-    int[] width = new int[n];
+        int[] width = new int[n];
 
-    for (int i = 0; i < n; i++) {
-      width[i] = in.nextInt();
-    }
-
-    for (int i = 0; i < t; i++) {
-
-      int x = in.nextInt();
-      int y = in.nextInt();
-
-      int maxWidth = 3;
-
-      for (int j = x; j <= y; j++) {
-        if (width[j] < maxWidth) {
-          maxWidth = width[j];
+        for (int i = 0; i < n; i++) {
+            width[i] = in.nextInt();
         }
-      }
-      out.println(maxWidth);
-    }
 
-    out.close();
-  }
+        for (int i = 0; i < t; i++) {
 
-  static class InputReader {
-    BufferedReader reader;
-    StringTokenizer tokenizer;
+            int x = in.nextInt();
+            int y = in.nextInt();
 
-    public InputReader(InputStream is) {
-      reader = new BufferedReader(new InputStreamReader(is), 32768);
-      tokenizer = null;
-    }
+            int maxWidth = 3;
 
-    public String next() {
-      while (tokenizer == null || !tokenizer.hasMoreTokens()) {
-        try {
-          tokenizer = new StringTokenizer(reader.readLine());
-        } catch (IOException e) {
-          throw new RuntimeException(e);
+            for (int j = x; j <= y; j++) {
+                if (width[j] < maxWidth) {
+                    maxWidth = width[j];
+                }
+            }
+            out.println(maxWidth);
         }
-      }
-      return tokenizer.nextToken();
+
+        out.close();
     }
 
-    public int nextInt() {
-      return Integer.parseInt(next());
-    }
+    static class InputReader {
+        BufferedReader reader;
+        StringTokenizer tokenizer;
 
-    public long nextLong() {
-      return Long.parseLong(next());
+        public InputReader(InputStream is) {
+            reader = new BufferedReader(new InputStreamReader(is), 32768);
+            tokenizer = null;
+        }
+
+        public String next() {
+            while (tokenizer == null || !tokenizer.hasMoreTokens()) {
+                try {
+                    tokenizer = new StringTokenizer(reader.readLine());
+                } catch (IOException e) {
+                    throw new RuntimeException(e);
+                }
+            }
+            return tokenizer.nextToken();
+        }
+
+        public int nextInt() {
+            return Integer.parseInt(next());
+        }
+
+        public long nextLong() {
+            return Long.parseLong(next());
+        }
     }
-  }
 }

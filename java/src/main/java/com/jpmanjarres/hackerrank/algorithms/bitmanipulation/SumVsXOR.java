@@ -13,22 +13,22 @@ import java.util.Scanner;
  */
 public class SumVsXOR {
 
-  public static void main(String[] args) {
-    final Scanner in = new Scanner(System.in);
-    long n = in.nextLong();
-    in.close();
+    public static void main(String[] args) {
+        final Scanner in = new Scanner(System.in);
+        long n = in.nextLong();
+        in.close();
 
-    if (n == 0) {
-      System.out.println(1);
-    } else {
+        if (n == 0) {
+            System.out.println(1);
+        } else {
 
-      String s = Long.toBinaryString(n);
+            String s = Long.toBinaryString(n);
 
-      int count = 0;
-      for (char c : s.toCharArray()) {
-        if (c == '0') count++;
-      }
-      System.out.println((long) Math.pow(2, count));
+            int count = 0;
+            for (char c : s.toCharArray()) {
+                if (c == '0') count++;
+            }
+            System.out.println((long) Math.pow(2, count));
+        }
     }
-  }
 }

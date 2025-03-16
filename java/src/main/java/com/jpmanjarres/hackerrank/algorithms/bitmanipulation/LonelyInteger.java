@@ -13,15 +13,15 @@ import java.util.Scanner;
  */
 public class LonelyInteger {
 
-  public static void main(String[] args) {
-    final Scanner in = new Scanner(System.in);
+    public static void main(String[] args) {
+        final Scanner in = new Scanner(System.in);
 
-    int N = in.nextInt();
-    int lonely = 0;
-    for (int z = 0; z < N; z++) {
-      lonely ^= in.nextInt();
+        int N = in.nextInt();
+        int lonely = 0;
+        for (int z = 0; z < N; z++) {
+            lonely ^= in.nextInt();
+        }
+        System.out.println(lonely);
+        in.close();
     }
-    System.out.println(lonely);
-    in.close();
-  }
 }

@@ -11,86 +11,86 @@ package com.jpmanjarres.hackerearth.ds.linkedlists;
  */
 public class InsertedIntoSortedList {
 
-  static Node SortedInsert(Node head, int data) {
+    static Node SortedInsert(Node head, int data) {
 
-    Node n = new Node();
-    n.data = data;
+        Node n = new Node();
+        n.data = data;
 
-    if (head == null) {
-      return n;
-    }
-
-    Node curr = head;
-    Node last = null;
-    boolean inserted = false;
-
-    while (curr != null) {
-
-      if (curr.data > data) {
-
-        Node next = curr;
-        Node prev = curr.prev;
-
-        if (prev != null) {
-          prev.next = n;
+        if (head == null) {
+            return n;
         }
-        n.prev = prev;
-        n.next = next;
-        if (next != null) {
-          next.prev = n;
+
+        Node curr = head;
+        Node last = null;
+        boolean inserted = false;
+
+        while (curr != null) {
+
+            if (curr.data > data) {
+
+                Node next = curr;
+                Node prev = curr.prev;
+
+                if (prev != null) {
+                    prev.next = n;
+                }
+                n.prev = prev;
+                n.next = next;
+                if (next != null) {
+                    next.prev = n;
+                }
+                inserted = true;
+                break;
+            }
+            last = curr;
+            curr = curr.next;
         }
-        inserted = true;
-        break;
-      }
-      last = curr;
-      curr = curr.next;
+
+        if (!inserted) {
+            last.next = n;
+            n.prev = last;
+        }
+
+        return head;
     }
 
-    if (!inserted) {
-      last.next = n;
-      n.prev = last;
+    public static void main(String[] argsO) {
+
+        Node n = new Node(1);
+        n.next = new Node(4);
+        n.next.prev = n;
+
+        n.next.next = new Node(9);
+        n.next.next.prev = n.next;
+
+        Node head = SortedInsert(n, 5);
+        printLinkedList(head);
     }
 
-    return head;
-  }
+    static class Node {
+        int data;
+        Node next;
+        Node prev;
 
-  public static void main(String[] argsO) {
+        public Node() {}
 
-    Node n = new Node(1);
-    n.next = new Node(4);
-    n.next.prev = n;
+        public Node(int data) {
+            super();
+            this.data = data;
+        }
 
-    n.next.next = new Node(9);
-    n.next.next.prev = n.next;
-
-    Node head = SortedInsert(n, 5);
-    printLinkedList(head);
-  }
-
-  static class Node {
-    int data;
-    Node next;
-    Node prev;
-
-    public Node() {}
-
-    public Node(int data) {
-      super();
-      this.data = data;
+        @Override
+        public String toString() {
+            return "[" + data + "]";
+        }
     }
 
-    @Override
-    public String toString() {
-      return "[" + data + "]";
+    public static void printLinkedList(Node head) {
+        Node curr = head;
+        while (curr != null) {
+            System.out.print(curr.data + " -> ");
+            curr = curr.next;
+        }
+        System.out.println(" NULL");
     }
-  }
-
-  public static void printLinkedList(Node head) {
-    Node curr = head;
-    while (curr != null) {
-      System.out.print(curr.data + " -> ");
-      curr = curr.next;
-    }
-    System.out.println(" NULL");
-  }
 }

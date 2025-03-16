@@ -14,29 +14,29 @@ import java.util.Scanner;
  */
 public class PickingNumbers {
 
-  public static void main(String[] args) {
-    final Scanner in = new Scanner(System.in);
+    public static void main(String[] args) {
+        final Scanner in = new Scanner(System.in);
 
-    int n = in.nextInt();
-    int ar[] = new int[n];
-    for (int _i = 0; _i < n; _i++) {
-      ar[_i] = in.nextInt();
-    }
-
-    Arrays.sort(ar);
-
-    int max = 1;
-    for (int i = 0; i < ar.length - 1; i++) {
-      int sum = 1;
-      for (int j = i + 1; j < ar.length; j++) {
-        if (Math.abs(ar[i] - ar[j]) <= 1) {
-          sum++;
+        int n = in.nextInt();
+        int ar[] = new int[n];
+        for (int _i = 0; _i < n; _i++) {
+            ar[_i] = in.nextInt();
         }
-      }
-      max = Math.max(sum, max);
-    }
 
-    System.out.println(max);
-    in.close();
-  }
+        Arrays.sort(ar);
+
+        int max = 1;
+        for (int i = 0; i < ar.length - 1; i++) {
+            int sum = 1;
+            for (int j = i + 1; j < ar.length; j++) {
+                if (Math.abs(ar[i] - ar[j]) <= 1) {
+                    sum++;
+                }
+            }
+            max = Math.max(sum, max);
+        }
+
+        System.out.println(max);
+        in.close();
+    }
 }

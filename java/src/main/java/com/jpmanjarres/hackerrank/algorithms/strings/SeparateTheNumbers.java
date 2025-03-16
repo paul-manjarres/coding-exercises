@@ -13,71 +13,71 @@ import java.util.Scanner;
  *     23/03/2017
  */
 public class SeparateTheNumbers {
-  public static void main(String[] args) {
-    final Scanner in = new Scanner(System.in);
+    public static void main(String[] args) {
+        final Scanner in = new Scanner(System.in);
 
-    int q = in.nextInt();
-    for (int _i = 0; _i < q; _i++) {
-      String s = in.next();
+        int q = in.nextInt();
+        for (int _i = 0; _i < q; _i++) {
+            String s = in.next();
 
-      if (s.length() == 1) {
-        System.out.println("NO");
-      }
+            if (s.length() == 1) {
+                System.out.println("NO");
+            }
 
-      int size = 1;
-      int len = s.length();
-      char[] ar = s.toCharArray();
+            int size = 1;
+            int len = s.length();
+            char[] ar = s.toCharArray();
 
-      boolean btf = true;
+            boolean btf = true;
 
-      while (size <= len / 2) {
+            while (size <= len / 2) {
 
-        btf = true;
-        int start = 0;
-        long first = 0;
+                btf = true;
+                int start = 0;
+                long first = 0;
 
-        while (start + size < len) {
-          long n = getNumber(ar, size, start);
-          long n2 = getNumber(ar, size, start + size);
+                while (start + size < len) {
+                    long n = getNumber(ar, size, start);
+                    long n2 = getNumber(ar, size, start + size);
 
-          if (start == 0) {
-            first = n;
-          }
+                    if (start == 0) {
+                        first = n;
+                    }
 
-          long last = (long) Math.pow(10, size) - 1;
-          if (n == last) {
-            n2 = getNumber(ar, size + 1, start + size);
-          }
+                    long last = (long) Math.pow(10, size) - 1;
+                    if (n == last) {
+                        n2 = getNumber(ar, size + 1, start + size);
+                    }
 
-          if ((n2 - n) != 1 || ar[start] == '0' || ar[start + size] == '0') {
-            btf = false;
-            break;
-          }
-          start += size;
-          if (n == last) {
-            size++;
-          }
+                    if ((n2 - n) != 1 || ar[start] == '0' || ar[start + size] == '0') {
+                        btf = false;
+                        break;
+                    }
+                    start += size;
+                    if (n == last) {
+                        size++;
+                    }
+                }
+
+                if (btf) {
+                    System.out.println("YES " + first);
+                    break;
+                }
+
+                size++;
+            } // End While
+
+            if (!btf) {
+                System.out.println("NO");
+            }
         }
-
-        if (btf) {
-          System.out.println("YES " + first);
-          break;
-        }
-
-        size++;
-      } // End While
-
-      if (!btf) {
-        System.out.println("NO");
-      }
+        in.close();
     }
-    in.close();
-  }
 
-  static long getNumber(char[] ar, int size, int start) {
+    static long getNumber(char[] ar, int size, int start) {
 
-    int len = start + size <= ar.length ? start + size : ar.length;
-    char[] tmp = Arrays.copyOfRange(ar, start, len);
-    return Long.valueOf(new String(tmp).trim());
-  }
+        int len = start + size <= ar.length ? start + size : ar.length;
+        char[] tmp = Arrays.copyOfRange(ar, start, len);
+        return Long.valueOf(new String(tmp).trim());
+    }
 }

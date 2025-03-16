@@ -13,27 +13,27 @@ import java.util.Scanner;
  */
 public class MigratoryBirds {
 
-  public static void main(String[] args) {
+    public static void main(String[] args) {
 
-    final Scanner in = new Scanner(System.in);
+        final Scanner in = new Scanner(System.in);
 
-    int n = in.nextInt();
-    int[] freq = new int[5];
+        int n = in.nextInt();
+        int[] freq = new int[5];
 
-    for (int z = 0; z < n; z++) {
-      freq[in.nextInt() - 1]++;
+        for (int z = 0; z < n; z++) {
+            freq[in.nextInt() - 1]++;
+        }
+
+        int minId = 0;
+        int max = freq[0];
+        for (int i = 1; i < 5; i++) {
+            if (freq[i] > max) {
+                minId = i;
+                max = freq[i];
+            }
+        }
+
+        System.out.println(minId + 1);
+        in.close();
     }
-
-    int minId = 0;
-    int max = freq[0];
-    for (int i = 1; i < 5; i++) {
-      if (freq[i] > max) {
-        minId = i;
-        max = freq[i];
-      }
-    }
-
-    System.out.println(minId + 1);
-    in.close();
-  }
 }

@@ -10,58 +10,58 @@ import java.util.List;
  */
 public class Test1Amz {
 
-  public static void main(String[] args) {
+    public static void main(String[] args) {
 
-    // case 1
-    int totalSteak = 3;
-    int numSteak = 2;
-    List<List<Integer>> list = new ArrayList<>();
-    list.add(Arrays.asList(1, 2));
-    list.add(Arrays.asList(3, 4));
-    list.add(Arrays.asList(1, -1));
+        // case 1
+        int totalSteak = 3;
+        int numSteak = 2;
+        List<List<Integer>> list = new ArrayList<>();
+        list.add(Arrays.asList(1, 2));
+        list.add(Arrays.asList(3, 4));
+        list.add(Arrays.asList(1, -1));
 
-    List<List<Integer>> res = nearestXsteakHouses(totalSteak, list, numSteak);
+        List<List<Integer>> res = nearestXsteakHouses(totalSteak, list, numSteak);
 
-    System.out.println(res);
-  }
-
-  public static List<List<Integer>> nearestXsteakHouses(
-      int totalSteakhouses, List<List<Integer>> allLocations, int numSteakhouses) {
-
-    List<Node> values = new ArrayList<>();
-    for (int i = 0; i < totalSteakhouses; i++) {
-      List<Integer> xy = allLocations.get(i);
-      int x2 = xy.get(0) * xy.get(0);
-      int y2 = xy.get(1) * xy.get(1);
-      double dist = Math.sqrt(x2 + y2);
-      Node n = new Node(i, dist);
-      values.add(n);
+        System.out.println(res);
     }
 
-    // Sort the values, O(n*log(n))
-    Collections.sort(values);
+    public static List<List<Integer>> nearestXsteakHouses(
+            int totalSteakhouses, List<List<Integer>> allLocations, int numSteakhouses) {
 
-    // Populate the response with the first numSteakhouses answers
-    final List<List<Integer>> response = new ArrayList<>(numSteakhouses);
-    for (int i = 0; i < numSteakhouses; i++) {
-      response.add(allLocations.get(values.get(i).index));
+        List<Node> values = new ArrayList<>();
+        for (int i = 0; i < totalSteakhouses; i++) {
+            List<Integer> xy = allLocations.get(i);
+            int x2 = xy.get(0) * xy.get(0);
+            int y2 = xy.get(1) * xy.get(1);
+            double dist = Math.sqrt(x2 + y2);
+            Node n = new Node(i, dist);
+            values.add(n);
+        }
+
+        // Sort the values, O(n*log(n))
+        Collections.sort(values);
+
+        // Populate the response with the first numSteakhouses answers
+        final List<List<Integer>> response = new ArrayList<>(numSteakhouses);
+        for (int i = 0; i < numSteakhouses; i++) {
+            response.add(allLocations.get(values.get(i).index));
+        }
+        return response;
     }
-    return response;
-  }
 
-  // Helper class, holds the index of the steakhouse and the distance to the customer
-  static class Node implements Comparable<Node> {
-    int index;
-    double distance;
+    // Helper class, holds the index of the steakhouse and the distance to the customer
+    static class Node implements Comparable<Node> {
+        int index;
+        double distance;
 
-    Node(int index, double distance) {
-      this.index = index;
-      this.distance = distance;
+        Node(int index, double distance) {
+            this.index = index;
+            this.distance = distance;
+        }
+
+        @Override
+        public int compareTo(Node o) {
+            return Double.compare(this.distance, o.distance);
+        }
     }
-
-    @Override
-    public int compareTo(Node o) {
-      return Double.compare(this.distance, o.distance);
-    }
-  }
 }

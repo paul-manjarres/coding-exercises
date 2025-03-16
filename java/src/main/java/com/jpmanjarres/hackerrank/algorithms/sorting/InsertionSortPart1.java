@@ -12,47 +12,47 @@ import java.util.Scanner;
  */
 public class InsertionSortPart1 {
 
-  public static void insertIntoSorted(int[] ar) {
-    // Fill up this function
+    public static void insertIntoSorted(int[] ar) {
+        // Fill up this function
 
-    int val = ar[ar.length - 1];
+        int val = ar[ar.length - 1];
 
-    boolean inserted = false;
+        boolean inserted = false;
 
-    for (int i = ar.length - 2; i >= 0; i--) {
+        for (int i = ar.length - 2; i >= 0; i--) {
 
-      if (val < ar[i]) {
-        ar[i + 1] = ar[i];
-      } else if (val > ar[i]) {
-        ar[i + 1] = val;
-        inserted = true;
-        break;
-      }
-      printArray(ar);
+            if (val < ar[i]) {
+                ar[i + 1] = ar[i];
+            } else if (val > ar[i]) {
+                ar[i + 1] = val;
+                inserted = true;
+                break;
+            }
+            printArray(ar);
+        }
+
+        if (!inserted) {
+            ar[0] = val;
+        }
+
+        printArray(ar);
     }
 
-    if (!inserted) {
-      ar[0] = val;
+    /* Tail starts here */
+    public static void main(String[] args) {
+        Scanner in = new Scanner(System.in);
+        int s = in.nextInt();
+        int[] ar = new int[s];
+        for (int i = 0; i < s; i++) {
+            ar[i] = in.nextInt();
+        }
+        insertIntoSorted(ar);
     }
 
-    printArray(ar);
-  }
-
-  /* Tail starts here */
-  public static void main(String[] args) {
-    Scanner in = new Scanner(System.in);
-    int s = in.nextInt();
-    int[] ar = new int[s];
-    for (int i = 0; i < s; i++) {
-      ar[i] = in.nextInt();
+    private static void printArray(int[] ar) {
+        for (int n : ar) {
+            System.out.print(n + " ");
+        }
+        System.out.println("");
     }
-    insertIntoSorted(ar);
-  }
-
-  private static void printArray(int[] ar) {
-    for (int n : ar) {
-      System.out.print(n + " ");
-    }
-    System.out.println("");
-  }
 }

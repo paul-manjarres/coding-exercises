@@ -13,20 +13,20 @@ import java.util.Scanner;
  */
 public class HurdleRace {
 
-  public static void main(String[] args) {
-    final Scanner in = new Scanner(System.in);
-    int n = in.nextInt();
-    int k = in.nextInt();
+    public static void main(String[] args) {
+        final Scanner in = new Scanner(System.in);
+        int n = in.nextInt();
+        int k = in.nextInt();
 
-    int max = k;
+        int max = k;
 
-    for (int _i = 0; _i < n; _i++) {
-      int h = in.nextInt();
-      if (h > max) {
-        max = h;
-      }
+        for (int _i = 0; _i < n; _i++) {
+            int h = in.nextInt();
+            if (h > max) {
+                max = h;
+            }
+        }
+        System.out.println(max - k);
+        in.close();
     }
-    System.out.println(max - k);
-    in.close();
-  }
 }

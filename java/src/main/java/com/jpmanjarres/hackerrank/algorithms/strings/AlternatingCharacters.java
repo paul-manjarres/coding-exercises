@@ -8,24 +8,24 @@ import java.util.Scanner;
  */
 public class AlternatingCharacters {
 
-  public static void main(String[] args) {
-    final Scanner in = new Scanner(System.in);
+    public static void main(String[] args) {
+        final Scanner in = new Scanner(System.in);
 
-    int T = in.nextInt();
-    for (int i = 0; i < T; i++) {
-      String s = in.next();
-      int deletes = 0;
+        int T = in.nextInt();
+        for (int i = 0; i < T; i++) {
+            String s = in.next();
+            int deletes = 0;
 
-      for (int j = 0; j < s.length() - 1; j++) {
-        char c = s.charAt(j);
-        char d = s.charAt(j + 1);
+            for (int j = 0; j < s.length() - 1; j++) {
+                char c = s.charAt(j);
+                char d = s.charAt(j + 1);
 
-        if (c == d) {
-          deletes++;
+                if (c == d) {
+                    deletes++;
+                }
+            }
+            System.out.println(deletes);
         }
-      }
-      System.out.println(deletes);
+        in.close();
     }
-    in.close();
-  }
 }

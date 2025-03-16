@@ -13,80 +13,80 @@ import java.util.Scanner;
  */
 public class RemoveFriends {
 
-  public static void main(String[] args) {
-    final Scanner in = new Scanner(System.in);
+    public static void main(String[] args) {
+        final Scanner in = new Scanner(System.in);
 
-    int T = in.nextInt();
-    for (int i = 0; i < T; i++) {
+        int T = in.nextInt();
+        for (int i = 0; i < T; i++) {
 
-      int N = in.nextInt();
-      int K = in.nextInt();
+            int N = in.nextInt();
+            int K = in.nextInt();
 
-      // Create the list
-      Node head = new Node(in.nextInt());
-      Node curr = head;
-      for (int j = 0; j < N - 1; j++) {
-        curr.next = new Node(in.nextInt());
-        curr.next.prev = curr;
-        curr = curr.next;
-      }
+            // Create the list
+            Node head = new Node(in.nextInt());
+            Node curr = head;
+            for (int j = 0; j < N - 1; j++) {
+                curr.next = new Node(in.nextInt());
+                curr.next.prev = curr;
+                curr = curr.next;
+            }
 
-      curr = removeFriends(head, K);
+            curr = removeFriends(head, K);
 
-      // Print
-      while (curr != null) {
-        System.out.print(curr.data + " ");
-        curr = curr.next;
-      }
-      System.out.println();
-    }
-    in.close();
-  }
-
-  public static Node removeFriends(Node head, int K) {
-
-    Node curr = head;
-
-    while (K > 0) {
-
-      if (curr.next == null) {
-        curr = curr.prev == null ? head : curr.prev;
-        K--;
-      } else if (curr.data < curr.next.data) {
-
-        if (curr.prev == null) {
-          head = curr.next;
-          head.prev = null;
-        } else {
-          curr.prev.next = curr.next;
-          curr.next.prev = curr.prev;
+            // Print
+            while (curr != null) {
+                System.out.print(curr.data + " ");
+                curr = curr.next;
+            }
+            System.out.println();
         }
-        curr = curr.prev == null ? head : curr.prev;
-        K--;
-
-      } else {
-        curr = curr.next;
-      }
+        in.close();
     }
 
-    return head;
-  }
+    public static Node removeFriends(Node head, int K) {
 
-  static class Node {
-    int data;
-    Node next;
-    Node prev;
+        Node curr = head;
 
-    public Node() {}
+        while (K > 0) {
 
-    public Node(int data) {
-      super();
-      this.data = data;
+            if (curr.next == null) {
+                curr = curr.prev == null ? head : curr.prev;
+                K--;
+            } else if (curr.data < curr.next.data) {
+
+                if (curr.prev == null) {
+                    head = curr.next;
+                    head.prev = null;
+                } else {
+                    curr.prev.next = curr.next;
+                    curr.next.prev = curr.prev;
+                }
+                curr = curr.prev == null ? head : curr.prev;
+                K--;
+
+            } else {
+                curr = curr.next;
+            }
+        }
+
+        return head;
     }
 
-    @Override
-    public String toString() {
-      return "[" + data + "]";
+    static class Node {
+        int data;
+        Node next;
+        Node prev;
+
+        public Node() {}
+
+        public Node(int data) {
+            super();
+            this.data = data;
+        }
+
+        @Override
+        public String toString() {
+            return "[" + data + "]";
+        }
     }
-  }
 }

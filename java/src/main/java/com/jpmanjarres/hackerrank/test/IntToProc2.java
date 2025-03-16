@@ -11,30 +11,30 @@ package com.jpmanjarres.hackerrank.test;
  */
 public class IntToProc2 {
 
-  static int differentTeams(String skills) {
+    static int differentTeams(String skills) {
 
-    if (skills.length() < 5) {
-      return 0;
+        if (skills.length() < 5) {
+            return 0;
+        }
+        int[] letters = new int[26];
+        for (int i = 0; i < skills.length(); i++) {
+            char c = skills.charAt(i);
+            letters[c - 'a']++;
+        }
+
+        int max = skills.length() / 5;
+        char[] sk = {'p', 'c', 'm', 'b', 'z'};
+
+        for (int j = 0; j < sk.length; j++) {
+            if (letters[sk[j] - 'a'] < max) {
+                max = letters[sk[j] - 'a'];
+            }
+        }
+
+        return max;
     }
-    int[] letters = new int[26];
-    for (int i = 0; i < skills.length(); i++) {
-      char c = skills.charAt(i);
-      letters[c - 'a']++;
+
+    public static void main(String[] args) {
+        System.out.println(differentTeams("pcmpcmbbbzz"));
     }
-
-    int max = skills.length() / 5;
-    char[] sk = {'p', 'c', 'm', 'b', 'z'};
-
-    for (int j = 0; j < sk.length; j++) {
-      if (letters[sk[j] - 'a'] < max) {
-        max = letters[sk[j] - 'a'];
-      }
-    }
-
-    return max;
-  }
-
-  public static void main(String[] args) {
-    System.out.println(differentTeams("pcmpcmbbbzz"));
-  }
 }

@@ -13,44 +13,44 @@ import java.util.Scanner;
  */
 public class AppendAndDelete {
 
-  public static void main(String[] args) {
-    final Scanner in = new Scanner(System.in);
+    public static void main(String[] args) {
+        final Scanner in = new Scanner(System.in);
 
-    String s = in.nextLine();
-    String t = in.nextLine();
-    int k = in.nextInt();
+        String s = in.nextLine();
+        String t = in.nextLine();
+        int k = in.nextInt();
 
-    int count = 0;
-    int pending = 0;
-    int left = 0;
+        int count = 0;
+        int pending = 0;
+        int left = 0;
 
-    for (int i = 0; i < t.length(); i++) {
-      if (i < s.length() && s.charAt(i) == t.charAt(i)) {
-        count++;
-      } else {
-        pending = t.length() - i;
-        break;
-      }
+        for (int i = 0; i < t.length(); i++) {
+            if (i < s.length() && s.charAt(i) == t.charAt(i)) {
+                count++;
+            } else {
+                pending = t.length() - i;
+                break;
+            }
+        }
+
+        System.out.println("count: " + count);
+        System.out.println("pending: " + pending);
+
+        if (s.length() > t.length()) {
+            left = s.length() - t.length();
+            System.out.println("left: " + left);
+            if (s.length() - left == k || 2 * pending + left <= k) {
+                System.out.println("Yes");
+            } else {
+                System.out.println("No");
+            }
+
+        } else if (2 * pending <= k) {
+            System.out.println("Yes");
+        } else {
+            System.out.println("No");
+        }
+
+        in.close();
     }
-
-    System.out.println("count: " + count);
-    System.out.println("pending: " + pending);
-
-    if (s.length() > t.length()) {
-      left = s.length() - t.length();
-      System.out.println("left: " + left);
-      if (s.length() - left == k || 2 * pending + left <= k) {
-        System.out.println("Yes");
-      } else {
-        System.out.println("No");
-      }
-
-    } else if (2 * pending <= k) {
-      System.out.println("Yes");
-    } else {
-      System.out.println("No");
-    }
-
-    in.close();
-  }
 }

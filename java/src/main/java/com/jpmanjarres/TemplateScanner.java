@@ -7,12 +7,12 @@ import java.util.Scanner;
  */
 public class TemplateScanner {
 
-  public static void main(String[] args) {
-    final Scanner in = new Scanner(System.in);
+    public static void main(String[] args) {
+        final Scanner in = new Scanner(System.in);
 
-    int n = in.nextInt();
-    for (int _i = 0; _i < n; _i++) {}
+        int n = in.nextInt();
+        for (int _i = 0; _i < n; _i++) {}
 
-    in.close();
-  }
+        in.close();
+    }
 }

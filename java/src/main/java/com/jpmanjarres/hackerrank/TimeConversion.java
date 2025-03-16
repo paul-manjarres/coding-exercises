@@ -14,69 +14,69 @@ import java.util.StringTokenizer;
  */
 public class TimeConversion {
 
-  public static void main(String[] args) {
-    final PrintWriter out = new PrintWriter(System.out);
-    final InputReader in = new InputReader(System.in);
-    // PROBLEM SOLVING
+    public static void main(String[] args) {
+        final PrintWriter out = new PrintWriter(System.out);
+        final InputReader in = new InputReader(System.in);
+        // PROBLEM SOLVING
 
-    String time = in.next();
-    String[] values = time.split(":");
+        String time = in.next();
+        String[] values = time.split(":");
 
-    int hour = Integer.parseInt(values[0]);
-    String AMPM = values[2].substring(2, values[2].length());
+        int hour = Integer.parseInt(values[0]);
+        String AMPM = values[2].substring(2, values[2].length());
 
-    final StringBuilder newTime = new StringBuilder();
+        final StringBuilder newTime = new StringBuilder();
 
-    final DecimalFormat df = new DecimalFormat();
-    df.setMaximumFractionDigits(0);
-    df.setMinimumFractionDigits(0);
-    df.setMinimumIntegerDigits(2);
+        final DecimalFormat df = new DecimalFormat();
+        df.setMaximumFractionDigits(0);
+        df.setMinimumFractionDigits(0);
+        df.setMinimumIntegerDigits(2);
 
-    if (hour == 12) {
-      hour = 0;
-    }
-
-    if ("AM".equalsIgnoreCase(AMPM)) {
-      newTime.append(df.format(hour));
-    } else if ("PM".equalsIgnoreCase(AMPM)) {
-      newTime.append(df.format(hour + 12));
-    }
-
-    newTime.append(":");
-    newTime.append(values[1]);
-    newTime.append(":");
-    newTime.append(values[2].substring(0, 2));
-
-    out.println(newTime.toString());
-    out.close();
-  }
-
-  static class InputReader {
-    BufferedReader reader;
-    StringTokenizer tokenizer;
-
-    public InputReader(InputStream is) {
-      reader = new BufferedReader(new InputStreamReader(is), 32768);
-      tokenizer = null;
-    }
-
-    public String next() {
-      while (tokenizer == null || !tokenizer.hasMoreTokens()) {
-        try {
-          tokenizer = new StringTokenizer(reader.readLine());
-        } catch (IOException e) {
-          throw new RuntimeException(e);
+        if (hour == 12) {
+            hour = 0;
         }
-      }
-      return tokenizer.nextToken();
+
+        if ("AM".equalsIgnoreCase(AMPM)) {
+            newTime.append(df.format(hour));
+        } else if ("PM".equalsIgnoreCase(AMPM)) {
+            newTime.append(df.format(hour + 12));
+        }
+
+        newTime.append(":");
+        newTime.append(values[1]);
+        newTime.append(":");
+        newTime.append(values[2].substring(0, 2));
+
+        out.println(newTime.toString());
+        out.close();
     }
 
-    public int nextInt() {
-      return Integer.parseInt(next());
-    }
+    static class InputReader {
+        BufferedReader reader;
+        StringTokenizer tokenizer;
 
-    public long nextLong() {
-      return Long.parseLong(next());
+        public InputReader(InputStream is) {
+            reader = new BufferedReader(new InputStreamReader(is), 32768);
+            tokenizer = null;
+        }
+
+        public String next() {
+            while (tokenizer == null || !tokenizer.hasMoreTokens()) {
+                try {
+                    tokenizer = new StringTokenizer(reader.readLine());
+                } catch (IOException e) {
+                    throw new RuntimeException(e);
+                }
+            }
+            return tokenizer.nextToken();
+        }
+
+        public int nextInt() {
+            return Integer.parseInt(next());
+        }
+
+        public long nextLong() {
+            return Long.parseLong(next());
+        }
     }
-  }
 }

@@ -13,34 +13,34 @@ import java.util.Scanner;
  */
 public class Day26NestedLogic {
 
-  public static void main(String[] args) {
-    final Scanner in = new Scanner(System.in);
+    public static void main(String[] args) {
+        final Scanner in = new Scanner(System.in);
 
-    int retDay = in.nextInt();
-    int retMonth = in.nextInt();
-    int retYear = in.nextInt();
+        int retDay = in.nextInt();
+        int retMonth = in.nextInt();
+        int retYear = in.nextInt();
 
-    int expDay = in.nextInt();
-    int expMonth = in.nextInt();
-    int expYear = in.nextInt();
+        int expDay = in.nextInt();
+        int expMonth = in.nextInt();
+        int expYear = in.nextInt();
 
-    int fine = 0;
+        int fine = 0;
 
-    if (retYear > expYear) {
-      fine = 10000;
-    } else if (retYear < expYear) {
-      fine = 0;
+        if (retYear > expYear) {
+            fine = 10000;
+        } else if (retYear < expYear) {
+            fine = 0;
 
-    } else {
-      if (retMonth > expMonth) {
-        fine = 500 * (retMonth - expMonth);
-      } else if (retDay > expDay) {
-        fine = 15 * (retDay - expDay);
-      }
+        } else {
+            if (retMonth > expMonth) {
+                fine = 500 * (retMonth - expMonth);
+            } else if (retDay > expDay) {
+                fine = 15 * (retDay - expDay);
+            }
+        }
+
+        System.out.println(fine);
+
+        in.close();
     }
-
-    System.out.println(fine);
-
-    in.close();
-  }
 }

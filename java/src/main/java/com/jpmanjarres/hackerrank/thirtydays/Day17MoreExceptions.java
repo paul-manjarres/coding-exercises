@@ -11,12 +11,12 @@ package com.jpmanjarres.hackerrank.thirtydays;
  */
 public class Day17MoreExceptions {
 
-  int power(int n, int p) {
+    int power(int n, int p) {
 
-    if (n < 0 || p < 0) {
-      throw new RuntimeException("n and p should be non-negative");
+        if (n < 0 || p < 0) {
+            throw new RuntimeException("n and p should be non-negative");
+        }
+
+        return (int) Math.pow(n, p);
     }
-
-    return (int) Math.pow(n, p);
-  }
 }

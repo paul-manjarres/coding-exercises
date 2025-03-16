@@ -14,19 +14,19 @@ import java.util.Scanner;
  */
 public class MiniMaxSum {
 
-  public static void main(String[] args) {
+    public static void main(String[] args) {
 
-    final Scanner in = new Scanner(System.in);
+        final Scanner in = new Scanner(System.in);
 
-    int N = 5;
-    int[] d = new int[N];
-    for (int i = 0; i < N; i++) {
-      d[i] = in.nextInt();
+        int N = 5;
+        int[] d = new int[N];
+        for (int i = 0; i < N; i++) {
+            d[i] = in.nextInt();
+        }
+
+        Arrays.sort(d);
+        System.out.println(d[0] + d[1] + d[2] + d[3] + " " + (d[1] + d[2] + d[3] + d[4]));
+
+        in.close();
     }
-
-    Arrays.sort(d);
-    System.out.println(d[0] + d[1] + d[2] + d[3] + " " + (d[1] + d[2] + d[3] + d[4]));
-
-    in.close();
-  }
 }

@@ -18,31 +18,31 @@ import java.util.regex.Pattern;
  */
 public class Day28Regex {
 
-  public static void main(String[] args) {
-    final Scanner in = new Scanner(System.in);
+    public static void main(String[] args) {
+        final Scanner in = new Scanner(System.in);
 
-    final Pattern p = Pattern.compile("[a-z]+@gmail.com");
-    final List<String> names = new ArrayList<>();
+        final Pattern p = Pattern.compile("[a-z]+@gmail.com");
+        final List<String> names = new ArrayList<>();
 
-    int N = in.nextInt();
-    for (int i = 0; i < N; i++) {
+        int N = in.nextInt();
+        for (int i = 0; i < N; i++) {
 
-      String name = in.next();
-      String email = in.next();
+            String name = in.next();
+            String email = in.next();
 
-      Matcher m = p.matcher(email);
+            Matcher m = p.matcher(email);
 
-      if (m.find()) {
-        names.add(name);
-      }
+            if (m.find()) {
+                names.add(name);
+            }
+        }
+
+        Collections.sort(names);
+
+        for (String s : names) {
+            System.out.println(s);
+        }
+
+        in.close();
     }
-
-    Collections.sort(names);
-
-    for (String s : names) {
-      System.out.println(s);
-    }
-
-    in.close();
-  }
 }

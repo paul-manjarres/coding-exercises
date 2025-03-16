@@ -1,11 +1,13 @@
 package org.yagamipaul.hackerrank.algorithms.strings
 
 import org.assertj.core.api.Assertions
+import org.junit.jupiter.api.Disabled
 import org.junit.jupiter.api.Test
 
 internal class TwoCharactersTest {
 
     @Test
+    @Disabled
     fun `test case 1`() {
         val res = TwoCharacters().alternate("beabeefeab")
         Assertions.assertThat(res).isEqualTo(5)

@@ -8,19 +8,19 @@ import java.util.Scanner;
  */
 public class Day16ExceptionsStringToInteger {
 
-  public static void main(String[] args) {
+    public static void main(String[] args) {
 
-    final Scanner in = new Scanner(System.in);
+        final Scanner in = new Scanner(System.in);
 
-    String s = in.nextLine();
+        String s = in.nextLine();
 
-    try {
-      int i = Integer.parseInt(s);
-      System.out.println(i);
-    } catch (Exception e) {
-      System.out.println("Bad String");
+        try {
+            int i = Integer.parseInt(s);
+            System.out.println(i);
+        } catch (Exception e) {
+            System.out.println("Bad String");
+        }
+
+        in.close();
     }
-
-    in.close();
-  }
 }

@@ -17,45 +17,45 @@ import java.util.Scanner;
  */
 public class EvenTree {
 
-  public static void main(String[] args) {
-    final Scanner in = new Scanner(System.in);
-    int N = in.nextInt();
-    int M = in.nextInt();
+    public static void main(String[] args) {
+        final Scanner in = new Scanner(System.in);
+        int N = in.nextInt();
+        int M = in.nextInt();
 
-    List<Integer>[] list = new List[N];
-    for (int i = 0; i < N; i++) {
-      list[i] = new ArrayList<>();
-    }
-    for (int i = 0; i < M; i++) {
-      int u = in.nextInt() - 1;
-      int v = in.nextInt() - 1;
-      // list[u].add(v);
-      list[v].add(u);
-    }
-
-    int count = 0;
-    Deque<Integer> stack = new ArrayDeque<>();
-    stack.add(0);
-
-    while (!stack.isEmpty()) {
-      int root = stack.poll();
-      for (Integer i : list[root]) {
-        if (countNodes(i, list) % 2 == 0) {
-          count++;
+        List<Integer>[] list = new List[N];
+        for (int i = 0; i < N; i++) {
+            list[i] = new ArrayList<>();
         }
-        stack.add(i);
-      }
+        for (int i = 0; i < M; i++) {
+            int u = in.nextInt() - 1;
+            int v = in.nextInt() - 1;
+            // list[u].add(v);
+            list[v].add(u);
+        }
+
+        int count = 0;
+        Deque<Integer> stack = new ArrayDeque<>();
+        stack.add(0);
+
+        while (!stack.isEmpty()) {
+            int root = stack.poll();
+            for (Integer i : list[root]) {
+                if (countNodes(i, list) % 2 == 0) {
+                    count++;
+                }
+                stack.add(i);
+            }
+        }
+
+        System.out.println(count);
+        in.close();
     }
 
-    System.out.println(count);
-    in.close();
-  }
-
-  static int countNodes(int root, List<Integer>[] list) {
-    int count = 1;
-    for (Integer i : list[root]) {
-      count += countNodes(i, list);
+    static int countNodes(int root, List<Integer>[] list) {
+        int count = 1;
+        for (Integer i : list[root]) {
+            count += countNodes(i, list);
+        }
+        return count;
     }
-    return count;
-  }
 }

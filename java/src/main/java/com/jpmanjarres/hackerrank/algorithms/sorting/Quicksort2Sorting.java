@@ -14,37 +14,37 @@ import java.util.Scanner;
  */
 public class Quicksort2Sorting {
 
-  static void quickSort(int[] ar) {
+    static void quickSort(int[] ar) {
 
-    int partition = ar[0];
+        int partition = ar[0];
 
-    List<Integer> left = new ArrayList<Integer>();
-    List<Integer> right = new ArrayList<Integer>();
+        List<Integer> left = new ArrayList<Integer>();
+        List<Integer> right = new ArrayList<Integer>();
 
-    for (int i = 1; i < ar.length; i++) {
+        for (int i = 1; i < ar.length; i++) {
 
-      if (ar[i] < partition) {
-        left.add(ar[i]);
-      } else {
-        right.add(ar[i]);
-      }
+            if (ar[i] < partition) {
+                left.add(ar[i]);
+            } else {
+                right.add(ar[i]);
+            }
+        }
     }
-  }
 
-  static void printArray(int[] ar) {
-    for (int n : ar) {
-      System.out.print(n + " ");
+    static void printArray(int[] ar) {
+        for (int n : ar) {
+            System.out.print(n + " ");
+        }
+        System.out.println("");
     }
-    System.out.println("");
-  }
 
-  public static void main(String[] args) {
-    Scanner in = new Scanner(System.in);
-    int n = in.nextInt();
-    int[] ar = new int[n];
-    for (int i = 0; i < n; i++) {
-      ar[i] = in.nextInt();
+    public static void main(String[] args) {
+        Scanner in = new Scanner(System.in);
+        int n = in.nextInt();
+        int[] ar = new int[n];
+        for (int i = 0; i < n; i++) {
+            ar[i] = in.nextInt();
+        }
+        quickSort(ar);
     }
-    quickSort(ar);
-  }
 }

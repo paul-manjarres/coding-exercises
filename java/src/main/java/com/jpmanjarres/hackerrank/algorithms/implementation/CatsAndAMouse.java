@@ -13,26 +13,26 @@ import java.util.Scanner;
  */
 public class CatsAndAMouse {
 
-  public static void main(String[] args) {
-    final Scanner in = new Scanner(System.in);
+    public static void main(String[] args) {
+        final Scanner in = new Scanner(System.in);
 
-    int N = in.nextInt();
-    for (int l = 0; l < N; l++) {
+        int N = in.nextInt();
+        for (int l = 0; l < N; l++) {
 
-      int x = in.nextInt();
-      int y = in.nextInt();
-      int z = in.nextInt();
+            int x = in.nextInt();
+            int y = in.nextInt();
+            int z = in.nextInt();
 
-      if (Math.abs(z - x) == Math.abs(z - y)) {
-        System.out.println("Mouse C");
-      } else if (Math.abs(z - x) < Math.abs(z - y)) {
-        System.out.println("Cat A");
-      } else if (Math.abs(z - x) < Math.abs(z - y)) {
-        System.out.println("Cat A");
-      } else {
-        System.out.println("Cat B");
-      }
+            if (Math.abs(z - x) == Math.abs(z - y)) {
+                System.out.println("Mouse C");
+            } else if (Math.abs(z - x) < Math.abs(z - y)) {
+                System.out.println("Cat A");
+            } else if (Math.abs(z - x) < Math.abs(z - y)) {
+                System.out.println("Cat A");
+            } else {
+                System.out.println("Cat B");
+            }
+        }
+        in.close();
     }
-    in.close();
-  }
 }

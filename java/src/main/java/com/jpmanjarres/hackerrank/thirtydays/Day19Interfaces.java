@@ -10,25 +10,25 @@ package com.jpmanjarres.hackerrank.thirtydays;
  *     9/03/2017
  */
 interface AdvancedArithmetic {
-  int divisorSum(int n);
+    int divisorSum(int n);
 }
 
 public class Day19Interfaces implements AdvancedArithmetic {
 
-  @Override
-  public int divisorSum(int n) {
-    int sum = 1;
-    for (int i = 2; i <= n; i++) {
-      if (n % i == 0) {
-        sum += i;
-      }
+    @Override
+    public int divisorSum(int n) {
+        int sum = 1;
+        for (int i = 2; i <= n; i++) {
+            if (n % i == 0) {
+                sum += i;
+            }
+        }
+        return sum;
     }
-    return sum;
-  }
 
-  public static void main(String[] args) {
+    public static void main(String[] args) {
 
-    Day19Interfaces main = new Day19Interfaces();
-    System.out.println(main.divisorSum(6));
-  }
+        Day19Interfaces main = new Day19Interfaces();
+        System.out.println(main.divisorSum(6));
+    }
 }

@@ -13,14 +13,14 @@ import java.util.Scanner;
  */
 public class GameOfStones {
 
-  public static void main(String[] args) {
-    final Scanner in = new Scanner(System.in);
+    public static void main(String[] args) {
+        final Scanner in = new Scanner(System.in);
 
-    int t = in.nextInt();
-    for (int _i = 0; _i < t; _i++) {
+        int t = in.nextInt();
+        for (int _i = 0; _i < t; _i++) {
 
-      int n = in.nextInt();
+            int n = in.nextInt();
+        }
+        in.close();
     }
-    in.close();
-  }
 }

@@ -13,35 +13,35 @@ import java.util.Scanner;
  */
 public class EqualizeArray {
 
-  public static void main(String[] args) {
+    public static void main(String[] args) {
 
-    final Scanner in = new Scanner(System.in);
+        final Scanner in = new Scanner(System.in);
 
-    int N = in.nextInt();
-    int[] A = new int[N];
-    int[] freq = new int[101];
+        int N = in.nextInt();
+        int[] A = new int[N];
+        int[] freq = new int[101];
 
-    int max = 0;
-    int maxIdx = 0;
+        int max = 0;
+        int maxIdx = 0;
 
-    for (int z = 0; z < N; z++) {
-      A[z] = in.nextInt();
-      freq[A[z]]++;
+        for (int z = 0; z < N; z++) {
+            A[z] = in.nextInt();
+            freq[A[z]]++;
 
-      if (freq[A[z]] > max) {
-        max = freq[A[z]];
-        maxIdx = A[z];
-      }
+            if (freq[A[z]] > max) {
+                max = freq[A[z]];
+                maxIdx = A[z];
+            }
+        }
+
+        int sum = 0;
+        for (int i = 0; i < freq.length; i++) {
+            if (i != maxIdx) {
+                sum += freq[i];
+            }
+        }
+
+        System.out.println(sum);
+        in.close();
     }
-
-    int sum = 0;
-    for (int i = 0; i < freq.length; i++) {
-      if (i != maxIdx) {
-        sum += freq[i];
-      }
-    }
-
-    System.out.println(sum);
-    in.close();
-  }
 }

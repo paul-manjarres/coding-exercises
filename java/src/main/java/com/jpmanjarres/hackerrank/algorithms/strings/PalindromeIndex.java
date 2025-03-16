@@ -8,40 +8,40 @@ import java.util.Scanner;
  */
 public class PalindromeIndex {
 
-  public static void main(String[] args) {
-    final Scanner in = new Scanner(System.in);
+    public static void main(String[] args) {
+        final Scanner in = new Scanner(System.in);
 
-    int N = in.nextInt();
-    for (int i = 0; i < N; i++) {
+        int N = in.nextInt();
+        for (int i = 0; i < N; i++) {
 
-      String s = in.next();
-      int len = s.length();
-      int index = -1;
-      boolean removed = false;
+            String s = in.next();
+            int len = s.length();
+            int index = -1;
+            boolean removed = false;
 
-      for (int j = 0, k = len - 1; j < s.length() / 2; j++, k--) {
+            for (int j = 0, k = len - 1; j < s.length() / 2; j++, k--) {
 
-        if (s.charAt(j) != s.charAt(k) && !removed) {
-          String s1 = s.substring(0, len - j - 1).concat(s.substring(len - j));
-          index = isPalindrome(s1) ? len - j - 1 : j;
-          removed = true;
-          break;
+                if (s.charAt(j) != s.charAt(k) && !removed) {
+                    String s1 = s.substring(0, len - j - 1).concat(s.substring(len - j));
+                    index = isPalindrome(s1) ? len - j - 1 : j;
+                    removed = true;
+                    break;
+                }
+            }
+            System.out.println(index);
         }
-      }
-      System.out.println(index);
+        in.close();
     }
-    in.close();
-  }
 
-  public static boolean isPalindrome(String s) {
-    int len = s.length();
-    boolean palindrome = true;
-    for (int j = 0, k = len - 1; j < s.length() / 2; j++, k--) {
-      if (s.charAt(j) != s.charAt(k)) {
-        palindrome = false;
-        break;
-      }
+    public static boolean isPalindrome(String s) {
+        int len = s.length();
+        boolean palindrome = true;
+        for (int j = 0, k = len - 1; j < s.length() / 2; j++, k--) {
+            if (s.charAt(j) != s.charAt(k)) {
+                palindrome = false;
+                break;
+            }
+        }
+        return palindrome;
     }
-    return palindrome;
-  }
 }

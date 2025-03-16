@@ -13,30 +13,30 @@ import java.util.Scanner;
  */
 public class AlgoritmicCrushBruteForce {
 
-  public static void main(String[] args) {
+    public static void main(String[] args) {
 
-    final Scanner in = new Scanner(System.in);
+        final Scanner in = new Scanner(System.in);
 
-    int N = in.nextInt();
-    int M = in.nextInt();
-    long[] arr = new long[N];
+        int N = in.nextInt();
+        int M = in.nextInt();
+        long[] arr = new long[N];
 
-    long max = Long.MIN_VALUE;
+        long max = Long.MIN_VALUE;
 
-    for (int i = 0; i < M; i++) {
+        for (int i = 0; i < M; i++) {
 
-      int a = in.nextInt();
-      int b = in.nextInt();
-      int k = in.nextInt();
+            int a = in.nextInt();
+            int b = in.nextInt();
+            int k = in.nextInt();
 
-      for (int j = a; j <= b; j++) {
-        arr[j - 1] += k;
-        max = Math.max(max, arr[j - 1]);
-      }
+            for (int j = a; j <= b; j++) {
+                arr[j - 1] += k;
+                max = Math.max(max, arr[j - 1]);
+            }
+        }
+
+        System.out.println(max);
+
+        in.close();
     }
-
-    System.out.println(max);
-
-    in.close();
-  }
 }

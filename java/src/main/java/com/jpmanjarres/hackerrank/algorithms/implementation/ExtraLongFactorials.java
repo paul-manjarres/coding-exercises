@@ -8,16 +8,16 @@ import java.util.Scanner;
  */
 public class ExtraLongFactorials {
 
-  public static void main(String[] args) {
-    final Scanner in = new Scanner(System.in);
-    int n = in.nextInt();
+    public static void main(String[] args) {
+        final Scanner in = new Scanner(System.in);
+        int n = in.nextInt();
 
-    BigInteger bi = BigInteger.valueOf(n);
+        BigInteger bi = BigInteger.valueOf(n);
 
-    for (int i = n - 1; i > 1; i--) {
-      bi = bi.multiply(BigInteger.valueOf(i));
+        for (int i = n - 1; i > 1; i--) {
+            bi = bi.multiply(BigInteger.valueOf(i));
+        }
+        System.out.println(bi.toString());
+        in.close();
     }
-    System.out.println(bi.toString());
-    in.close();
-  }
 }

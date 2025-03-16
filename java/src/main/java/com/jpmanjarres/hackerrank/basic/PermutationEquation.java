@@ -13,36 +13,36 @@ import java.util.Scanner;
  */
 public class PermutationEquation {
 
-  public static void main(String[] args) {
-    final Scanner in = new Scanner(System.in);
+    public static void main(String[] args) {
+        final Scanner in = new Scanner(System.in);
 
-    int n = in.nextInt();
-    int[] ar = new int[n];
-    for (int _i = 0; _i < n; _i++) {
-      ar[_i] = in.nextInt();
-    }
-
-    for (int i = 1; i <= n; i++) {
-
-      int px = 0;
-      int ppy = 0;
-
-      for (int j = 0; j < ar.length; j++) {
-        if (ar[j] == i) {
-          px = j + 1;
-          break;
+        int n = in.nextInt();
+        int[] ar = new int[n];
+        for (int _i = 0; _i < n; _i++) {
+            ar[_i] = in.nextInt();
         }
-      }
 
-      for (int j = 0; j < ar.length; j++) {
-        if (ar[j] == px) {
-          ppy = j + 1;
-          break;
+        for (int i = 1; i <= n; i++) {
+
+            int px = 0;
+            int ppy = 0;
+
+            for (int j = 0; j < ar.length; j++) {
+                if (ar[j] == i) {
+                    px = j + 1;
+                    break;
+                }
+            }
+
+            for (int j = 0; j < ar.length; j++) {
+                if (ar[j] == px) {
+                    ppy = j + 1;
+                    break;
+                }
+            }
+            System.out.println(ppy);
         }
-      }
-      System.out.println(ppy);
-    }
 
-    in.close();
-  }
+        in.close();
+    }
 }

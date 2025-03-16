@@ -13,57 +13,57 @@ import java.util.Scanner;
  */
 public class LarrysArray {
 
-  public static void main(String[] args) {
-    final Scanner in = new Scanner(System.in);
+    public static void main(String[] args) {
+        final Scanner in = new Scanner(System.in);
 
-    int t = in.nextInt();
-    for (int _i = 0; _i < t; _i++) {
-      int n = in.nextInt();
-      int[] arr = new int[n];
+        int t = in.nextInt();
+        for (int _i = 0; _i < t; _i++) {
+            int n = in.nextInt();
+            int[] arr = new int[n];
 
-      for (int i = 0; i < n; i++) {
-        arr[i] = in.nextInt();
-      }
+            for (int i = 0; i < n; i++) {
+                arr[i] = in.nextInt();
+            }
 
-      boolean canSort = false;
+            boolean canSort = false;
 
-      for (int i = 0; i < n - 2; i++) {
-        canSort = false;
+            for (int i = 0; i < n - 2; i++) {
+                canSort = false;
 
-        int[] temp = {arr[i], arr[i + 1], arr[i + 2]};
+                int[] temp = {arr[i], arr[i + 1], arr[i + 2]};
 
-        for (int j = 0; j < 3; j++) {
-          if (temp[0] <= temp[1] && temp[1] <= temp[2]) {
-            canSort = true;
-            arr[i] = temp[0];
-            arr[i + 1] = temp[1];
-            arr[i + 2] = temp[2];
-            break;
-          }
-          rotateLeft(temp, 1);
+                for (int j = 0; j < 3; j++) {
+                    if (temp[0] <= temp[1] && temp[1] <= temp[2]) {
+                        canSort = true;
+                        arr[i] = temp[0];
+                        arr[i + 1] = temp[1];
+                        arr[i + 2] = temp[2];
+                        break;
+                    }
+                    rotateLeft(temp, 1);
+                }
+            }
+            System.out.println(canSort ? "YES" : "NO");
         }
-      }
-      System.out.println(canSort ? "YES" : "NO");
+        in.close();
     }
-    in.close();
-  }
 
-  /**
-   * Rotate array elements to left
-   *
-   * @param arr
-   * @param d
-   * @return
-   */
-  public static int[] rotateLeft(int[] arr, int d) {
-    int realRots = d % arr.length;
-    for (int j = 0; j < realRots; j++) {
-      int temp = arr[0];
-      for (int i = 0; i < arr.length - 1; i++) {
-        arr[i] = arr[i + 1];
-      }
-      arr[arr.length - 1] = temp;
+    /**
+     * Rotate array elements to left
+     *
+     * @param arr
+     * @param d
+     * @return
+     */
+    public static int[] rotateLeft(int[] arr, int d) {
+        int realRots = d % arr.length;
+        for (int j = 0; j < realRots; j++) {
+            int temp = arr[0];
+            for (int i = 0; i < arr.length - 1; i++) {
+                arr[i] = arr[i + 1];
+            }
+            arr[arr.length - 1] = temp;
+        }
+        return arr;
     }
-    return arr;
-  }
 }

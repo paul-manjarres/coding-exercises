@@ -13,24 +13,24 @@ import java.util.Scanner;
  */
 public class SaveThePrisoner {
 
-  public static void main(String[] args) {
-    final Scanner in = new Scanner(System.in);
+    public static void main(String[] args) {
+        final Scanner in = new Scanner(System.in);
 
-    int t = in.nextInt();
-    for (int _i = 0; _i < t; _i++) {
-      long n = in.nextLong();
-      long m = in.nextLong();
-      long s = in.nextLong();
+        int t = in.nextInt();
+        for (int _i = 0; _i < t; _i++) {
+            long n = in.nextLong();
+            long m = in.nextLong();
+            long s = in.nextLong();
 
-      long index = 0;
-      if (s == 1) {
-        index = m % n;
-      } else {
-        index = ((m % n) + s - 1) % n;
-      }
+            long index = 0;
+            if (s == 1) {
+                index = m % n;
+            } else {
+                index = ((m % n) + s - 1) % n;
+            }
 
-      System.out.println(index != 0 ? index : n);
+            System.out.println(index != 0 ? index : n);
+        }
+        in.close();
     }
-    in.close();
-  }
 }

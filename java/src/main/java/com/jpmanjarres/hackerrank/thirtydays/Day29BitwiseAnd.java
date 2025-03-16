@@ -13,28 +13,28 @@ import java.util.Scanner;
  */
 public class Day29BitwiseAnd {
 
-  public static void main(String[] args) {
-    final Scanner in = new Scanner(System.in);
+    public static void main(String[] args) {
+        final Scanner in = new Scanner(System.in);
 
-    int T = in.nextInt();
-    for (int i = 0; i < T; i++) {
+        int T = in.nextInt();
+        for (int i = 0; i < T; i++) {
 
-      int N = in.nextInt();
-      int K = in.nextInt();
+            int N = in.nextInt();
+            int K = in.nextInt();
 
-      int max = 0;
+            int max = 0;
 
-      for (int j = 1; j < N; j++) {
-        for (int j2 = j + 1; j2 <= N; j2++) {
-          int and = j & j2;
-          if (and > max && and < K) {
-            max = and;
-          }
+            for (int j = 1; j < N; j++) {
+                for (int j2 = j + 1; j2 <= N; j2++) {
+                    int and = j & j2;
+                    if (and > max && and < K) {
+                        max = and;
+                    }
+                }
+            }
+
+            System.out.println(max);
         }
-      }
-
-      System.out.println(max);
+        in.close();
     }
-    in.close();
-  }
 }

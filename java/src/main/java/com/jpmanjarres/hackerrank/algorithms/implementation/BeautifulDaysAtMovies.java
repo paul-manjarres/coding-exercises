@@ -13,33 +13,33 @@ import java.util.Scanner;
  */
 public class BeautifulDaysAtMovies {
 
-  public static void main(String[] args) {
-    final Scanner in = new Scanner(System.in);
+    public static void main(String[] args) {
+        final Scanner in = new Scanner(System.in);
 
-    int i = in.nextInt();
-    int j = in.nextInt();
-    int k = in.nextInt();
+        int i = in.nextInt();
+        int j = in.nextInt();
+        int k = in.nextInt();
 
-    int count = 0;
-    for (; i <= j; i++) {
+        int count = 0;
+        for (; i <= j; i++) {
 
-      if (Math.abs(i - getReversed(i)) % k == 0) {
-        count++;
-      }
+            if (Math.abs(i - getReversed(i)) % k == 0) {
+                count++;
+            }
+        }
+        System.out.println(count);
+        in.close();
     }
-    System.out.println(count);
-    in.close();
-  }
 
-  static int getReversed(int n) {
-    return Integer.valueOf(reverse(Integer.toString(n)));
-  }
-
-  public static String reverse(String s) {
-    final StringBuilder sb = new StringBuilder(s.length());
-    for (int i = s.length() - 1; i >= 0; i--) {
-      sb.append(s.charAt(i));
+    static int getReversed(int n) {
+        return Integer.valueOf(reverse(Integer.toString(n)));
     }
-    return sb.toString();
-  }
+
+    public static String reverse(String s) {
+        final StringBuilder sb = new StringBuilder(s.length());
+        for (int i = s.length() - 1; i >= 0; i--) {
+            sb.append(s.charAt(i));
+        }
+        return sb.toString();
+    }
 }

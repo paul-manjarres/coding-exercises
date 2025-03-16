@@ -8,18 +8,18 @@ import java.util.Scanner;
  */
 public class Day9Recursion {
 
-  public static void main(String[] args) {
+    public static void main(String[] args) {
 
-    Scanner in = new Scanner(System.in);
-    int n = in.nextInt();
-    System.out.println(factorial(n));
-    in.close();
-  }
-
-  public static int factorial(int n) {
-    if (n == 0 || n == 1) {
-      return 1;
+        Scanner in = new Scanner(System.in);
+        int n = in.nextInt();
+        System.out.println(factorial(n));
+        in.close();
     }
-    return n * factorial(n - 1);
-  }
+
+    public static int factorial(int n) {
+        if (n == 0 || n == 1) {
+            return 1;
+        }
+        return n * factorial(n - 1);
+    }
 }

@@ -1,6 +1,7 @@
 plugins {
     id 'java'
-    id("com.diffplug.spotless") version "6.21.0"
+    id 'com.diffplug.spotless' version "7.0.2"
+    id 'io.github.paul-manjarres.test-time-reporter' version "0.13"
 }
 
 repositories {
@@ -9,32 +10,48 @@ repositories {
 
 group = 'com.jpmanjarres'
 version = '0.0.1'
-sourceCompatibility = JavaVersion.VERSION_17
-targetCompatibility = JavaVersion.VERSION_17
 
+java{
+    toolchain{
+        languageVersion = JavaLanguageVersion.of(23)
+    }
+}
 
 dependencies {
-    testImplementation(platform('org.junit:junit-bom:5.10.0'))
+    testImplementation(platform('org.junit:junit-bom:5.12.1'))
+    testRuntimeOnly 'org.junit.platform:junit-platform-launcher'
     testImplementation('org.junit.jupiter:junit-jupiter')
-    testImplementation 'org.assertj:assertj-core:3.24.2'
+    testImplementation 'org.assertj:assertj-core:3.25.2'
 }
 
 tasks.withType(JavaCompile).configureEach {
     options.encoding = 'UTF-8'
 }
 
-test {
+tasks.named('test') {
     useJUnitPlatform()
+    failFast(false)
     testLogging {
-        events "passed", "skipped", "failed"
+        showStandardStreams(false)
+        events("skipped", "failed")
+        exceptionFormat("full")
     }
 }
 
 spotless {
     java {
+        encoding("UTF-8")
+        importOrder()
         removeUnusedImports()
-        googleJavaFormat()   // has its own section below
-        formatAnnotations()  // fixes formatting of type annotations, see below
-        // licenseHeader '/* (C) $YEAR */' // or licenseHeaderFile
+        palantirJavaFormat()
+        formatAnnotations()
+        trimTrailingWhitespace()
+    }
+    //lineEndings = LineEnding.GIT_ATTRIBUTES_FAST_ALLSAME
+}
+
+afterEvaluate {
+    tasks.spotlessCheck {
+        dependsOn(tasks.spotlessApply)
     }
 }

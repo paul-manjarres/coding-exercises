@@ -13,16 +13,16 @@ import java.util.Scanner;
  */
 public class MaximizingXOR {
 
-  public static void main(String[] args) {
+    public static void main(String[] args) {
 
-    final Scanner in = new Scanner(System.in);
+        final Scanner in = new Scanner(System.in);
 
-    int l = in.nextInt();
-    int r = in.nextInt();
+        int l = in.nextInt();
+        int r = in.nextInt();
 
-    int pow = Integer.toBinaryString(l ^ r).length();
-    System.out.println(Math.pow(2, pow) - 1);
+        int pow = Integer.toBinaryString(l ^ r).length();
+        System.out.println(Math.pow(2, pow) - 1);
 
-    in.close();
-  }
+        in.close();
+    }
 }

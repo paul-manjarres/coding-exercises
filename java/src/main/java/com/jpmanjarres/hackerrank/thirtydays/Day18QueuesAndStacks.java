@@ -16,6 +16,6 @@ import java.util.Queue;
  */
 public class Day18QueuesAndStacks {
 
-  private Deque<Character> stack = new ArrayDeque<>();
-  private Queue<Character> queue = new LinkedList<>();
+    private Deque<Character> stack = new ArrayDeque<>();
+    private Queue<Character> queue = new LinkedList<>();
 }

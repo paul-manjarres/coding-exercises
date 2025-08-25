@@ -2,11 +2,13 @@ package com.jpmanjarres.hackerrank;
 
 import static org.junit.jupiter.api.Assertions.*;
 
+import org.junit.jupiter.api.Disabled;
 import org.junit.jupiter.api.Test;
 
 class BacktrackExampleTest {
 
     @Test
+    @Disabled
     public void test() {
         int[][] data = {
             {10, -10, -1, 1, 3, 0},

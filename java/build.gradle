@@ -1,7 +1,7 @@
 plugins {
     id 'java'
-    id 'com.diffplug.spotless' version "7.0.2"
-    id 'io.github.paul-manjarres.test-time-reporter' version "0.13"
+    id 'com.diffplug.spotless' version "7.2.1"
+   // id 'io.github.paul-manjarres.test-time-reporter' version "0.13"
 }
 
 repositories {
@@ -13,15 +13,15 @@ version = '0.0.1'
 
 java{
     toolchain{
-        languageVersion = JavaLanguageVersion.of(24)
+        languageVersion = JavaLanguageVersion.of(25)
     }
 }
 
 dependencies {
-    testImplementation(platform('org.junit:junit-bom:5.12.1'))
+    testImplementation(platform('org.junit:junit-bom:6.0.0'))
     testRuntimeOnly 'org.junit.platform:junit-platform-launcher'
     testImplementation('org.junit.jupiter:junit-jupiter')
-    testImplementation 'org.assertj:assertj-core:3.25.2'
+    testImplementation 'org.assertj:assertj-core:3.27.6'
 }
 
 tasks.withType(JavaCompile).configureEach {
